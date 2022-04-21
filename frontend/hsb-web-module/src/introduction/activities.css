@@ -1,0 +1,39 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.contenedor {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.menuTables {
+    flex: 1;
+    padding: 20px 0px;
+    border: 2px solid black;
+    margin: 10px 30px;
+    min-width: 200px;
+    width: 50vmin;
+    border-radius: 6px;
+    background: #e1e4e7;
+    box-shadow: 3px 3px 3px;
+}
+
+.img {
+    width: 70%;
+    height: 70%;
+    border-radius: 0;
+}
+
+.link {
+    color: black;
+    font-size: 200%;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: rgb(9, 65, 101);
+}
+

@@ -1,0 +1,10 @@
+DIR = \Users\steve\OneDrive\Escritorio\pruebas proyecto\mgmnt\backend\xampp
+xampp = 8.0.10
+
+server = 1.8.0
+perl = 0
+python = 0
+utils = 0
+java = 0
+other = 0
+usbstick = 1

@@ -1,0 +1,81 @@
+#main-container1{
+    background: rgba(218, 216, 216, 0.54);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px; 
+    border: 5px;
+    margin: 10px;
+    padding: 0px 0px 50px 0px;
+}
+
+.main-container::-webkit-scrollbar {
+    width: 7px;     /* Tamaño del scroll en vertical */
+    /*display: none;   Ocultar scroll */
+}
+
+
+#tablaa {
+    max-width: 98%;
+    position: relative;
+    font-size: 3vmin;
+    display: block;
+    border-radius: 50px; /*asdf*/
+}
+
+.btnBuscar{
+    height: 34px;
+    width: 32px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.barraBusqueda{
+float: left;
+padding: 20px;
+}
+
+#containerBotones {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 20px;
+}
+
+#add, #export, #filter {
+    text-align: center;
+    margin: 20px 10px;
+    line-height: 25px;
+    font-size: 2.5vh;
+    padding: 6px 10px;
+} 
+
+
+table{
+    background-color: rgb(204, 203, 203);
+    text-align: center;
+    width: 100%;
+    position: relative;
+    top: 10px;
+    margin: auto;
+    text-align : center;
+}
+
+th, td{
+    padding: 20px;
+    
+}
+
+thead{
+    background-color:rgb(185, 185, 185);
+    color: rgb(0, 0, 0);
+    position: sticky;
+    top: 10px;
+}
+
+tr:nth-child(even){
+    background-color: rgb(221, 221, 221);
+}
+
+tr:hover td{
+    background-color: #909091;
+    color: white;
+}

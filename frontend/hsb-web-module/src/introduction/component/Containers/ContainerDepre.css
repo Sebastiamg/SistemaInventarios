@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+#containerDepreciation {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+    min-width: 290px;
+    border: 1px solid rgb(163, 160, 160);
+    border-radius: 5px;
+    margin: 10px 20px;
+    justify-content: center;
+    align-content: stretch;
+    margin: 20px auto 0;
+    background: rgba(184, 181, 181, 0.678);
+
+}
+
+.containerDepre {
+    display: flex;
+    width: 50%;
+}
+
+
+.h2Depre {
+    /* border: 1px solid black; */
+    border-radius: 15px;
+    margin: 5px;
+    padding: 5px;
+    font-size: 3vmin;
+    background: #909091bb;
+    color: black;
+}
+
+.value {
+    font-size: 3vmin;
+    margin: 10px;
+    font-weight: 600;
+}
