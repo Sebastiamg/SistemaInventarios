@@ -8,25 +8,25 @@ import {BrowserRouter,Switch,Route,Link} from "react-router-dom";
 
 function routes() {
 
-    // return ( 
-    //     // <BrowserRouter>
+    return ( 
+        // <BrowserRouter>
         
-    //         <h1>aaaaaaaaaa</h1>
+            <h1>aaaaaaaaaa</h1>
         
-    //     // </BrowserRouter>
+        // </BrowserRouter>
 
-    //     // // <BrowserRouter>
+        // <BrowserRouter>
 
 
-    //     // //     <Route path="/"  element={<InitRoot />} >
-    //     // //         <Route path="activities"  element={<Activities />}>
-    //     // //             <Route path="expenses"  element={<Container1Data />}>
-    //     // //             </Route>
-    //     // //         </Route>
-    //     // //     </Route>    
+        //     <Route path="/"  element={<InitRoot />} >
+        //         <Route path="activities"  element={<Activities />}>
+        //             <Route path="expenses"  element={<Container1Data />}>
+        //             </Route>
+        //         </Route>
+        //     </Route>    
 
-    //     // // </BrowserRouter>
-    //     );
+        // </BrowserRouter>
+        )
 }
 
 export default routes;

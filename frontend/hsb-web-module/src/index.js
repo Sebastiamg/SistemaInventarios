@@ -11,6 +11,7 @@ import Container1Data from "./introduction/component/Containers/Container1Data";
 
 const Activities = lazy(()=>import("../src/introduction/activities"))
 
+
 function IntoTokenVerify() {
   const [token, settoken] = useState();
 
@@ -46,13 +47,5 @@ function IntoTokenVerify() {
                         </div>);
 }
 
-// {/* <BrowserRouter>
-// <Switch>
-//   <Route exact path="/activities" >
-//     <Activities/>
-//   </Route>
-// </Switch>
-// </BrowserRouter> */}
-
-
 ReactDOM.render(<IntoTokenVerify />, document.getElementById("root"));
+

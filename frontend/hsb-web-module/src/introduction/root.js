@@ -17,7 +17,7 @@ function SiginUp(props) {
  
       
 
-    const submitValue = () => {
+    const submitValue = (evt) => {
               //Validaciones (Sebastian)//
 
       const firstName = document.querySelector("#firstName");
@@ -34,31 +34,34 @@ function SiginUp(props) {
       let warn = false;
       let invalidEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
       
-
+      //nombre
       if (firstName.value.length < 4) {
-        error += `The name is not valid <br>`
+        error += `❌ Name is not valid <br>`
         warn = true;
         firstName.value = "";
+        userPassword.value = "";
         firstName.required = true;
       }
-
+      //apellido
       if (lastName.value.length < 4) {
-        error += `The last name is not valid <br>`
+        error += `❌ Last name is not valid <br>`
         warn = true;
         lastName.value = "";
+        userPassword.value = "";
         lastName.required = true
       }
-
+      //email
       // console.log(invalidEmail.test(userEmail.value))
       if (!invalidEmail.test(userEmail.value)) {
-        error += `The email is not valid <br>` 
+        error += `❌ Email is not valid <br>` 
         warn = true;
         userEmail.value = "";
+        userPassword.value = "";
         userEmail.required = true;
       }
-
+      //contaseña
       if (userPassword.value.length < 6) {
-        error += `The password is not valid <br>`  
+        error += `❌ Password is not valid <br>`  
         warn = true
         userPassword.value = "";
         userPassword.required = true;
@@ -86,77 +89,74 @@ function SiginUp(props) {
 
    
 
-
-
-
       if (props.state) {
-        return <div>
-                    <h1 translate="yes">Sign Up</h1>
+        return <div id='registerContainer'>
+          <h1 translate="yes">Sign Up</h1>
 
-                    <form id='form'>
-                      <label translate="yes">First Name</label>
-                      <input type="text" id="firstName" placeholder="First Name" onChange={e => setUsername(e.target.value)} />
+            <form id='formRegister'>
+              <label translate="yes" className='registerLabel'>First Name</label>
+              <input type="text" id="firstName" className='inputRegister' placeholder="First Name" onChange={e => setUsername(e.target.value)} />
 
-                      <label translate="yes">Last Name</label>
-                      <input type="text" id="lastName" placeholder="Last Name" onChange={e => setLastname(e.target.value)} />
+              <label translate="yes" className='registerLabel'>Last Name</label>
+              <input type="text" id="lastName" className='inputRegister' placeholder="Last Name" onChange={e => setLastname(e.target.value)} />
 
-                      <label translate="yes">Number id/Pastport</label>
-                      <input type="number" id="numberId" placeholder=" Number id/pastport" onChange={e => setid(e.target.value)} />
+              <label translate="yes" className='registerLabel'>Number id/Pastport</label>
+              <input type="number" id="numberId" className='inputRegister' placeholder=" Number id/pastport" onChange={e => setid(e.target.value)} />
 
-                      <label translate="yes">Phone Number</label>
-                      <input type="number" id="phone" placeholder="Phone" onChange={e => setPhoneNumber(e.target.value)} required />
+              <label translate="yes" className='registerLabel'>Phone Number</label>
+              <input type="number" id="phone" className='inputRegister' placeholder="Phone" onChange={e => setPhoneNumber(e.target.value)} required />
 
-                      <label translate="yes">Email</label>
-                      <input type="email" id="userEmail" placeholder="Email" onChange={e => setEmail(e.target.value)} />
+              <label translate="yes" className='registerLabel'>Email</label>
+              <input type="email" id="userEmail" className='inputRegister' placeholder="Email" onChange={e => setEmail(e.target.value)} />
 
-                      <label translate="yes">Password</label>
-                      <input type="password" id="userPassword" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+              <label translate="yes" className='registerLabel'>Password</label>
+              <input type="password" id="userPassword" className='inputRegister' placeholder="Password" onChange={e => setPassword(e.target.value)} />
                       
-                      <p className='warnings' id='warnings'></p>
-
-                      <br/><br/>
-                      
-                      
-                      <input type="submit" id="submit" className="button" onClick={submitValue} translate="yes" value="Sign Up" />
+              <p className='warnings' id='warnings'></p>
+   
+              <input type="submit" id="submit" className="button" onClick={submitValue} translate="yes" value="Sign Up" />
                     </form>
               </div>
       }else{return null }
 }
 
 
-
+//Sign In
 
  function SiginIn(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const submitValue = () => {
-      const user = {
+    const submitValue = evt => {
+      evt.preventDefault(); //preventDefault
 
+      const user = {
           'email' : email,
           'password' : password
       }
 
       Api.apiSigiIn(user);
     }
-
-
+    
     if (props.state ) {
-      return <div>
-
-                  <h1 translate="yes">Welcome</h1>
-                  <br/>
-                  <label translate="yes">Email</label>
-                  <br/>
-                  <input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} />
-                  <br/> 
-                  <label translate="yes">Password</label>
-                  <br/>
-                  <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+      return <>
                   
-                  <p><button className="button" onClick={submitValue} translate="yes">SiginIn</button></p>
+            <h1 translate="yes">Welcome</h1>
 
-            </div>
+          <form className='flexForm'>
+
+            <label translate="yes" className='loginLabel'>Email</label>
+            <input className='inputLogin' type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} />
+
+            <label translate="yes" id='loginPassword' className='loginLabel'>Password</label>
+            <input className='inputLogin' type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+                  
+            <button className="button" onClick={submitValue} translate="yes">Sign In</button>
+
+          </form>
+
+            </>
+
     }else{return null}
 }
  
@@ -177,12 +177,11 @@ function SiginUp(props) {
 
 
     if (props.state ) {
-      return <div>
+      return <div id="recoverPassword">
                   <h1 translate="yes">Recover password</h1>
-                  <label translate="yes">Please enter the email of your previously registered account</label>
+                  <label translate="yes" className='recoverLabel'>Please enter the email of your previously registered account</label>
                   
-                  <label translate="yes">Email</label>
-                  <input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} />
+                  <input type="email" className='inputRecover' placeholder="Email" onChange={e => setEmail(e.target.value)} />
 
                   <p><button className="button" onClick={submitValue} translate="yes">Request</button></p>
 
@@ -201,17 +200,21 @@ function Root() {
   return (
       <div className="root">
         <NavBarInto/>
+
         <div className="container-body">
             <div className="content1">
               <SiginUp state={show[0]}/>
               <SiginIn state={show[1]}/>
               <NewPassword state={show[2]}/> 
             </div>
+
             <div className="content2">
             
-              <button onClick={()=>{setshow([true, false, false])}} translate="yes"><h3>Sigin Up</h3></button>
-              <button onClick={()=>{setshow([false, true, false])}} translate="yes"><h3>SiginIn</h3></button>
-              <button onClick={()=>{setshow([false, false, true])}} translate="yes"><h3>Recover Password</h3></button>
+              <button className='buttonOptions' onClick={()=>{setshow([true, false, false])}} translate="yes">Sign Up</button>
+
+              <button className='buttonOptions' onClick={()=>{setshow([false, true, false])}} translate="yes">Sign In</button>
+
+              <button className='buttonOptions' onClick={()=>{setshow([false, false, true])}} translate="yes">Recover Password</button>
 
             </div>
         </div>

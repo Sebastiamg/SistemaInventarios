@@ -3,80 +3,150 @@
 }
 
 .container-body {
-  position: relative;
-  padding: 1%;
-  margin-left: 30px;
-  margin-right: 30px;
-
-
   display: flex;
+  width: 100%;
+  height: 92vh;
+  min-height: 300px;
+  flex-wrap: wrap;
   justify-content: space-around;
-
+  align-items: center;
 }
 
 .content1{
-display: grid;
-margin-right: 30em;
-width: 15em;
-padding: 2em;
-background-color: #e7e8ec;
-border: black 2px solid;
-border-radius: 15px;
-box-shadow: 10px 10px 10px #999;
-text-align: justify ;
-justify-content: space-around;
+  min-width: 350px;
+  background: linear-gradient(to left, #c9d6ff9d, #e2e2e2ab);
+  box-shadow: 7px 7px 10px;
+  outline: 4px solid #052133;
+  flex-direction: column;
+  border-radius: 0.5pc;
+  z-index: 500;
+  padding: 15px 10px;
+  margin: 0 0 20px;
 }
 
-.content2{
-  position: absolute;
-  display: grid;
-  width: auto;
-  height: auto;
-  margin-top: 8em;
-  margin-left: 20em;
-  background-color: #e7e8ec;
-  margin-bottom: 5em;
-  padding: 1em;
-  border: black 2px solid;
-  border-radius: 15px;
-  box-shadow: 10px 10px 10px #999;
+.flexForm { 
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 30vmax;
+  min-width: 300px;
+  align-items: flex-start;
+  padding: 10px;
 }
 
+.inputLogin, .inputRecover {
+  width: 100%;
+  border-radius: 7px;
+  font-size: 3vmin;
+  padding: 5px;
+  border: 2px solid black;
+}
+
+.loginLabel {
+  text-align: left;
+  font-size: 4.6vmin;
+}
 
 .button {
-  border-radius: 25px;
-   width: auto;
-   height: auto;
-   padding: 1em;
-   background-color: #094165; 
-   border-radius: 15px;
-   box-shadow: 10px 10px 10px #999;
-   color: white;
-
- }
+  margin: 10px auto;
+  background-color: #094165;
+  color: rgb(255, 255, 255);
+  width: 100%;
+  padding: 7px;
+  margin: 20px 0px 0px;
+  border: 3px solid #052133;
+  border-radius: 10px;
+  font-size: 4vmin;
+  font-weight: 600;
+}
 
 .button:hover {
-  background-color: #0d5683; 
+  background-color: rgb(32, 98, 136); 
 }
 
-input{
+/*Content 2*/
+
+.content2{
+  background: linear-gradient(to left, #c9d6ff9d, #e2e2e2ab);
+  border: 4px solid #094165;
+  box-shadow: 5px 5px 10px;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 300px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   border-radius: 15px;
-  box-shadow: 2px 2px 2px #999;
+  font-size: 4.4vmin;
+  margin-top: -40px;
 }
 
-h3{
-  font-family: var(--front-family-roboto-regular);
-  font-size: var(--font-size-m);
+.buttonOptions {
+  width: 100%;
+  background-color: rgba(107, 105, 105, 0.137);
+  padding: 7px;
+  font-weight: 600;
+
 }
 
+.buttonOptions:hover {
+  background: #4d7b97;
+  border: 2px solid #094165;
+}
 
-
-/*Sebastian*/
 .warnings {
   display: block;
-  width: 200px;
+  /* width: 200px; */
   text-align: center;
   margin: auto;
   color: #961627;
+  font-size: 1.5vmax;
+  font-weight: 600;
+}
 
+/*Form Register*/
+#registerContainer {
+  width: 100%;
+  font-size: 4.3vmin;
+}
+
+#formRegister {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  text-align: left;
+}
+
+.inputRegister {
+  border: 2px solid black;
+  border-radius: 7px;
+  padding: 3px;
+  font-size: 2vmin;
+  margin-bottom: 5px;
+}
+
+.registerLabel {
+  font-weight: 600;
+  font-size: 1.6vmax;
+}
+
+/*Form Recover Password*/
+
+#recoverPassword {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  font-size: 4vmin;
+}
+
+.recoverLabel {
+  padding: 15px 0px;
+}
+
+/*Quitar flechas*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }

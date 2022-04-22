@@ -247,3 +247,54 @@ Version: '10.4.21-MariaDB'  socket: ''  port: 3306  mariadb.org binary distribut
 2022-04-21 15:42:41 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\steve\OneDrive\Escritorio\pruebas proyecto\mgmnt\backend\xampp\mysql\data\ib_buffer_pool
 2022-04-21 15:42:41 0 [Note] Plugin 'FEEDBACK' is disabled.
 2022-04-21 15:42:41 0 [Note] Server socket created on IP: '::'.
+2022-04-21 17:23:10 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2022-04-21 17:23:10 0 [Note] InnoDB: Uses event mutexes
+2022-04-21 17:23:10 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+2022-04-21 17:23:10 0 [Note] InnoDB: Number of pools: 1
+2022-04-21 17:23:10 0 [Note] InnoDB: Using SSE2 crc32 instructions
+2022-04-21 17:23:10 0 [Note] InnoDB: Initializing buffer pool, total size = 16M, instances = 1, chunk size = 16M
+2022-04-21 17:23:10 0 [Note] InnoDB: Completed initialization of buffer pool
+2022-04-21 17:23:10 0 [Note] InnoDB: Starting crash recovery from checkpoint LSN=384411
+2022-04-21 17:23:11 0 [Note] InnoDB: 128 out of 128 rollback segments are active.
+2022-04-21 17:23:11 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2022-04-21 17:23:11 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2022-04-21 17:23:11 0 [Note] InnoDB: Setting file '\Users\steve\OneDrive\Escritorio\pruebas proyecto\mgmnt\backend\xampp\mysql\data\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2022-04-21 17:23:11 0 [Note] InnoDB: File '\Users\steve\OneDrive\Escritorio\pruebas proyecto\mgmnt\backend\xampp\mysql\data\ibtmp1' size is now 12 MB.
+2022-04-21 17:23:11 0 [Note] InnoDB: Waiting for purge to start
+2022-04-21 17:23:11 0 [Note] InnoDB: 10.4.21 started; log sequence number 384420; transaction id 579
+2022-04-21 17:23:11 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\steve\OneDrive\Escritorio\pruebas proyecto\mgmnt\backend\xampp\mysql\data\ib_buffer_pool
+2022-04-21 17:23:11 0 [Note] Plugin 'FEEDBACK' is disabled.
+2022-04-21 17:23:11 0 [Note] InnoDB: Buffer pool(s) load completed at 220421 17:23:11
+2022-04-21 17:23:11 0 [Note] Server socket created on IP: '::'.
+2022-04-22  9:27:34 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2022-04-22  9:27:34 0 [Note] InnoDB: Uses event mutexes
+2022-04-22  9:27:34 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+2022-04-22  9:27:34 0 [Note] InnoDB: Number of pools: 1
+2022-04-22  9:27:34 0 [Note] InnoDB: Using SSE2 crc32 instructions
+2022-04-22  9:27:34 0 [Note] InnoDB: Initializing buffer pool, total size = 16M, instances = 1, chunk size = 16M
+2022-04-22  9:27:34 0 [Note] InnoDB: Completed initialization of buffer pool
+2022-04-22  9:27:34 0 [Note] InnoDB: Starting crash recovery from checkpoint LSN=419790
+2022-04-22  9:27:34 0 [Note] InnoDB: 128 out of 128 rollback segments are active.
+2022-04-22  9:27:34 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2022-04-22  9:27:34 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2022-04-22  9:27:34 0 [Note] InnoDB: Setting file '\Users\steve\OneDrive\Escritorio\pruebas proyecto\mgmnt\backend\xampp\mysql\data\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2022-04-22  9:27:34 0 [Note] InnoDB: File '\Users\steve\OneDrive\Escritorio\pruebas proyecto\mgmnt\backend\xampp\mysql\data\ibtmp1' size is now 12 MB.
+2022-04-22  9:27:34 0 [Note] InnoDB: Waiting for purge to start
+2022-04-22  9:27:34 0 [Note] InnoDB: 10.4.21 started; log sequence number 419799; transaction id 707
+2022-04-22  9:27:34 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\steve\OneDrive\Escritorio\pruebas proyecto\mgmnt\backend\xampp\mysql\data\ib_buffer_pool
+2022-04-22  9:27:34 0 [Note] Plugin 'FEEDBACK' is disabled.
+2022-04-22  9:27:34 0 [Note] InnoDB: Buffer pool(s) load completed at 220422  9:27:34
+2022-04-22  9:27:34 0 [Note] Server socket created on IP: '::'.
+2022-04-22  9:27:34 0 [Note] Reading of all Master_info entries succeeded
+2022-04-22  9:27:34 0 [Note] Added new Master_info '' to hash table
+2022-04-22  9:27:34 0 [Note] mysql\bin\mysqld.exe: ready for connections.
+Version: '10.4.21-MariaDB'  socket: ''  port: 3306  mariadb.org binary distribution
+2022-04-22  9:28:22 11 [ERROR] mysqld.exe: Informacion erronea en el archivo: '.\mysql\user.frm'
+2022-04-22 10:54:06 223 [ERROR] mysqld.exe: Informacion erronea en el archivo: '.\mysql\user.frm'
+2022-04-22 15:47:38 0 [ERROR] InnoDB: The innodb_system data file 'ibdata1' must be writable
+2022-04-22 15:47:38 0 [ERROR] InnoDB: The innodb_system data file 'ibdata1' must be writable
+2022-04-22 15:47:38 0 [ERROR] Plugin 'InnoDB' init function returned error.
+2022-04-22 15:47:38 0 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+2022-04-22 15:47:38 0 [Note] Plugin 'FEEDBACK' is disabled.
+2022-04-22 15:47:38 0 [ERROR] Unknown/unsupported storage engine: InnoDB
+2022-04-22 15:47:38 0 [ERROR] Aborting
