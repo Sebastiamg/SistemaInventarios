@@ -593,3 +593,378 @@ sl:warn] [pid 12136:tid 612] AH01909: www.example.com:443:0 server certificate d
 [Fri Apr 22 10:09:42.362103 2022] [php:warn] [pid 17100:tid 1824] [client ::1:53450] PHP Warning:  Undefined property: stdClass::$details in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\create_user.php on line 32, referer: http://localhost:3000/
 [Fri Apr 22 10:09:42.434932 2022] [php:error] [pid 17100:tid 1824] [client ::1:53450] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '614156' for key 'PRIMARY' in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php:58\nStack trace:\n#0 C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php(58): PDOStatement->execute()\n#1 C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\create_user.php(42): User->create()\n#2 {main}\n  thrown in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php on line 58, referer: http://localhost:3000/
 [Fri Apr 22 10:10:31.082633 2022] [php:warn] [pid 17100:tid 1816] [client ::1:53539] PHP Warning:  Undefined property: stdClass::$details in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\create_user.php on line 32, referer: http://localhost:3000/
+[Fri Apr 22 20:49:49.434556 2022] [ssl:warn] [pid 2328:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Apr 22 20:49:49.482784 2022] [core:warn] [pid 2328:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Fri Apr 22 20:49:49.484780 2022] [ssl:warn] [pid 2328:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Apr 22 20:49:49.748138 2022] [mpm_winnt:notice] [pid 2328:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Fri Apr 22 20:49:49.748138 2022] [mpm_winnt:notice] [pid 2328:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Fri Apr 22 20:49:49.748138 2022] [core:notice] [pid 2328:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Fri Apr 22 20:49:49.751129 2022] [mpm_winnt:notice] [pid 2328:tid 576] AH00418: Parent: Created child process 13504
+[Fri Apr 22 20:49:50.078379 2022] [ssl:warn] [pid 13504:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Apr 22 20:49:50.123996 2022] [ssl:warn] [pid 13504:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Apr 22 20:49:50.152442 2022] [mpm_winnt:notice] [pid 13504:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 12:02:27.510409 2022] [ssl:warn] [pid 14936:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 12:02:27.560696 2022] [core:warn] [pid 14936:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 12:02:27.560696 2022] [ssl:warn] [pid 14936:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 12:02:27.828412 2022] [mpm_winnt:notice] [pid 14936:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 12:02:27.828412 2022] [mpm_winnt:notice] [pid 14936:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 12:02:27.828412 2022] [core:notice] [pid 14936:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 12:02:27.828412 2022] [mpm_winnt:notice] [pid 14936:tid 576] AH00418: Parent: Created child process 18304
+[Mon Apr 25 12:02:28.140839 2022] [ssl:warn] [pid 18304:tid 588] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 12:02:28.187703 2022] [ssl:warn] [pid 18304:tid 588] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 12:02:28.218945 2022] [mpm_winnt:notice] [pid 18304:tid 588] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 13:03:23.189515 2022] [ssl:warn] [pid 1608:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:03:23.236403 2022] [core:warn] [pid 1608:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 13:03:23.236403 2022] [ssl:warn] [pid 1608:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:03:23.267647 2022] [mpm_winnt:notice] [pid 1608:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 13:03:23.267647 2022] [mpm_winnt:notice] [pid 1608:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 13:03:23.267647 2022] [core:notice] [pid 1608:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 13:03:23.267647 2022] [mpm_winnt:notice] [pid 1608:tid 576] AH00418: Parent: Created child process 15140
+[Mon Apr 25 13:03:23.576709 2022] [ssl:warn] [pid 15140:tid 588] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:03:23.623572 2022] [ssl:warn] [pid 15140:tid 588] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:03:23.639193 2022] [mpm_winnt:notice] [pid 15140:tid 588] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 13:06:25.033545 2022] [ssl:warn] [pid 17624:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:06:25.077428 2022] [core:warn] [pid 17624:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 13:06:25.080420 2022] [ssl:warn] [pid 17624:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:06:25.100944 2022] [mpm_winnt:notice] [pid 17624:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 13:06:25.100944 2022] [mpm_winnt:notice] [pid 17624:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 13:06:25.100944 2022] [core:notice] [pid 17624:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 13:06:25.103942 2022] [mpm_winnt:notice] [pid 17624:tid 576] AH00418: Parent: Created child process 4896
+[Mon Apr 25 13:06:25.418139 2022] [ssl:warn] [pid 4896:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:06:25.466011 2022] [ssl:warn] [pid 4896:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:06:25.489946 2022] [mpm_winnt:notice] [pid 4896:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 13:09:12.480066 2022] [ssl:warn] [pid 18340:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:09:12.525559 2022] [core:warn] [pid 18340:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 13:09:12.528551 2022] [ssl:warn] [pid 18340:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:09:12.550492 2022] [mpm_winnt:notice] [pid 18340:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 13:09:12.550492 2022] [mpm_winnt:notice] [pid 18340:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 13:09:12.550492 2022] [core:notice] [pid 18340:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 13:09:12.552487 2022] [mpm_winnt:notice] [pid 18340:tid 576] AH00418: Parent: Created child process 3268
+[Mon Apr 25 13:09:12.867644 2022] [ssl:warn] [pid 3268:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:09:12.915516 2022] [ssl:warn] [pid 3268:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:09:12.940344 2022] [mpm_winnt:notice] [pid 3268:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 13:27:45.124477 2022] [ssl:warn] [pid 14500:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:27:45.174399 2022] [core:warn] [pid 14500:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 13:27:45.174399 2022] [ssl:warn] [pid 14500:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:27:45.205641 2022] [mpm_winnt:notice] [pid 14500:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 13:27:45.205641 2022] [mpm_winnt:notice] [pid 14500:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 13:27:45.205641 2022] [core:notice] [pid 14500:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 13:27:45.205641 2022] [mpm_winnt:notice] [pid 14500:tid 576] AH00418: Parent: Created child process 13752
+[Mon Apr 25 13:27:45.517381 2022] [ssl:warn] [pid 13752:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:27:45.564220 2022] [ssl:warn] [pid 13752:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:27:45.579842 2022] [mpm_winnt:notice] [pid 13752:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 13:37:45.347379 2022] [ssl:warn] [pid 17880:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:37:45.388761 2022] [core:warn] [pid 17880:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 13:37:45.388761 2022] [ssl:warn] [pid 17880:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:37:45.418837 2022] [mpm_winnt:notice] [pid 17880:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 13:37:45.418837 2022] [mpm_winnt:notice] [pid 17880:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 13:37:45.418837 2022] [core:notice] [pid 17880:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 13:37:45.418837 2022] [mpm_winnt:notice] [pid 17880:tid 576] AH00418: Parent: Created child process 4504
+[Mon Apr 25 13:37:45.760263 2022] [ssl:warn] [pid 4504:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:37:45.803957 2022] [ssl:warn] [pid 4504:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 13:37:45.828999 2022] [mpm_winnt:notice] [pid 4504:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 14:10:35.023636 2022] [ssl:warn] [pid 3536:tid 600] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:10:35.071507 2022] [core:warn] [pid 3536:tid 600] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 14:10:35.073502 2022] [ssl:warn] [pid 3536:tid 600] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:10:35.095444 2022] [mpm_winnt:notice] [pid 3536:tid 600] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 14:10:35.095444 2022] [mpm_winnt:notice] [pid 3536:tid 600] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 14:10:35.095444 2022] [core:notice] [pid 3536:tid 600] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 14:10:35.099433 2022] [mpm_winnt:notice] [pid 3536:tid 600] AH00418: Parent: Created child process 3016
+[Mon Apr 25 14:10:35.518038 2022] [ssl:warn] [pid 3016:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:10:35.572854 2022] [ssl:warn] [pid 3016:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:10:35.598166 2022] [mpm_winnt:notice] [pid 3016:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 14:25:32.746699 2022] [php:warn] [pid 3016:tid 1824] [client ::1:54885] PHP Warning:  Undefined property: stdClass::$details in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\create_user.php on line 32, referer: http://localhost:3000/
+[Mon Apr 25 14:29:02.919662 2022] [ssl:warn] [pid 2604:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:29:02.966526 2022] [core:warn] [pid 2604:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 14:29:02.982147 2022] [ssl:warn] [pid 2604:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:29:02.997769 2022] [mpm_winnt:notice] [pid 2604:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 14:29:02.997769 2022] [mpm_winnt:notice] [pid 2604:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 14:29:02.997769 2022] [core:notice] [pid 2604:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 14:29:02.997769 2022] [mpm_winnt:notice] [pid 2604:tid 576] AH00418: Parent: Created child process 12212
+[Mon Apr 25 14:29:03.325817 2022] [ssl:warn] [pid 12212:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:29:03.372680 2022] [ssl:warn] [pid 12212:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:29:03.388302 2022] [mpm_winnt:notice] [pid 12212:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 14:32:10.676088 2022] [ssl:warn] [pid 2468:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:32:10.707335 2022] [core:warn] [pid 2468:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 14:32:10.722928 2022] [ssl:warn] [pid 2468:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:32:10.738577 2022] [mpm_winnt:notice] [pid 2468:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 14:32:10.738577 2022] [mpm_winnt:notice] [pid 2468:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 14:32:10.738577 2022] [core:notice] [pid 2468:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 14:32:10.738577 2022] [mpm_winnt:notice] [pid 2468:tid 576] AH00418: Parent: Created child process 7760
+[Mon Apr 25 14:32:11.051001 2022] [ssl:warn] [pid 7760:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:32:11.097864 2022] [ssl:warn] [pid 7760:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:32:11.129106 2022] [mpm_winnt:notice] [pid 7760:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 14:39:07.261344 2022] [php:error] [pid 7760:tid 1820] [client ::1:55867] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1932 Table 'hsbsoft.hsbusers' doesn't exist in engine in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php:85\nStack trace:\n#0 C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php(85): PDOStatement->execute()\n#1 C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\login.php(31): User->emailExists()\n#2 {main}\n  thrown in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php on line 85, referer: http://localhost/build/
+[Mon Apr 25 14:43:43.718182 2022] [ssl:warn] [pid 4804:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:43:43.765042 2022] [core:warn] [pid 4804:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 14:43:43.765042 2022] [ssl:warn] [pid 4804:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:43:43.780665 2022] [mpm_winnt:notice] [pid 4804:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 14:43:43.780665 2022] [mpm_winnt:notice] [pid 4804:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 14:43:43.780665 2022] [core:notice] [pid 4804:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 14:43:43.796286 2022] [mpm_winnt:notice] [pid 4804:tid 576] AH00418: Parent: Created child process 15480
+[Mon Apr 25 14:43:44.095331 2022] [ssl:warn] [pid 15480:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:43:44.142194 2022] [ssl:warn] [pid 15480:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:43:44.173438 2022] [mpm_winnt:notice] [pid 15480:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 14:57:30.556129 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/
+[Mon Apr 25 14:57:34.234039 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/
+[Mon Apr 25 14:57:34.810192 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/
+[Mon Apr 25 14:57:34.971025 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/
+[Mon Apr 25 14:57:35.122414 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/
+[Mon Apr 25 14:57:35.290496 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/
+[Mon Apr 25 14:57:35.441136 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/
+[Mon Apr 25 14:57:35.617661 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/
+[Mon Apr 25 14:57:35.777645 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/
+[Mon Apr 25 14:57:35.953176 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/
+[Mon Apr 25 14:57:40.330427 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/activities
+[Mon Apr 25 14:57:41.570149 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/activities
+[Mon Apr 25 14:57:42.363881 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/activities
+[Mon Apr 25 14:57:42.505706 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/activities
+[Mon Apr 25 14:57:42.666546 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/activities
+[Mon Apr 25 14:57:42.834379 2022] [authz_core:error] [pid 15480:tid 1828] [client ::1:56746] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/activities
+[Mon Apr 25 14:57:54.734337 2022] [ssl:warn] [pid 10308:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:57:54.781203 2022] [core:warn] [pid 10308:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 14:57:54.781203 2022] [ssl:warn] [pid 10308:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:57:54.812444 2022] [mpm_winnt:notice] [pid 10308:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 14:57:54.812444 2022] [mpm_winnt:notice] [pid 10308:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 14:57:54.812444 2022] [core:notice] [pid 10308:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 14:57:54.812444 2022] [mpm_winnt:notice] [pid 10308:tid 576] AH00418: Parent: Created child process 8600
+[Mon Apr 25 14:57:55.121796 2022] [ssl:warn] [pid 8600:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:57:55.168634 2022] [ssl:warn] [pid 8600:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 14:57:55.199908 2022] [mpm_winnt:notice] [pid 8600:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 14:57:58.517589 2022] [authz_core:error] [pid 8600:tid 1852] [client ::1:56761] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build
+[Mon Apr 25 14:57:59.744968 2022] [authz_core:error] [pid 8600:tid 1852] [client ::1:56761] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build
+[Mon Apr 25 14:58:56.862187 2022] [php:warn] [pid 8600:tid 1840] [client ::1:56784] PHP Warning:  Undefined property: stdClass::$details in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\create_user.php on line 32, referer: http://localhost/build/
+[Mon Apr 25 14:59:09.811132 2022] [php:warn] [pid 8600:tid 1840] [client ::1:56803] PHP Warning:  Undefined property: stdClass::$details in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\create_user.php on line 32, referer: http://localhost/build/
+[Mon Apr 25 14:59:09.886929 2022] [php:error] [pid 8600:tid 1840] [client ::1:56803] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1754253142' for key 'PRIMARY' in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php:58\nStack trace:\n#0 C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php(58): PDOStatement->execute()\n#1 C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\create_user.php(42): User->create()\n#2 {main}\n  thrown in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php on line 58, referer: http://localhost/build/
+[Mon Apr 25 15:00:21.393399 2022] [php:warn] [pid 8600:tid 1824] [client ::1:56897] PHP Warning:  Undefined property: stdClass::$details in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\create_user.php on line 32, referer: http://localhost/build/?
+[Mon Apr 25 15:00:38.402246 2022] [authz_core:error] [pid 8600:tid 1824] [client ::1:56904] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/activities, referer: http://localhost/build/?
+[Mon Apr 25 15:01:36.323134 2022] [authz_core:error] [pid 8600:tid 1816] [client ::1:56908] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/activities, referer: http://localhost/build/?
+[Mon Apr 25 15:05:58.809994 2022] [authz_core:error] [pid 8600:tid 1816] [client ::1:49653] AH01630: client denied by server configuration: C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/htdocs/build/activities, referer: http://localhost/build/?
+[Mon Apr 25 15:47:58.029472 2022] [ssl:warn] [pid 4944:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 15:47:58.076364 2022] [core:warn] [pid 4944:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 15:47:58.076364 2022] [ssl:warn] [pid 4944:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 15:47:58.295061 2022] [mpm_winnt:notice] [pid 4944:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 15:47:58.295061 2022] [mpm_winnt:notice] [pid 4944:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 15:47:58.295061 2022] [core:notice] [pid 4944:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 15:47:58.295061 2022] [mpm_winnt:notice] [pid 4944:tid 576] AH00418: Parent: Created child process 11532
+[Mon Apr 25 15:47:58.623109 2022] [ssl:warn] [pid 11532:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 15:47:58.669973 2022] [ssl:warn] [pid 11532:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 15:47:58.701217 2022] [mpm_winnt:notice] [pid 11532:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 19:10:59.020862 2022] [ssl:warn] [pid 11868:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 19:10:59.067704 2022] [core:warn] [pid 11868:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 19:10:59.067704 2022] [ssl:warn] [pid 11868:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 19:10:59.304433 2022] [mpm_winnt:notice] [pid 11868:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 19:10:59.304433 2022] [mpm_winnt:notice] [pid 11868:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 19:10:59.304433 2022] [core:notice] [pid 11868:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 19:10:59.304433 2022] [mpm_winnt:notice] [pid 11868:tid 576] AH00418: Parent: Created child process 6500
+[Mon Apr 25 19:10:59.632480 2022] [ssl:warn] [pid 6500:tid 588] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 19:10:59.679344 2022] [ssl:warn] [pid 6500:tid 588] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 19:10:59.710587 2022] [mpm_winnt:notice] [pid 6500:tid 588] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 19:52:29.972070 2022] [ssl:warn] [pid 4012:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 19:52:30.018890 2022] [core:warn] [pid 4012:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 19:52:30.021882 2022] [ssl:warn] [pid 4012:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 19:52:30.043846 2022] [mpm_winnt:notice] [pid 4012:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 19:52:30.043846 2022] [mpm_winnt:notice] [pid 4012:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 19:52:30.043846 2022] [core:notice] [pid 4012:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 19:52:30.046841 2022] [mpm_winnt:notice] [pid 4012:tid 576] AH00418: Parent: Created child process 6840
+[Mon Apr 25 19:52:30.375955 2022] [ssl:warn] [pid 6840:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 19:52:30.421833 2022] [ssl:warn] [pid 6840:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 19:52:30.445769 2022] [mpm_winnt:notice] [pid 6840:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 20:25:55.728223 2022] [ssl:warn] [pid 7452:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 20:25:55.773483 2022] [core:warn] [pid 7452:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 20:25:55.773483 2022] [ssl:warn] [pid 7452:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 20:25:55.798424 2022] [mpm_winnt:notice] [pid 7452:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 20:25:55.798424 2022] [mpm_winnt:notice] [pid 7452:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 20:25:55.798424 2022] [core:notice] [pid 7452:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 20:25:55.803464 2022] [mpm_winnt:notice] [pid 7452:tid 576] AH00418: Parent: Created child process 9532
+[Mon Apr 25 20:25:56.133592 2022] [ssl:warn] [pid 9532:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 20:25:56.178433 2022] [ssl:warn] [pid 9532:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 20:25:56.206124 2022] [mpm_winnt:notice] [pid 9532:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 20:49:11.398564 2022] [ssl:warn] [pid 4844:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 20:49:11.445468 2022] [core:warn] [pid 4844:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 20:49:11.447488 2022] [ssl:warn] [pid 4844:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 20:49:11.469433 2022] [mpm_winnt:notice] [pid 4844:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 20:49:11.469433 2022] [mpm_winnt:notice] [pid 4844:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 20:49:11.469433 2022] [core:notice] [pid 4844:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 20:49:11.472396 2022] [mpm_winnt:notice] [pid 4844:tid 576] AH00418: Parent: Created child process 10748
+[Mon Apr 25 20:49:11.912312 2022] [ssl:warn] [pid 10748:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 20:49:11.959284 2022] [ssl:warn] [pid 10748:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 20:49:11.983220 2022] [mpm_winnt:notice] [pid 10748:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 21:15:51.708065 2022] [ssl:warn] [pid 14300:tid 580] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:15:51.754337 2022] [core:warn] [pid 14300:tid 580] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 21:15:51.757304 2022] [ssl:warn] [pid 14300:tid 580] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:15:51.779270 2022] [mpm_winnt:notice] [pid 14300:tid 580] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 21:15:51.779270 2022] [mpm_winnt:notice] [pid 14300:tid 580] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 21:15:51.779270 2022] [core:notice] [pid 14300:tid 580] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 21:15:51.782261 2022] [mpm_winnt:notice] [pid 14300:tid 580] AH00418: Parent: Created child process 1272
+[Mon Apr 25 21:15:52.114420 2022] [ssl:warn] [pid 1272:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:15:52.159285 2022] [ssl:warn] [pid 1272:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:15:52.183221 2022] [mpm_winnt:notice] [pid 1272:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 21:16:53.473583 2022] [ssl:warn] [pid 14932:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:16:53.519409 2022] [core:warn] [pid 14932:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 21:16:53.522401 2022] [ssl:warn] [pid 14932:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:16:53.543347 2022] [mpm_winnt:notice] [pid 14932:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 21:16:53.543347 2022] [mpm_winnt:notice] [pid 14932:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 21:16:53.543347 2022] [core:notice] [pid 14932:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 21:16:53.546312 2022] [mpm_winnt:notice] [pid 14932:tid 576] AH00418: Parent: Created child process 12200
+[Mon Apr 25 21:16:53.877075 2022] [ssl:warn] [pid 12200:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:16:53.922236 2022] [ssl:warn] [pid 12200:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:16:53.946146 2022] [mpm_winnt:notice] [pid 12200:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 21:19:04.731965 2022] [ssl:warn] [pid 11040:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:19:04.777893 2022] [core:warn] [pid 11040:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 21:19:04.779862 2022] [ssl:warn] [pid 11040:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:19:04.801804 2022] [mpm_winnt:notice] [pid 11040:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 21:19:04.802826 2022] [mpm_winnt:notice] [pid 11040:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 21:19:04.802826 2022] [core:notice] [pid 11040:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 21:19:04.804821 2022] [mpm_winnt:notice] [pid 11040:tid 576] AH00418: Parent: Created child process 13564
+[Mon Apr 25 21:19:05.136963 2022] [ssl:warn] [pid 13564:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:19:05.183837 2022] [ssl:warn] [pid 13564:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:19:05.206801 2022] [mpm_winnt:notice] [pid 13564:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 21:26:06.504389 2022] [ssl:warn] [pid 4380:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:26:06.551264 2022] [core:warn] [pid 4380:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 21:26:06.554256 2022] [ssl:warn] [pid 4380:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:26:06.576198 2022] [mpm_winnt:notice] [pid 4380:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 21:26:06.576198 2022] [mpm_winnt:notice] [pid 4380:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 21:26:06.576198 2022] [core:notice] [pid 4380:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 21:26:06.579189 2022] [mpm_winnt:notice] [pid 4380:tid 576] AH00418: Parent: Created child process 13556
+[Mon Apr 25 21:26:06.933087 2022] [ssl:warn] [pid 13556:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:26:06.978964 2022] [ssl:warn] [pid 13556:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:26:07.002900 2022] [mpm_winnt:notice] [pid 13556:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 21:37:55.287002 2022] [ssl:warn] [pid 4604:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:37:55.334033 2022] [core:warn] [pid 4604:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 21:37:55.336003 2022] [ssl:warn] [pid 4604:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:37:55.357969 2022] [mpm_winnt:notice] [pid 4604:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 21:37:55.357969 2022] [mpm_winnt:notice] [pid 4604:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 21:37:55.357969 2022] [core:notice] [pid 4604:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 21:37:55.360964 2022] [mpm_winnt:notice] [pid 4604:tid 576] AH00418: Parent: Created child process 14908
+[Mon Apr 25 21:37:55.689163 2022] [ssl:warn] [pid 14908:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:37:55.734019 2022] [ssl:warn] [pid 14908:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:37:55.757981 2022] [mpm_winnt:notice] [pid 14908:tid 584] AH00354: Child: Starting 150 worker threads.
+[Mon Apr 25 21:40:52.176429 2022] [ssl:warn] [pid 6156:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:40:52.222886 2022] [core:warn] [pid 6156:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Apr 25 21:40:52.224905 2022] [ssl:warn] [pid 6156:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:40:52.246846 2022] [mpm_winnt:notice] [pid 6156:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Mon Apr 25 21:40:52.246846 2022] [mpm_winnt:notice] [pid 6156:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Mon Apr 25 21:40:52.246846 2022] [core:notice] [pid 6156:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Mon Apr 25 21:40:52.249840 2022] [mpm_winnt:notice] [pid 6156:tid 576] AH00418: Parent: Created child process 4916
+[Mon Apr 25 21:40:52.579941 2022] [ssl:warn] [pid 4916:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:40:52.625818 2022] [ssl:warn] [pid 4916:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Apr 25 21:40:52.649754 2022] [mpm_winnt:notice] [pid 4916:tid 584] AH00354: Child: Starting 150 worker threads.
+[Tue Apr 26 08:15:27.242789 2022] [ssl:warn] [pid 12048:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:15:27.287507 2022] [core:warn] [pid 12048:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue Apr 26 08:15:27.287507 2022] [ssl:warn] [pid 12048:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:15:27.517541 2022] [mpm_winnt:notice] [pid 12048:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Tue Apr 26 08:15:27.517541 2022] [mpm_winnt:notice] [pid 12048:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Tue Apr 26 08:15:27.522572 2022] [core:notice] [pid 12048:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Tue Apr 26 08:15:27.522572 2022] [mpm_winnt:notice] [pid 12048:tid 576] AH00418: Parent: Created child process 11992
+[Tue Apr 26 08:15:27.860228 2022] [ssl:warn] [pid 11992:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:15:27.907210 2022] [ssl:warn] [pid 11992:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:15:27.931090 2022] [mpm_winnt:notice] [pid 11992:tid 584] AH00354: Child: Starting 150 worker threads.
+[Tue Apr 26 08:18:24.352457 2022] [ssl:warn] [pid 3064:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:18:24.403321 2022] [core:warn] [pid 3064:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue Apr 26 08:18:24.405290 2022] [ssl:warn] [pid 3064:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:18:24.427257 2022] [mpm_winnt:notice] [pid 3064:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Tue Apr 26 08:18:24.427257 2022] [mpm_winnt:notice] [pid 3064:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Tue Apr 26 08:18:24.427257 2022] [core:notice] [pid 3064:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Tue Apr 26 08:18:24.430224 2022] [mpm_winnt:notice] [pid 3064:tid 576] AH00418: Parent: Created child process 7520
+[Tue Apr 26 08:18:24.767626 2022] [ssl:warn] [pid 7520:tid 588] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:18:24.812955 2022] [ssl:warn] [pid 7520:tid 588] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:18:24.836891 2022] [mpm_winnt:notice] [pid 7520:tid 588] AH00354: Child: Starting 150 worker threads.
+[Tue Apr 26 08:37:30.297484 2022] [ssl:warn] [pid 5608:tid 580] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:37:30.344964 2022] [core:warn] [pid 5608:tid 580] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue Apr 26 08:37:30.346959 2022] [ssl:warn] [pid 5608:tid 580] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:37:30.368901 2022] [mpm_winnt:notice] [pid 5608:tid 580] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Tue Apr 26 08:37:30.369923 2022] [mpm_winnt:notice] [pid 5608:tid 580] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Tue Apr 26 08:37:30.369923 2022] [core:notice] [pid 5608:tid 580] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Tue Apr 26 08:37:30.371925 2022] [mpm_winnt:notice] [pid 5608:tid 580] AH00418: Parent: Created child process 2136
+[Tue Apr 26 08:37:30.843239 2022] [ssl:warn] [pid 2136:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:37:30.890373 2022] [ssl:warn] [pid 2136:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:37:30.915306 2022] [mpm_winnt:notice] [pid 2136:tid 584] AH00354: Child: Starting 150 worker threads.
+[Tue Apr 26 08:56:08.893586 2022] [ssl:warn] [pid 3964:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:56:08.939532 2022] [core:warn] [pid 3964:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue Apr 26 08:56:08.942524 2022] [ssl:warn] [pid 3964:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:56:08.965463 2022] [mpm_winnt:notice] [pid 3964:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Tue Apr 26 08:56:08.965463 2022] [mpm_winnt:notice] [pid 3964:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Tue Apr 26 08:56:08.965463 2022] [core:notice] [pid 3964:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Tue Apr 26 08:56:08.968455 2022] [mpm_winnt:notice] [pid 3964:tid 576] AH00418: Parent: Created child process 528
+[Tue Apr 26 08:56:09.302989 2022] [ssl:warn] [pid 528:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:56:09.348240 2022] [ssl:warn] [pid 528:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 08:56:09.372994 2022] [mpm_winnt:notice] [pid 528:tid 584] AH00354: Child: Starting 150 worker threads.
+[Tue Apr 26 09:00:35.383860 2022] [ssl:warn] [pid 11972:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:00:35.430235 2022] [core:warn] [pid 11972:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue Apr 26 09:00:35.432204 2022] [ssl:warn] [pid 11972:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:00:35.454171 2022] [mpm_winnt:notice] [pid 11972:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Tue Apr 26 09:00:35.454171 2022] [mpm_winnt:notice] [pid 11972:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Tue Apr 26 09:00:35.454171 2022] [core:notice] [pid 11972:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Tue Apr 26 09:00:35.457163 2022] [mpm_winnt:notice] [pid 11972:tid 576] AH00418: Parent: Created child process 12408
+[Tue Apr 26 09:00:35.791505 2022] [ssl:warn] [pid 12408:tid 588] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:00:35.836386 2022] [ssl:warn] [pid 12408:tid 588] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:00:35.860321 2022] [mpm_winnt:notice] [pid 12408:tid 588] AH00354: Child: Starting 150 worker threads.
+[Tue Apr 26 09:01:08.703046 2022] [ssl:warn] [pid 5592:tid 532] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:01:08.748857 2022] [core:warn] [pid 5592:tid 532] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue Apr 26 09:01:08.751849 2022] [ssl:warn] [pid 5592:tid 532] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:01:08.773815 2022] [mpm_winnt:notice] [pid 5592:tid 532] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Tue Apr 26 09:01:08.773815 2022] [mpm_winnt:notice] [pid 5592:tid 532] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Tue Apr 26 09:01:08.773815 2022] [core:notice] [pid 5592:tid 532] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Tue Apr 26 09:01:08.775810 2022] [mpm_winnt:notice] [pid 5592:tid 532] AH00418: Parent: Created child process 12120
+[Tue Apr 26 09:01:09.110796 2022] [ssl:warn] [pid 12120:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:01:09.155676 2022] [ssl:warn] [pid 12120:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:01:09.179612 2022] [mpm_winnt:notice] [pid 12120:tid 584] AH00354: Child: Starting 150 worker threads.
+[Tue Apr 26 09:03:12.170881 2022] [ssl:warn] [pid 5032:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:03:12.218451 2022] [core:warn] [pid 5032:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue Apr 26 09:03:12.221442 2022] [ssl:warn] [pid 5032:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:03:12.244382 2022] [mpm_winnt:notice] [pid 5032:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Tue Apr 26 09:03:12.244382 2022] [mpm_winnt:notice] [pid 5032:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Tue Apr 26 09:03:12.244382 2022] [core:notice] [pid 5032:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Tue Apr 26 09:03:12.246377 2022] [mpm_winnt:notice] [pid 5032:tid 576] AH00418: Parent: Created child process 7932
+[Tue Apr 26 09:03:12.591101 2022] [ssl:warn] [pid 7932:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:03:12.637000 2022] [ssl:warn] [pid 7932:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:03:12.660941 2022] [mpm_winnt:notice] [pid 7932:tid 584] AH00354: Child: Starting 150 worker threads.
+[Tue Apr 26 09:12:33.628823 2022] [ssl:warn] [pid 11288:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:12:33.674967 2022] [core:warn] [pid 11288:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue Apr 26 09:12:33.677959 2022] [ssl:warn] [pid 11288:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:12:33.699904 2022] [mpm_winnt:notice] [pid 11288:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Tue Apr 26 09:12:33.699904 2022] [mpm_winnt:notice] [pid 11288:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Tue Apr 26 09:12:33.699904 2022] [core:notice] [pid 11288:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Tue Apr 26 09:12:33.702893 2022] [mpm_winnt:notice] [pid 11288:tid 576] AH00418: Parent: Created child process 3092
+[Tue Apr 26 09:12:34.040316 2022] [ssl:warn] [pid 3092:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:12:34.086218 2022] [ssl:warn] [pid 3092:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:12:34.110154 2022] [mpm_winnt:notice] [pid 3092:tid 584] AH00354: Child: Starting 150 worker threads.
+[Tue Apr 26 09:58:23.891595 2022] [ssl:warn] [pid 13084:tid 588] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:58:23.938550 2022] [core:warn] [pid 13084:tid 588] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue Apr 26 09:58:23.940514 2022] [ssl:warn] [pid 13084:tid 588] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:58:23.963040 2022] [mpm_winnt:notice] [pid 13084:tid 588] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Tue Apr 26 09:58:23.964037 2022] [mpm_winnt:notice] [pid 13084:tid 588] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Tue Apr 26 09:58:23.964037 2022] [core:notice] [pid 13084:tid 588] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Tue Apr 26 09:58:23.966031 2022] [mpm_winnt:notice] [pid 13084:tid 588] AH00418: Parent: Created child process 12032
+[Tue Apr 26 09:58:24.302258 2022] [ssl:warn] [pid 12032:tid 588] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:58:24.347418 2022] [ssl:warn] [pid 12032:tid 588] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 09:58:24.371354 2022] [mpm_winnt:notice] [pid 12032:tid 588] AH00354: Child: Starting 150 worker threads.
+[Tue Apr 26 10:09:26.471537 2022] [ssl:warn] [pid 6276:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 10:09:26.518411 2022] [core:warn] [pid 6276:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue Apr 26 10:09:26.521379 2022] [ssl:warn] [pid 6276:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 10:09:26.543319 2022] [mpm_winnt:notice] [pid 6276:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Tue Apr 26 10:09:26.543319 2022] [mpm_winnt:notice] [pid 6276:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Tue Apr 26 10:09:26.543319 2022] [core:notice] [pid 6276:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Tue Apr 26 10:09:26.546311 2022] [mpm_winnt:notice] [pid 6276:tid 576] AH00418: Parent: Created child process 11632
+[Tue Apr 26 10:09:26.885301 2022] [ssl:warn] [pid 11632:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 10:09:26.930181 2022] [ssl:warn] [pid 11632:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 10:09:26.953122 2022] [mpm_winnt:notice] [pid 11632:tid 584] AH00354: Child: Starting 150 worker threads.
+[Tue Apr 26 10:14:53.147171 2022] [ssl:warn] [pid 14324:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 10:14:53.193968 2022] [core:warn] [pid 14324:tid 576] AH00098: pid file C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue Apr 26 10:14:53.195962 2022] [ssl:warn] [pid 14324:tid 576] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 10:14:53.218901 2022] [mpm_winnt:notice] [pid 14324:tid 576] AH00455: Apache/2.4.48 (Win64) OpenSSL/1.1.1l PHP/8.0.10 configured -- resuming normal operations
+[Tue Apr 26 10:14:53.218901 2022] [mpm_winnt:notice] [pid 14324:tid 576] AH00456: Apache Lounge VS16 Server built: Aug 25 2021 12:07:35
+[Tue Apr 26 10:14:53.218901 2022] [core:notice] [pid 14324:tid 576] AH00094: Command line: 'c:\\users\\steve\\onedrive\\escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\apache\\bin\\httpd.exe -d C:/Users/steve/OneDrive/Escritorio/pruebas proyecto/mgmnt/backend/xampp/apache'
+[Tue Apr 26 10:14:53.221893 2022] [mpm_winnt:notice] [pid 14324:tid 576] AH00418: Parent: Created child process 3228
+[Tue Apr 26 10:14:53.559043 2022] [ssl:warn] [pid 3228:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 10:14:53.606889 2022] [ssl:warn] [pid 3228:tid 584] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Apr 26 10:14:53.630825 2022] [mpm_winnt:notice] [pid 3228:tid 584] AH00354: Child: Starting 150 worker threads.
+[Tue Apr 26 10:14:59.508616 2022] [php:error] [pid 3228:tid 1848] [client 127.0.0.1:58273] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php:76\nStack trace:\n#0 C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\login.php(31): User->emailExists()\n#1 {main}\n  thrown in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php on line 76, referer: http://localhost:3000/
+[Tue Apr 26 10:15:00.781790 2022] [php:error] [pid 3228:tid 1844] [client ::1:58277] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php:76\nStack trace:\n#0 C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\login.php(31): User->emailExists()\n#1 {main}\n  thrown in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php on line 76, referer: http://localhost:3000/
+[Tue Apr 26 10:15:00.890836 2022] [php:error] [pid 3228:tid 1836] [client ::1:58279] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php:76\nStack trace:\n#0 C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\login.php(31): User->emailExists()\n#1 {main}\n  thrown in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php on line 76, referer: http://localhost:3000/
+[Tue Apr 26 10:15:01.045043 2022] [php:error] [pid 3228:tid 1824] [client ::1:58281] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php:76\nStack trace:\n#0 C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\login.php(31): User->emailExists()\n#1 {main}\n  thrown in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php on line 76, referer: http://localhost:3000/
+[Tue Apr 26 10:18:41.245515 2022] [php:error] [pid 3228:tid 1848] [client ::1:58441] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php:76\nStack trace:\n#0 C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\login.php(31): User->emailExists()\n#1 {main}\n  thrown in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php on line 76, referer: http://localhost:3000/
+[Tue Apr 26 10:18:42.381146 2022] [php:error] [pid 3228:tid 1824] [client ::1:58443] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php:76\nStack trace:\n#0 C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\login.php(31): User->emailExists()\n#1 {main}\n  thrown in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php on line 76, referer: http://localhost:3000/
+[Tue Apr 26 10:23:27.891039 2022] [php:error] [pid 3228:tid 1848] [client ::1:58610] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php:76\nStack trace:\n#0 C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\login.php(31): User->emailExists()\n#1 {main}\n  thrown in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php on line 76, referer: http://localhost:3000/
+[Tue Apr 26 10:23:29.370627 2022] [php:error] [pid 3228:tid 1824] [client ::1:58612] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php:76\nStack trace:\n#0 C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\login.php(31): User->emailExists()\n#1 {main}\n  thrown in C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\htdocs\\rest-api\\api\\objects\\user.php on line 76, referer: http://localhost:3000/

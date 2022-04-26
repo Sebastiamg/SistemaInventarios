@@ -2,11 +2,12 @@ import './Container1Data.css';
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Table,Button,Container,Modal,ModalHeader,ModalBody,FormGroup,ModalFooter,} from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import ContainerDepre from './ContainerDepre'
 import WindowExport from './WindowExport';
 import WindowFilter from './WindowFilter';
+import NavBar from '../navBar/navBar';
 
 //Datos
 const data = [
@@ -71,8 +72,8 @@ class Container1Data extends React.Component {
       editar = (dato) => {
         var contador = 0;
         var arreglo = this.state.data;
-        arreglo.map((registro) => {
-          if (dato.item == registro.item) {
+        arreglo.map(registro => {
+          if (dato.item === registro.item) {
             arreglo[contador].brand = dato.brand;
             arreglo[contador].name = dato.name;
             arreglo[contador].acquisition_date = dato.acquisition_date;
@@ -107,7 +108,8 @@ class Container1Data extends React.Component {
       };
   
     render() {
-      return (
+      return (<>
+        <NavBar/>
         <div id='main-container1'>
         <h1><font size="6">Inventary</font></h1>
 
@@ -301,6 +303,7 @@ class Container1Data extends React.Component {
         </Modal>
 
         </div>
+        </>
       );
     }
   }

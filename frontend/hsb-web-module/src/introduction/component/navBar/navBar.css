@@ -59,10 +59,10 @@ img {
 
 
 button {
-  border-radius: 25px;
+  /* border-radius: 25px; */
    width: auto;
    height: auto;
-   margin-left: 1.5em;
+   /* margin-left: 1.5em; */
    background-color: transparent;
    border-color: transparent;
  }

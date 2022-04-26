@@ -5,7 +5,7 @@ import InitRoot from "../src/introduction/root";
 import "./routes";
 import { useEffect, useState } from "react";
 import { Suspense, lazy } from "react";
-import { BrowserRouter, Route, Routes, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NavBar from "./introduction/component/navBar/navBar";
 import Container1Data from "./introduction/component/Containers/Container1Data";
 
@@ -21,23 +21,28 @@ function IntoTokenVerify() {
 
   return token === null ? (<div className="root"> <InitRoot /> </div>) 
                         : (<div className="root">
+                          
                         <Suspense fallback="<../src/introduction/component/loading.js>">
 
-                          <BrowserRouter>
+                          <BrowserRouter basename="/build">
                             <Switch>
 
                               <Route exact path="/activities" component={Activities} />
                                 
 
-                              <Route exact path="/activities/expenses">
+                              {/* <Route exact path="/activities/expenses">
                                 <NavBar/>
                                 <Container1Data />
-                              </Route>
+                              </Route>  */}
 
-                              <Route exact path="/activities/fixedAssets">
+                              <Route exacth path="/activities/expenses" component={Container1Data} />
+
+                              {/* <Route exact path="/activities/fixedAssets">
                               <NavBar/>
                                 <Container1Data />
-                              </Route>
+                              </Route> */}
+
+                              <Route exacth path="/activities/fixedAssets" component={Container1Data} />
                               
                             </Switch>
                           </BrowserRouter>
@@ -45,7 +50,8 @@ function IntoTokenVerify() {
                         </Suspense>
 
                         </div>);
-}
+      
+};
 
 ReactDOM.render(<IntoTokenVerify />, document.getElementById("root"));
 

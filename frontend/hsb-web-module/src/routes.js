@@ -1,8 +1,8 @@
 import React from "react";
-import InitRoot from '../src/introduction/root';
-import Activities from '../src/introduction/activities';
-import Container1Data from "./introduction/component/Containers/Container1Data";
-import {BrowserRouter,Switch,Route,Link} from "react-router-dom";
+// import InitRoot from '../src/introduction/root';
+// import Activities from '../src/introduction/activities';
+// import Container1Data from "./introduction/component/Containers/Container1Data";
+// import {BrowserRouter,Switch,Route,Link} from "react-router-dom";
 
 
 

@@ -4,7 +4,7 @@ import { useState,useEffect } from 'react';
 //import Api from "../services";
 import Loading from "./component/loading"
 import '../introduction/activities.css'
-import { BrowserRouter ,Link, Router } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 
@@ -36,26 +36,27 @@ function Activities() {
     <div className='contenedor'>
 
         <div className='menuTables'>
-            <img className='img' src='https://planillascontables.cl/wp-content/uploads/2021/11/pp_1626297095_RRHH.png' alt='a'/><br/>
+            <img className='img' src='https://www.questionpro.com/userimages/site_media/portada-recursos-humanos.png' alt='a'/><br/>
 
             <button className="humanResources">
-                 <a className="link" href="/activities/humanResources">Human Resources </a>
+{/*a -> link*/}<Link className="link" to="/activities/humanResources">Human Resources </Link>
              </button>
         </div>
 
         <div className='menuTables'>
             <img className='img' src='https://www.bbva.com.ar/content/dam/public-web/argentina/images/Illustrations/micro-blue-loan-money-time.png.img.320.1562251534064.png' alt=''/><br/>
             <button className="expenses">
-                <a className="link" href="/activities/expenses">Expenses</a>
+                <Link className="link" to="/activities/expenses">Expenses</Link>
             </button>
         </div>
 
         <div className='menuTables'>
             <img className='img' src='https://www.giitic.com/img/activos/activos_fijos_software_niif.png?pfdrid_c=true' alt=''/><br/>
             <button className="fixedAssets">
-                <a className="link" href="/activities/fixedAssets">Fixed Assets</a>
+                <Link className="link" to="/activities/fixedAssets">Fixed Assets</Link>
             </button>
         </div>
+
 
     </div>
       

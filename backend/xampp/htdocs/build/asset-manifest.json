@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/build/static/css/main.b6f24847.chunk.css",
+    "main.js": "/build/static/js/main.3f1d9277.chunk.js",
+    "main.js.map": "/build/static/js/main.3f1d9277.chunk.js.map",
+    "runtime-main.js": "/build/static/js/runtime-main.37041368.js",
+    "runtime-main.js.map": "/build/static/js/runtime-main.37041368.js.map",
+    "static/css/2.67d44514.chunk.css": "/build/static/css/2.67d44514.chunk.css",
+    "static/js/2.c9d62622.chunk.js": "/build/static/js/2.c9d62622.chunk.js",
+    "static/js/2.c9d62622.chunk.js.map": "/build/static/js/2.c9d62622.chunk.js.map",
+    "static/css/3.88e850b6.chunk.css": "/build/static/css/3.88e850b6.chunk.css",
+    "static/js/3.5587bcda.chunk.js": "/build/static/js/3.5587bcda.chunk.js",
+    "static/js/3.5587bcda.chunk.js.map": "/build/static/js/3.5587bcda.chunk.js.map",
+    "index.html": "/build/index.html",
+    "static/css/2.67d44514.chunk.css.map": "/build/static/css/2.67d44514.chunk.css.map",
+    "static/css/3.88e850b6.chunk.css.map": "/build/static/css/3.88e850b6.chunk.css.map",
+    "static/css/main.b6f24847.chunk.css.map": "/build/static/css/main.b6f24847.chunk.css.map",
+    "static/js/2.c9d62622.chunk.js.LICENSE.txt": "/build/static/js/2.c9d62622.chunk.js.LICENSE.txt",
+    "static/media/hsbcadlogo.png": "/build/static/media/hsbcadlogo.25a46c95.png",
+    "static/media/user.33c53d9a.png": "/build/static/media/user.33c53d9a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.37041368.js",
+    "static/css/2.67d44514.chunk.css",
+    "static/js/2.c9d62622.chunk.js",
+    "static/css/main.b6f24847.chunk.css",
+    "static/js/main.3f1d9277.chunk.js"
+  ]
+}

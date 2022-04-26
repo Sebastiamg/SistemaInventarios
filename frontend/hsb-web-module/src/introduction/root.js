@@ -15,7 +15,7 @@ function SiginUp(props) {
     const [password, setPassword] = useState('');
 
  
-      
+      //Registro
 
     const submitValue = (evt) => {
               //Validaciones (Sebastian)//
@@ -71,8 +71,6 @@ function SiginUp(props) {
         warnings.innerHTML = error
       }
      
-   
-
       const user = {
           'id' : id,
           'name' : username,
@@ -115,7 +113,7 @@ function SiginUp(props) {
               <p className='warnings' id='warnings'></p>
    
               <input type="submit" id="submit" className="button" onClick={submitValue} translate="yes" value="Sign Up" />
-                    </form>
+            </form>
               </div>
       }else{return null }
 }
