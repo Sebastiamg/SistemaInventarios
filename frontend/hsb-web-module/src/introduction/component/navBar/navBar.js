@@ -10,7 +10,7 @@ function NavBar() {
       <nav className="navBar-container">
         <div className="content-div1 ">
         <Link to="/activities">
-          <img  className="icon-init" src={ Logo } alt="init"/> {/*Arreglo del logo*/}
+          <img  className="icon-init" src={ Logo } alt="HSBCAD logo"/> {/*New Logo*/}
         </Link>
           <div className="dropdown">
               <button className="menu" ><img  src="https://cdn-icons-png.flaticon.com/128/1828/1828726.png" alt="menu"/></button>
@@ -18,7 +18,7 @@ function NavBar() {
                     
                       <Link to="/activities/HumanResources" >Human Resources</Link>
                       <Link to="/activities/Expenses" >Expenses</Link>
-                      <Link to="/activities/FixedAssets" >Fixed Assets</Link> {/*M.O: a -> Link*/}
+                      <Link to="/activities/FixedAssets" >Fixed Assets</Link> {/*A -> Link*/}
 
                   </div>
           </div>

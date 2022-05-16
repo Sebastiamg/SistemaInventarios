@@ -32,8 +32,8 @@ function Activities() {
 
     <div className="root">
       <NavBar/>
-      <h1>Actividades Administrativas</h1>
-    <div className='contenedor'>
+      <h1>Administrative Activities</h1>
+    <div className='container1'>
 
         <div className='menuTables'>
             <img className='img' src='https://www.questionpro.com/userimages/site_media/portada-recursos-humanos.png' alt='a'/><br/>

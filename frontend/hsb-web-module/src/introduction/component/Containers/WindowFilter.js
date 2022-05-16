@@ -5,11 +5,11 @@ import './WindowExport.css'
 
 class WindowFilter extends React.Component{
   state={
-    abierto: false,
+    open: false,
   }
 
   abrirModal=()=>{
-    this.setState({abierto: !this.state.abierto});
+    this.setState({open: !this.state.open});
   }
 
   render(){
@@ -30,49 +30,49 @@ class WindowFilter extends React.Component{
 
       </div></div>  
 
-      <Modal isOpen={this.state.abierto}>
+      <Modal isOpen={this.state.open}>
         <ModalHeader>
         Select data to filter
         </ModalHeader>
         <ModalBody>
           <FormGroup className="group1">
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Item&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Item&nbsp;&nbsp;</Label><br/>
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Mark&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Mark&nbsp;&nbsp;</Label><br/>
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Name&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Name&nbsp;&nbsp;</Label><br/>
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Acquisition date&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Acquisition date&nbsp;&nbsp;</Label><br/>
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Value&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Value&nbsp;&nbsp;</Label><br/>
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Supplier&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Supplier&nbsp;&nbsp;</Label><br/>
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Code&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Code&nbsp;&nbsp;</Label><br/>
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Model/Serial&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Model/Serial&nbsp;&nbsp;</Label><br/>
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Inches&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Inches&nbsp;&nbsp;</Label><br/>
           </FormGroup>
 
           <FormGroup className="group2">
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Processor&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Processor&nbsp;&nbsp;</Label><br/>
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Speed&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Speed&nbsp;&nbsp;</Label><br/>
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Location&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Location&nbsp;&nbsp;</Label><br/>
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Responsable&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Responsable&nbsp;&nbsp;</Label><br/>
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;State&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;State&nbsp;&nbsp;</Label><br/>
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Amount&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Amount&nbsp;&nbsp;</Label><br/>
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Invoice number&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Invoice number&nbsp;&nbsp;</Label><br/>
             <Input type="checkbox"/> 
-            <Label for="usuario">&nbsp;&nbsp;Observation&nbsp;&nbsp;</Label><br/>
+            <Label for="user">&nbsp;&nbsp;Observation&nbsp;&nbsp;</Label><br/>
           </FormGroup>
         </ModalBody>
 

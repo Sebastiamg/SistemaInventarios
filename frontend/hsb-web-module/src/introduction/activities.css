@@ -3,7 +3,8 @@
     margin: 0;
 }
 
-.contenedor {
+.container1 {
+    margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
 }

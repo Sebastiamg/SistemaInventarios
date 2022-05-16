@@ -9,7 +9,7 @@ import WindowExport from './WindowExport';
 import WindowFilter from './WindowFilter';
 import NavBar from '../navBar/navBar';
 
-//Datos
+//Data
 const data = [
     { item: 1, brand: "Data", name: "Data", acquisition_date: "Data", value: "Data", supplier: "Data",
     annual_de: "Data", montly_de: "Data", statusD: "Data", observation: "Data", insured: "Data"},
@@ -26,8 +26,8 @@ class Container1Data extends React.Component {
     //list of characteristics
       state = {
       data: data,
-      modalActualizar: false,
-      modalInsertar: false,
+      modalUpdate: false,
+      modalInsert: false,
       form: {
         item: "",
         brand: "",
@@ -44,58 +44,57 @@ class Container1Data extends React.Component {
     };
 
 
-    
       //Methods and actions
       //UPDATE
-      mostrarModalActualizar = (dato) => {
+      showModalUpdate = (dato) => {
         this.setState({
           form: dato,
-          modalActualizar: true,
+          modalUpdate: true,
         });
       };
     
-      cerrarModalActualizar = () => {
-        this.setState({ modalActualizar: false });
+      closeModalUpdate = () => {
+        this.setState({ modalUpdate: false });
       };
     
       //ADD
-      mostrarModalInsertar = () => {
+      showModalInsert = () => {
         this.setState({
-          modalInsertar: true,
+          modalInsert: true,
         });
       };
     
-      cerrarModalInsertar = () => {
-        this.setState({ modalInsertar: false });
+      closeModalInsert = () => {
+        this.setState({ modalInsert: false });
       };
     
-      editar = (dato) => {
-        var contador = 0;
-        var arreglo = this.state.data;
-        arreglo.map(registro => {
-          if (dato.item === registro.item) {
-            arreglo[contador].brand = dato.brand;
-            arreglo[contador].name = dato.name;
-            arreglo[contador].acquisition_date = dato.acquisition_date;
-            arreglo[contador].value = dato.value;
-            arreglo[contador].supplier = dato.supplier;
-            arreglo[contador].annual_de = dato.annual_de;
-            arreglo[contador].montly_de = dato.montly_de;
-            arreglo[contador].statusD = dato.statusD;
-            arreglo[contador].observation = dato.observation;
-            arreglo[contador].insured = dato.insured;
+      edit = (dato) => {
+        var counter = 0;
+        var array = this.state.data;
+        array.map(registration => {
+          if (dato.item === registration.item) {
+            array[counter].brand = dato.brand;
+            array[counter].name = dato.name;
+            array[counter].acquisition_date = dato.acquisition_date;
+            array[counter].value = dato.value;
+            array[counter].supplier = dato.supplier;
+            array[counter].annual_de = dato.annual_de;
+            array[counter].montly_de = dato.montly_de;
+            array[counter].statusD = dato.statusD;
+            array[counter].observation = dato.observation;
+            array[counter].insured = dato.insured;
           }
-          contador++;
+          counter++;
         });
-        this.setState({ data: arreglo, modalActualizar: false });
+        this.setState({ data: array, modalUpdate: false });
       };
     
-      insertar= ()=>{
-        var valorNuevo= {...this.state.form};
-        valorNuevo.id=this.state.data.length+1;
-        var lista= this.state.data;
-        lista.push(valorNuevo);
-        this.setState({ modalInsertar: false, data: lista });
+      insert= ()=>{
+        var newValue= {...this.state.form};
+        newValue.id=this.state.data.length+1;
+        var list= this.state.data;
+        list.push(newValue);
+        this.setState({ modalInsert: false, data: list });
       }
     
       handleChange = (e) => {
@@ -109,33 +108,20 @@ class Container1Data extends React.Component {
   
     render() {
       return (<>
-        <NavBar/>
+        <NavBar/>       {/* NavBar 2*/}
         <div id='main-container1'>
         <h1><font size="6">Inventary</font></h1>
 
         <div id='containerBotones'>
-          <Button color="success" id='add' onClick={()=>this.mostrarModalInsertar()}>Add</Button>
+          <Button color="success" id='add' onClick={()=>this.showModalInsert()}>Add</Button>
           <WindowExport />
           <WindowFilter />
         </div>
         <div className="table-responsive">
-          {/* <div className="barraBusqueda">
-            <input
-              type="text"
-              placeholder="Buscar"
-              className="textField"
-              name="busqueda"
-              value={this.state.busqueda}
-              onChange={this.onChange}
-            />
-              <button type="button" className="btnBuscar" >
-                {" "}
-                <FontAwesomeIcon icon={faSearch}/>
-              </button>
-          </div> */}
+        
         </div>
-          <Container id='tablaa' className='table-responsive'>
-            <Table id='table' className='table table-hover table-sm'>
+          <Container id='tableDad' className='table-responsive'>
+            <Table id='table' className='table table-hover table-sm'> {/*Bootstrap*/}
               <thead>
                 <tr>
                 <th></th>
@@ -147,7 +133,7 @@ class Container1Data extends React.Component {
               <tbody>
                 {this.state.data.map((dato) => (
                   <tr key={dato.item}>
-                    <th><Button color="primary" onClick={() => this.mostrarModalActualizar(dato)}>✎</Button></th>
+                    <th><Button color="primary" onClick={() => this.showModalUpdate(dato)}>🖍</Button></th>
                     <td>{dato.item}</td>
                     <td>{dato.brand}</td>
                     <td>{dato.name}</td>
@@ -165,11 +151,11 @@ class Container1Data extends React.Component {
             </Table>
           </Container>
 
-          <ContainerDepre/>
+          <ContainerDepre/> {/*Container depreciation*/}
 
 {/* --------------------MODALS------------------- */}
 
-        <Modal isOpen={this.state.modalActualizar}>
+        <Modal isOpen={this.state.modalUpdate}>
           <ModalHeader>
            <div><h3>Edit Registration</h3></div>
           </ModalHeader>
@@ -201,12 +187,12 @@ class Container1Data extends React.Component {
             </FormGroup>
 
             <FormGroup>
-              <label>annual_de: </label>
+              <label>Annual_de: </label>
               <input className="form-control" name="annual_de" type="text" onChange={this.handleChange} value={this.state.form.annual_de}/>
             </FormGroup>
 
             <FormGroup>
-              <label>montly_de: </label>
+              <label>Montly_de: </label>
               <input className="form-control" name="montly_de" type="text" onChange={this.handleChange} value={this.state.form.montly_de}/>
             </FormGroup>
 
@@ -227,14 +213,14 @@ class Container1Data extends React.Component {
           </ModalBody>
 
           <ModalFooter>
-            <Button color="primary" onClick={() => this.editar(this.state.form)}>Edit</Button>
-            <Button color="danger" onClick={() => this.cerrarModalActualizar()}>Cancel</Button>
+            <Button color="primary" onClick={() => this.edit(this.state.form)}>Edit</Button>
+            <Button color="danger" onClick={() => this.closeModalUpdate()}>Cancel</Button>
           </ModalFooter>
         </Modal>
 
 
 
-        <Modal isOpen={this.state.modalInsertar}>
+        <Modal isOpen={this.state.modalInsert}>
           <ModalHeader>
            <div><h3>Insert Item</h3></div>
           </ModalHeader>
@@ -271,12 +257,12 @@ class Container1Data extends React.Component {
             </FormGroup>
 
             <FormGroup>
-              <label>annual_de: </label>
+              <label>Annual_de: </label>
               <input className="form-control" name="annual_de" type="text" onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup>
-              <label>montly_de: </label>
+              <label>Montly_de: </label>
               <input className="form-control" name="montly_de" type="text" onChange={this.handleChange} />
             </FormGroup>
 
@@ -297,8 +283,8 @@ class Container1Data extends React.Component {
           </ModalBody>
 
           <ModalFooter>
-            <Button color="primary" onClick={() => this.insertar()} > Insert </Button>
-            <Button className="btn btn-danger" onClick={() => this.cerrarModalInsertar()} > Cancel </Button>
+            <Button color="primary" onClick={() => this.insert()} > Insert </Button>
+            <Button className="btn btn-danger" onClick={() => this.closeModalInsert()} > Cancel </Button>
           </ModalFooter>
         </Modal>
 
