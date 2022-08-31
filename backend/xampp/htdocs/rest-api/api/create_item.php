@@ -14,39 +14,40 @@ die();
 
 // files needed to connect to database
 include_once 'config/database.php'; //funcion que conecta a la bd
-include_once 'objects/user.php'; //función que crea nuevo usuario
+include_once 'objects/item.php'; //función que crea nuevo usuario
  
 // get database connection
 $database = new Database(); //variable de la clase Database
 $db = $database->getConnection(); //variable con acceso a su función conexion
  
 // instantiate product object
-$user = new User($db);  //variable con la calse usuario y el acceso a la conexion como parametro
+$asset = new Item($db);  //variable con la calse usuario y el acceso a la conexion como parametro
  
 // get posted data
 $data = json_decode(file_get_contents("php://input"));  ///??
- 
+// echo $data;
 // set product property values
-$user->id = $data->id;
-$user->name = $data->name;
-$user->details = $data->details;
-$user->email = $data->email;
-$user->password = $data->password;
- 
+$asset->id = $data->item;
+$asset->assetName = $data->name;
+$asset->assetDetails = $data->value;    //---------------
+$asset->assetPurchaseDate = $data->acquisition_date;
+$asset->assetActive = $data->statusD;
+
 // create the user
 if(
-    !empty($user->id) &&
-    !empty($user->name) &&
-    !empty($user->email) &&
-    !empty($user->password) &&
-    $user->create()
+    !empty($asset->id) &&
+    !empty($asset->assetName) &&
+    !empty($asset->assetDetails) &&
+    !empty($asset->assetPurchaseDate) &&
+    !empty($asset->assetActive) &&
+    $asset->create()
 ){
  
     // set response code
     http_response_code(200);
  
     // display message: user was created
-    echo json_encode(array("message" => "User was created."));
+    echo json_encode(array("message" => "Item was created."));
 }
  
 // message if unable to create user

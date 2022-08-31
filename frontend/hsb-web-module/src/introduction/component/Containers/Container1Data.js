@@ -8,36 +8,49 @@ import ContainerDepre from './ContainerDepre'
 import WindowExport from './WindowExport';
 import WindowFilter from './WindowFilter';
 import NavBar from '../navBar/navBar';
+import Api from "../../../services"
+
+
+// get items and push on Data
+const getData = async () => {
+  const items = await Api.fun1();
+
+  items.forEach( elm => {
+    const  item =  {
+          item: elm.id,
+          name: elm.assetName,
+          acquisition_date: elm.assetPurchaseDate,
+          value: elm.assetDetails,
+          statusD: elm.assetActive,
+    
+        }
+      data.push(item);
+  });
+
+}
+getData();
+
 
 //Data
-const data = [
-    { item: 1, brand: "Data", name: "Data", acquisition_date: "Data", value: "Data", supplier: "Data",
-    annual_de: "Data", montly_de: "Data", statusD: "Data", observation: "Data", insured: "Data"},
-    { item: 2, brand: "Data", name: "Data", acquisition_date: "Data", value: "Data", supplier: "Data",
-    annual_de: "Data", montly_de: "Data", statusD: "Data", observation: "Data", insured: "Data"},
-    { item: 3, brand: "Data", name: "Data", acquisition_date: "Data", value: "Data", supplier: "Data",
-    annual_de: "Data", montly_de: "Data", statusD: "Data", observation: "Data", insured: "Data"},
-    { item: 4, brand: "Data", name: "Data", acquisition_date: "Data", value: "Data", supplier: "Data",
-    annual_de: "Data", montly_de: "Data", statusD: "Data", observation: "Data", insured: "Data"}
-];
+let data = [];
 
 class Container1Data extends React.Component {
 
     //list of characteristics
-      state = {
+      state = { //-------------------STATE
       data: data,
       modalUpdate: false,
       modalInsert: false,
       form: {
-        item: "",
+        item: "",//---
         brand: "",
-        name: "",
-        acquisition_date: "",
-        value: "",
+        name: "",//---
+        acquisition_date: "",//---
+        value: "",//---
         supplier: "",
         annual_de: "",
         montly_de: "",
-        statusD: "",
+        statusD: "", //---
         observation: "",
         insured: ""
       },
@@ -45,7 +58,7 @@ class Container1Data extends React.Component {
 
 
       //Methods and actions
-      //UPDATE
+      //UPDATE MODAL
       showModalUpdate = (dato) => {
         this.setState({
           form: dato,
@@ -57,7 +70,7 @@ class Container1Data extends React.Component {
         this.setState({ modalUpdate: false });
       };
     
-      //ADD
+    //ADD
       showModalInsert = () => {
         this.setState({
           modalInsert: true,
@@ -67,10 +80,13 @@ class Container1Data extends React.Component {
       closeModalInsert = () => {
         this.setState({ modalInsert: false });
       };
-    
+
+    // UPDATE
       edit = (dato) => {
+        console.log(dato); //item
         var counter = 0;
         var array = this.state.data;
+        // console.log(array); //data
         array.map(registration => {
           if (dato.item === registration.item) {
             array[counter].brand = dato.brand;
@@ -83,29 +99,37 @@ class Container1Data extends React.Component {
             array[counter].statusD = dato.statusD;
             array[counter].observation = dato.observation;
             array[counter].insured = dato.insured;
+            
+            Api.apiUpdate(array[counter]);
           }
           counter++;
         });
         this.setState({ data: array, modalUpdate: false });
       };
-    
-      insert= ()=>{
-        var newValue= {...this.state.form};
-        newValue.id=this.state.data.length+1;
-        var list= this.state.data;
+    // Insert
+      insert = ()=>{
+        let newValue= {...this.state.form};
+        newValue.item = parseInt(this.state.data.pop().item) + 1;
+        let list= this.state.data;
+        Api.apiCreate(newValue);
         list.push(newValue);
-        this.setState({ modalInsert: false, data: list });
+        window.location.reload();
+        console.log(newValue); //value --------------------------------------------
+        this.setState({ modalInsert: false, data: list});
       }
-    
+      
+    // handleChange
       handleChange = (e) => {
         this.setState({
           form: {
             ...this.state.form,
             [e.target.name]: e.target.value,
           },
+
         });
       };
   
+
     render() {
       return (<>
         <NavBar/>       {/* NavBar 2*/}
@@ -154,7 +178,7 @@ class Container1Data extends React.Component {
           <ContainerDepre/> {/*Container depreciation*/}
 
 {/* --------------------MODALS------------------- */}
-
+{/* edit modal */}
         <Modal isOpen={this.state.modalUpdate}>
           <ModalHeader>
            <div><h3>Edit Registration</h3></div>
@@ -164,6 +188,11 @@ class Container1Data extends React.Component {
             <FormGroup>
               <label> Item: </label>
               <input className="form-control" readOnly type="text" value={this.state.form.item} />
+            </FormGroup>
+
+            <FormGroup>
+              <label> Name: </label>
+              <input className="form-control" name="name" type="text" onChange={this.handleChange} value={this.state.form.name} />
             </FormGroup>
             
             <FormGroup>
@@ -218,18 +247,17 @@ class Container1Data extends React.Component {
           </ModalFooter>
         </Modal>
 
-
-
+{/* add item Modal */}
         <Modal isOpen={this.state.modalInsert}>
           <ModalHeader>
            <div><h3>Insert Item</h3></div>
           </ModalHeader>
 
           <ModalBody>
-            <FormGroup>
-              <label> Item: </label>
-              <input className="form-control" readOnly type="text" value={this.state.data.length+1}/>
-            </FormGroup>
+            {/* <FormGroup> */}
+              {/* <label> Item: </label> */}
+              {/* <input className="form-control" readOnly type="text" value={this.state.data.length+1}/> ---------- */}
+            {/* </FormGroup> */}
             
             <FormGroup>
               <label>Brand: </label>

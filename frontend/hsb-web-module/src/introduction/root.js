@@ -114,14 +114,14 @@ function SiginUp(props) {
 
   const submitValue = () => {
     const user = {
-    'id' : id,
-    'name' : username,
-    'lastname' : lastname,
-    'phone' : phoneNumber,
-    'email' : email,
-    'password' : password
+      'id' : id,
+      'name' : username,
+      'lastname' : lastname,
+      'phone' : phoneNumber,
+      'email' : email,
+      'password' : password
     }
-      Api.apiSigiUp(user);
+      Api.apiSigiUp(user);  //------------------------Le pasamos el usuario
     }
 
 
@@ -135,7 +135,7 @@ function SiginUp(props) {
             setTimeout(() => {
 
               submitValue();
-              window.location.href="/"
+              // window.location.href="/"
               
             }, 1000);
 
@@ -199,7 +199,7 @@ function SiginUp(props) {
       Api.apiSigiIn(user);
     }
     
-    if (props.state ) {
+    if (props.state) {
       return <>
                   
             <h1 translate="yes">Welcome</h1>

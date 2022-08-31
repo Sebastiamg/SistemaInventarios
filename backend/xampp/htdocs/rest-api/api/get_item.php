@@ -14,48 +14,27 @@ die();
 
 // files needed to connect to database
 include_once 'config/database.php'; //funcion que conecta a la bd
-include_once 'objects/user.php'; //función que crea nuevo usuario
- 
+include_once 'objects/item.php'; //función que crea nuevo usuario
+
 // get database connection
 $database = new Database(); //variable de la clase Database
 $db = $database->getConnection(); //variable con acceso a su función conexion
- 
-// instantiate product object
-$user = new User($db);  //variable con la calse usuario y el acceso a la conexion como parametro
- 
-// get posted data
-$data = json_decode(file_get_contents("php://input"));  ///??
- 
-// set product property values
-$user->id = $data->id;
-$user->name = $data->name;
-$user->details = $data->details;
-$user->email = $data->email;
-$user->password = $data->password;
- 
-// create the user
-if(
-    !empty($user->id) &&
-    !empty($user->name) &&
-    !empty($user->email) &&
-    !empty($user->password) &&
-    $user->create()
-){
- 
-    // set response code
-    http_response_code(200);
- 
-    // display message: user was created
-    echo json_encode(array("message" => "User was created."));
+
+//select all rows
+$sql = "SELECT id, assetName, assetDetails, assetPurchaseDate, assetActive FROM hsbasset ORDER BY id";
+$query = $db -> prepare($sql);
+$query->execute();
+
+while( $row = $query->fetch()){
+    $array[] = array(
+        "id" => $row["id"],
+        "assetName" => $row["assetName"],
+        "assetDetails" => $row["assetDetails"],
+        "assetPurchaseDate" => $row["assetPurchaseDate"],
+        "assetActive" => $row["assetActive"]
+    );
 }
- 
-// message if unable to create user
-else{
- 
-    // set response code
-    http_response_code(400);
- 
-    // display message: unable to create user
-    echo json_encode(array("message" => "Unable to create user."));
-}
+
+$json = json_encode($array);
+echo $json;
 ?>
