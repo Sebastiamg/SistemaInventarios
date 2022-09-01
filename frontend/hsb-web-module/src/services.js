@@ -49,14 +49,32 @@ const fun1 = async () => {
   async function getItems () {   
     try {
         const res = await axios.get('http://localhost/rest-api/api/get_item.php');
-        const items = await res.data;
-        return items;
-
+            const items = await res.data;
+            console.log(items)
+            return items;
     } catch (error) {console.log(error)}
   }
   
   return getItems();
 }
+
+// aadadasdalñkamsñlads
+
+const fun2 = async () => { 
+    async function getItems () {   
+          const res = await axios.get('http://localhost/rest-api/api/get_item.php')
+            if(typeof(res.data) == "string" ) {
+                return console.log("No hay nada en la base de datos");
+            } else {
+                let items = res.data
+                return items
+            }
+    }    
+
+    return getItems();
+  }
+  fun2()
+
 
 //update items
 
@@ -70,5 +88,6 @@ function apiUpdate(props) {
     .catch(function (error) {console.log(error);})
 }
 
-const api = {apiTokenAcces,apiTokenAccesId,apiSigiUp,apiSigiIn, apiCreate, fun1, apiUpdate};
+
+const api = {apiTokenAcces,apiTokenAccesId,apiSigiUp,apiSigiIn, apiCreate, apiUpdate, fun1, fun2};
 export default api ;

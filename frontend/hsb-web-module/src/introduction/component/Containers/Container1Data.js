@@ -11,28 +11,31 @@ import NavBar from '../navBar/navBar';
 import Api from "../../../services"
 
 
-// get items and push on Data
 const getData = async () => {
-  const items = await Api.fun1();
-
-  items.forEach( elm => {
-    const  item =  {
-          item: elm.id,
-          name: elm.assetName,
-          acquisition_date: elm.assetPurchaseDate,
-          value: elm.assetDetails,
-          statusD: elm.assetActive,
-    
-        }
-      data.push(item);
-  });
-
+  const items = await Api.fun2();
+  // console.log(items)
+  if(typeof(items) == "undefined"){
+    console.log("sin datos disponibles")
+  } else {
+    setTimeout(() => {
+      // window.location.reload()
+      items.forEach( elm => {
+        const  item =  {
+              item: elm.id,
+              name: elm.assetName,
+              acquisition_date: elm.assetPurchaseDate,
+              value: elm.assetDetails,
+              statusD: elm.assetActive
+            }
+          data.push(item);
+      });
+    }, 1000);
+  }
 }
 getData();
 
-
+const data = [];
 //Data
-let data = [];
 
 class Container1Data extends React.Component {
 
@@ -109,11 +112,10 @@ class Container1Data extends React.Component {
     // Insert
       insert = ()=>{
         let newValue= {...this.state.form};
-        newValue.item = parseInt(this.state.data.pop().item) + 1;
+        newValue.item = this.state.data.length + 1;
         let list= this.state.data;
         Api.apiCreate(newValue);
         list.push(newValue);
-        window.location.reload();
         console.log(newValue); //value --------------------------------------------
         this.setState({ modalInsert: false, data: list});
       }
@@ -128,8 +130,6 @@ class Container1Data extends React.Component {
 
         });
       };
-  
-
     render() {
       return (<>
         <NavBar/>       {/* NavBar 2*/}
@@ -156,6 +156,7 @@ class Container1Data extends React.Component {
   
               <tbody>
                 {this.state.data.map((dato) => (
+
                   <tr key={dato.item}>
                     <th><Button color="primary" onClick={() => this.showModalUpdate(dato)}>🖍</Button></th>
                     <td>{dato.item}</td>
@@ -169,8 +170,8 @@ class Container1Data extends React.Component {
                     <td>{dato.statusD}</td>
                     <td>{dato.observation}</td>
                     <td>{dato.insured}</td>
-                  </tr>
-                ))}
+                  </tr>))}
+
               </tbody>
             </Table>
           </Container>
