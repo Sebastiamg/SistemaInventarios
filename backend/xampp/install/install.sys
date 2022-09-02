@@ -1,4 +1,4 @@
-DIR = \Users\steve\OneDrive\Escritorio\pruebas proyecto\mgmnt\backend\xampp
+DIR = \Users\steve\OneDrive\Escritorio\repositorio\SistemaInventarios\backend\xampp
 xampp = 8.0.10
 
 server = 1.8.0

@@ -1,0 +1,28 @@
+5
+.\mysql-relay-bin-2022@002d08@002d31@002014@003a11@003a12@00200@0020@005bnote@005d@0020reading@0020of@0020all@0020master_info@0020entries@0020succeeded@000d.000003
+4
+
+0
+0
+@0020master_info@0020@0027@0027@0020to@0020hash@0020table@000d.info'
+2022-09-01 18:16:43 8 [Note] Master '2022-08-31 14:11:12 0 [Note] Reading of all Master_info entries succeeded': Slave I/O thread killed while connecting to master
+2022-09-01 18:16:43 7 [ERROR] Error reading master configuration
+2022-09-01 18:16:43 8 [Note] Master '2022-08-31 14:11:12 0 [Note] Reading of all Master_info entries succeeded': Slave I/O thread exiting, read up to log 'FIRST', position 4
+2022-09-01 18:16:43 7 [ERROR] Initialized Master_info from 'master-2022@002d08@002d31@002014@003a11@003a12@00200@0020@005bnote@005d@0020added@0020new@0020master_info@0020@0027@0027@0020to@0020hash@0020table@000d.info' failed
+2022-09-01 18:16:43 8 [Note] Master '2022-08-31 14:11:12 0 [Note] Reading of all Master_info entries succeeded': master was :3306
+2022-09-01 18:16:43 7 [Note] Added new Master_info '2022-08-31 14:11:12 0 [Note] Added new Master_info '' to hash table' to hash table
+2022-09-01 18:16:43 7 [Note] Reading Master_info: 'master-2022@002d08@002d31@002014@003a11@003a12@00200@0020@005bnote@005d@0020c@003a@005cusers@005csteve@005conedrive@005cescritorio@005crepositorio@005csistemainventarios@005cbackend@005cxampp@005cmysql@005cbin@005cmysqld@002eexe@003a@0020ready@0020for@0020connections@002e@000d.info'  Relay_info:'relay-log-2022@002d08@002d31@002014@003a11@003a12@00200@0020@005bnote@005d@0020c@003a@005cusers@005csteve@005conedrive@005cescritorio@005crepositorio@005csistemainventarios@005cbackend@005cxampp@005cmysql@005cbin@005cmysqld@002eexe@003a@0020ready@0020for@0020connections@002e@000d.info'
+2022-09-01 18:16:43 7 [ERROR] Failed to create a new master info file (file '\Users\steve\OneDrive\Escritorio\repositorio\SistemaInventarios\backend\xampp\mysql\data\master-2022@002d08@002d31@002014@003a11@003a12@00200@0020@005bnote@005d@0020c@003a@005cusers@005csteve@005conedrive@005cescritorio@005crepositorio@005csistemainventarios@005cbackend@005cxampp@005cmysql@005cbin@005cmysqld@002eexe@003a@0020ready@0020for@0020connections@002e@000d.info', errno 2)
+2022-09-01 18:16:43 7 [ERROR] Initialized Master_info from 'master-2022@002d08@002d31@002014@003a11@003a12@00200@0020@005bnote@005d@0020c@003a@005cusers@005csteve@005conedrive@005cescritorio@005crepositorio@005csistemainventarios@005cbackend@005cxampp@005cmysql@005cbin@005cmysqld@002eexe@003a@0020ready@0020for@0020connections@002e@000d.info' failed
+2022-09-01 18:16:43 7 [Note] Added new Master_info '2022-08-31 14:11:12 0 [Note] c:\users\steve\onedrive\escritorio\repositorio\sistemainventarios\backend\xampp\mysql\bin\mysqld.exe: ready for connections.' to hash table
+2022-09-01 18:16:43 7 [Note] Reading Master_info: 'master-version@003a@0020@002710@002e4@002e21@002dmariadb@0027@0020@0020socket@003a@0020@0027@0027@0020@0020port@003a@00203306@0020@0020mariadb@002eorg@0020binary@0020distribution@000d.info'  Relay_info:'relay-log-version@003a@0020@002710@002e4@002e21@002dmariadb@0027@0020@0020socket@003a@0020@0027@0027@0020@0020port@003a@00203306@0020@0020mariadb@002eorg@0020binary@0020distribution@000d.info'
+2022-09-01 18:16:43 7 [ERROR] Failed to create a new master info file (file '\Users\steve\OneDrive\Escritorio\repositorio\SistemaInventarios\backend\xampp\mysql\data\master-version@003a@0020@002710@002e4@002e21@002dmariadb@0027@0020@0020socket@003a@0020@0027@0027@0020@0020port@003a@00203306@0020@0020mariadb@002eorg@0020binary@0020distribution@000d.info', errno 2)
+2022-09-01 18:16:43 7 [ERROR] Initialized Master_info from 'master-version@003a@0020@002710@002e4@002e21@002dmariadb@0027@0020@0020socket@003a@0020@0027@0027@0020@0020port@003a@00203306@0020@0020mariadb@002eorg@0020binary@0020distribution@000d.info' failed
+2022-09-01 18:16:43 7 [Note] Added new Master_info 'Version: '10.4.21-MariaDB'  socket: ''  port: 3306  mariadb.org binary distribution' to hash table
+2022-09-01 18:16:43 7 [Note] Reading Master_info: 'master-2022@002d08@002d31@002014@003a11@003a37@002012@0020@005berror@005d@0020mysqld@002eexe@003a@0020informacion@0020erronea@0020en@0020el@0020archivo@003a@0020@0027@002e@005cmysql@005cuser@002efrm@0027@000d.info'  Relay_info:'relay-log-2022@002d08@002d31@002014@003a11@003a37@002012@0020@005berror@005d@0020mysqld@002eexe@003a@0020informacion@0020erronea@0020en@0020el@0020archivo@003a@0020@0027@002e@005cmysql@005cuser@002efrm@0027@000d.info'
+2022-09-01 18:16:43 7 [ERROR] Failed to create a new master info file (file '\Users\steve\OneDrive\Escritorio\repositorio\SistemaInventarios\backend\xampp\mysql\data\master-2022@002d08@002d31@002014@003a11@003a37@002012@0020@005berror@005d@0020mysqld@002eexe@003a@0020informacion@0020erronea@0020en@0020el@0020archivo@003a@0020@0027@002e@005cmysql@005cuser@002efrm@0027@000d.info', errno 2)
+2022-09-01 18:16:43 7 [ERROR] Initialized Master_info from 'master-2022@002d08@002d31@002014@003a11@003a37@002012@0020@005berror@005d@0020mysqld@002eexe@003a@0020informacion@0020erronea@0020en@0020el@0020archivo@003a@0020@0027@002e@005cmysql@005cuser@002efrm@0027@000d.info' failed
+2022-09-01 18:16:43 7 [Note] Added new Master_info '2022-08-31 14:11:37 12 [ERROR] mysqld.exe: Informacion erronea en el archivo: '.\mysql\user.frm'' to hash table
+2022-09-01 18:16:43 0 [Warning] Reading of some Master_info entries failed
+2022-09-01 18:16:43 0 [ERROR] Failed to initialize multi master structures
+2022-09-01 18:16:43 0 [ERROR] Aborting

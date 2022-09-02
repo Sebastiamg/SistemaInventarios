@@ -86,6 +86,6 @@ class __TwigTemplate_d682547fe240fa96c110f991dfd3d84444bf6897847567058e6c325c3c7
 
     public function getSourceContext()
     {
-        return new Source("", "navigation/tree/path.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\proyecto\\mgmnt\\backend\\xampp\\phpMyAdmin\\templates\\navigation\\tree\\path.twig");
+        return new Source("", "navigation/tree/path.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\repositorio\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\navigation\\tree\\path.twig");
     }
 }

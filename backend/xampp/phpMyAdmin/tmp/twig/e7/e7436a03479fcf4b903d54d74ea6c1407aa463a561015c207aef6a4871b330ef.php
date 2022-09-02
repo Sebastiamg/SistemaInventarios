@@ -81,6 +81,6 @@ class __TwigTemplate_c31ef6c6e68d1ffe4f08d0e42d85e21b9176e87f992f7e26c37877b0506
 
     public function getSourceContext()
     {
-        return new Source("", "select_all.twig", "C:\\hsbcad\\mgmnt\\backend\\xampp\\phpMyAdmin\\templates\\select_all.twig");
+        return new Source("", "select_all.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\repositorio\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\select_all.twig");
     }
 }

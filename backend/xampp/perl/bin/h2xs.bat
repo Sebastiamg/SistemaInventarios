@@ -26,7 +26,7 @@ goto endofperl
 @rem ';
 #!perl
 #line 29
-    eval 'exec \Users\steve\OneDrive\Escritorio\pruebas proyecto\mgmnt\backend\xampp\perl\bin\perl.exe -S $0 ${1+"$@"}'
+    eval 'exec \Users\steve\OneDrive\Escritorio\repositorio\SistemaInventarios\backend\xampp\perl\bin\perl.exe -S $0 ${1+"$@"}'
 	if $running_under_some_shell;
 
 BEGIN { pop @INC if $INC[-1] eq '.' }

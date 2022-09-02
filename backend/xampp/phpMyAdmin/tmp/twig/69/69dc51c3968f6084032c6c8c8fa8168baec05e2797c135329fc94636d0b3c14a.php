@@ -489,6 +489,6 @@ class __TwigTemplate_af75d2e73e3aab3fdfd0695c0c5902621eeb3bebc51d1885eec43d23200
 
     public function getSourceContext()
     {
-        return new Source("", "database/operations/index.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\pruebas proyecto\\mgmnt\\backend\\xampp\\phpMyAdmin\\templates\\database\\operations\\index.twig");
+        return new Source("", "database/operations/index.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\repositorio\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\database\\operations\\index.twig");
     }
 }

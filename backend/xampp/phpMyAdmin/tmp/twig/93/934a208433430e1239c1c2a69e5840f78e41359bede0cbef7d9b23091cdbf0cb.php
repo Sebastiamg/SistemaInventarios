@@ -449,6 +449,6 @@ class __TwigTemplate_0d2b4e0c12c63a93b893e1daeed171340dc37b61aa390548e140f35c633
 
     public function getSourceContext()
     {
-        return new Source("", "sql/query.twig", "C:\\hsbcad\\mgmnt\\backend\\xampp\\phpMyAdmin\\templates\\sql\\query.twig");
+        return new Source("", "sql/query.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\repositorio\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\sql\\query.twig");
     }
 }

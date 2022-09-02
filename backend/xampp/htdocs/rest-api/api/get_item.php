@@ -29,7 +29,7 @@ while( $row = $query->fetch()){
     $array[] = array(
         "id" => $row["id"],
         "assetName" => $row["assetName"],
-        "assetDetails" => $row["assetDetails"],
+        "assetDetails" => $row["assetDetails"],  //LINEA ASSET DETAIL
         "assetPurchaseDate" => $row["assetPurchaseDate"],
         "assetActive" => $row["assetActive"]
     );

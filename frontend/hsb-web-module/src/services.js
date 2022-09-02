@@ -34,31 +34,27 @@ async function apiTokenAccesId(props) {
 
 // Create items
 function apiCreate (props) {   
-    // console.log(props);
- 
-    const item = {"item": props["item"], "name": props["name"], "value": props["value"], "acquisition_date": props["acquisition_date"], "statusD": props["statusD"]};
 
-    console.log(item)
+    const details = JSON.stringify({
+        brand: props["brand"], 
+        value: props["value"], 
+        supplier: props["supplier"], 
+        annual_de: props["annual_de"], 
+        montly_de: props["montly_de"], 
+        observation: props["observation"], 
+        insured: props["insured"]
+    })
+
+    // console.log(details);
+    const item = {"item": props["item"], "name": props["name"], "acquisition_date": props["acquisition_date"], "statusD": props["statusD"], "details": `${details}`}
+
+    // console.log(item)
     axios.post('http://localhost/rest-api/api/create_item.php', item )
     .then((res) => console.log(res.data))
     .catch(function (error) {console.log(error);})
 }
 
 // get Items
-const fun1 = async () => { 
-  async function getItems () {   
-    try {
-        const res = await axios.get('http://localhost/rest-api/api/get_item.php');
-            const items = await res.data;
-            console.log(items)
-            return items;
-    } catch (error) {console.log(error)}
-  }
-  
-  return getItems();
-}
-
-// aadadasdalñkamsñlads
 
 const fun2 = async () => { 
     async function getItems () {   
@@ -72,22 +68,18 @@ const fun2 = async () => {
     }    
 
     return getItems();
-  }
-  fun2()
-
+}
 
 //update items
 
-function apiUpdate(props) {   
-    // console.log(props);
- 
-    const item = {"item": props["item"], "name": props["name"], "value": props["value"], "acquisition_date": props["acquisition_date"], "statusD": props["statusD"]};
-    console.log(item)
+function apiUpdate(props) {    
+    const item = {"item": props["item"], "name": props["name"], "details": props["value"], "acquisition_date": props["acquisition_date"], "statusD": props["statusD"]};
+
     axios.post('http://localhost/rest-api/api/update_item.php', item)
     .then((res) => console.log(res.data))
     .catch(function (error) {console.log(error);})
 }
 
 
-const api = {apiTokenAcces,apiTokenAccesId,apiSigiUp,apiSigiIn, apiCreate, apiUpdate, fun1, fun2};
+const api = {apiTokenAcces,apiTokenAccesId,apiSigiUp,apiSigiIn, apiCreate, apiUpdate, fun2};
 export default api ;

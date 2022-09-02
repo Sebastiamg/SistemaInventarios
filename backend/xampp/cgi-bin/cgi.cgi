@@ -1,4 +1,4 @@
-#!"\Users\steve\OneDrive\Escritorio\pruebas proyecto\mgmnt\backend\xampp\perl\bin\perl.exe"
+#!"\Users\steve\OneDrive\Escritorio\repositorio\SistemaInventarios\backend\xampp\perl\bin\perl.exe"
 
 print "Content-Type: text/html\n\n";
 

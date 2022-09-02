@@ -29,7 +29,7 @@ $data = json_decode(file_get_contents("php://input"));  ///??
 // set product property values
 $asset->id = $data->item;
 $asset->assetName = $data->name;
-$asset->assetDetails = $data->value;    //---------------
+$asset->assetDetails = $data->details;    //---------------CAMBIAR ESTA LINEA PARA LOS DETALLES
 $asset->assetPurchaseDate = $data->acquisition_date;
 $asset->assetActive = $data->statusD;
 

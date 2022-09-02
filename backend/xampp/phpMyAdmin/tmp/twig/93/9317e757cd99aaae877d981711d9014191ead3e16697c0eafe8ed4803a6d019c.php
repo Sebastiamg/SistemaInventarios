@@ -1230,9 +1230,9 @@ $context["index"], "getName", [], "method", false, false, false, 457))];
             echo _gettext("Create an index on %s columns");
             // line 508
             echo "        ";
-            $___internal_4e756e983cbb281e119719f6904a4291ed2e6fe4867a6dc96d217be1a49381b2_ = ('' === $tmp = ob_get_clean()) ? '' : new Markup($tmp, $this->env->getCharset());
+            $___internal_13179daa0359fbcddf4f939928739eb93f4b1f5611feae67587d90b87a15b858_ = ('' === $tmp = ob_get_clean()) ? '' : new Markup($tmp, $this->env->getCharset());
             // line 506
-            echo sprintf($___internal_4e756e983cbb281e119719f6904a4291ed2e6fe4867a6dc96d217be1a49381b2_, "<input class=\"mx-2\" type=\"number\" name=\"added_fields\" value=\"1\" min=\"1\" required>");
+            echo sprintf($___internal_13179daa0359fbcddf4f939928739eb93f4b1f5611feae67587d90b87a15b858_, "<input class=\"mx-2\" type=\"number\" name=\"added_fields\" value=\"1\" min=\"1\" required>");
             // line 509
             echo "
         <input class=\"btn btn-primary add_index ajax\" type=\"submit\" value=\"";
@@ -1353,6 +1353,6 @@ $context["index"], "getName", [], "method", false, false, false, 457))];
 
     public function getSourceContext()
     {
-        return new Source("", "table/structure/display_structure.twig", "C:\\hsbcad\\mgmnt\\backend\\xampp\\phpMyAdmin\\templates\\table\\structure\\display_structure.twig");
+        return new Source("", "table/structure/display_structure.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\repositorio\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\table\\structure\\display_structure.twig");
     }
 }
