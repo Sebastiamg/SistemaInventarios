@@ -45,7 +45,6 @@ function apiCreate (props) {
         insured: props["insured"]
     })
 
-    // console.log(details);
     const item = {"item": props["item"], "name": props["name"], "acquisition_date": props["acquisition_date"], "statusD": props["statusD"], "details": `${details}`}
 
     // console.log(item)
@@ -73,7 +72,19 @@ const fun2 = async () => {
 //update items
 
 function apiUpdate(props) {    
-    const item = {"item": props["item"], "name": props["name"], "details": props["value"], "acquisition_date": props["acquisition_date"], "statusD": props["statusD"]};
+    // const item = {"item": props["item"], "name": props["name"], "details": props["value"], "acquisition_date": props["acquisition_date"], "statusD": props["statusD"]};
+
+    const details = JSON.stringify({
+        brand: props["brand"], 
+        value: props["value"], 
+        supplier: props["supplier"], 
+        annual_de: props["annual_de"], 
+        montly_de: props["montly_de"], 
+        observation: props["observation"], 
+        insured: props["insured"]
+    })
+
+    const item = {"item": props["item"], "name": props["name"], "acquisition_date": props["acquisition_date"], "statusD": props["statusD"], "details": `${details}`}
 
     axios.post('http://localhost/rest-api/api/update_item.php', item)
     .then((res) => console.log(res.data))

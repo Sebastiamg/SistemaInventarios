@@ -108,7 +108,8 @@ class Container1Data extends React.Component {
             array[counter].observation = dato.observation;
             array[counter].insured = dato.insured;
             
-          // Api.apiUpdate(array[counter]);
+            console.log(array[counter])
+          Api.apiUpdate(array[counter]);
           }
           counter++;
         });
@@ -214,7 +215,7 @@ class Container1Data extends React.Component {
             
             <FormGroup>
               <label>Acquisition date: </label>
-              <input className="form-control" name="acquisition_date" type="text" onChange={this.handleChange} value={this.state.form.acquisition_date}/>
+              <input className="form-control" name="acquisition_date" type="date" onChange={this.handleChange} value={this.state.form.acquisition_date}/>
             </FormGroup>
 
             <FormGroup>
