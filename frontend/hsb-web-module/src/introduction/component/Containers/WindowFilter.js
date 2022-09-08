@@ -14,14 +14,14 @@ class WindowFilter extends React.Component{
 
   render(){
 
-    const modalStyles={
-      position: "absolute",
-      top: '240px',
-      left: '705px',
-	  width: '90%',
-      transform: 'translate(-50%, -50%)'
+    // const modalStyles={
+    //   position: "absolute",
+    //   top: '240px',
+    //   left: '705px',
+	  // width: '90%',
+    //   transform: 'translate(-50%, -50%)'
 	  
-    }
+    // }
     return(
       <>
       <div className="principal">

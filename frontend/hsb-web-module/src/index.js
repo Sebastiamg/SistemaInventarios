@@ -5,8 +5,10 @@ import InitRoot from "../src/introduction/root";
 import "./routes";
 import { useEffect, useState } from "react";
 import { Suspense, lazy } from "react";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Container1Data from "./introduction/component/Containers/Container1Data";
+import Menu from "./introduction/menu";
+import Employees from "./introduction/component/Containers/employees";
 
 const Activities = lazy(()=>import("../src/introduction/activities"))
 
@@ -25,12 +27,14 @@ function IntoTokenVerify() {
                           <BrowserRouter basename="/build">
                             {/* <Switch> */}
 
-                              <Route exact path="/activities" component={Activities} />
+                              <Route exact path="/activities/" component={Activities} />
 
-                              <Route exact path="/activities/expenses" component={Container1Data} />
-
-                              <Route exact path="/activities/fixedAssets" component={Container1Data} />
-                              
+                              <Route exact path="/activities/humanResources/" component={Employees} />
+          
+                              {/* menu */}
+                              <Route exact path="/activities/fixedAssets/" component={Menu} />
+                              <Route exact path="/activities/fixedAssets/electronicEquipment/" component={Container1Data} />
+                              <Route exact path="/activities/fixedAssets/furnitures/" component={Container1Data} />
                             {/* </Switch> */}
                           </BrowserRouter>
 

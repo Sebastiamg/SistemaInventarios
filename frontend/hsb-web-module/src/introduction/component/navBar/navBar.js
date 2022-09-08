@@ -16,9 +16,9 @@ function NavBar() {
               <button className="menu" ><img  src="https://cdn-icons-png.flaticon.com/128/1828/1828726.png" alt="menu"/></button>
                   <div className="dropdown-content">
                     
-                      <Link to="/activities/HumanResources" >Human Resources</Link>
-                      <Link to="/activities/Expenses" >Expenses</Link>
-                      <Link to="/activities/FixedAssets" >Fixed Assets</Link> {/*A -> Link*/}
+                      <Link to="/activities/humanResources" >Human Resources</Link>
+                      <Link to="/activities/expenses" >Expenses</Link>
+                      <Link to="/activities/fixedAssets" >Fixed Assets</Link> {/*A -> Link*/}
 
                   </div>
           </div>

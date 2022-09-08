@@ -135,7 +135,7 @@ function SiginUp(props) {
             setTimeout(() => {
 
               submitValue();
-              window.location.href="/"
+              // window.location.href="/"
               
             }, 1000);
 

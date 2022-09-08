@@ -39,7 +39,7 @@ function Activities() {
             <img className='img' src='https://www.questionpro.com/userimages/site_media/portada-recursos-humanos.png' alt='a'/><br/>
 
             <button className="humanResources">
-{/*a -> link*/}<Link className="link" to="/activities/humanResources">Human Resources </Link>
+                <Link className="link" to="/activities/humanResources/">Human Resources</Link>
              </button>
         </div>
 

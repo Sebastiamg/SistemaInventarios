@@ -42,12 +42,12 @@ function apiCreate (props) {
         annual_de: props["annual_de"], 
         montly_de: props["montly_de"], 
         observation: props["observation"], 
-        insured: props["insured"]
+        insured: props["insured"],
+        itemType: props["itemType"]
     })
 
     const item = {"item": props["item"], "name": props["name"], "acquisition_date": props["acquisition_date"], "statusD": props["statusD"], "details": `${details}`}
 
-    // console.log(item)
     axios.post('http://localhost/rest-api/api/create_item.php', item )
     .then((res) => console.log(res.data))
     .catch(function (error) {console.log(error);})

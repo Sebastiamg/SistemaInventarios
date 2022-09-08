@@ -1,7 +1,7 @@
 import './Container1Data.css';
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Table,Button,Container,Modal,ModalHeader,ModalBody,FormGroup,ModalFooter, CardColumns,} from "reactstrap";
+import {Table,Button,Container,Modal,ModalHeader,ModalBody,FormGroup,ModalFooter} from "reactstrap";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import ContainerDepre from './ContainerDepre'
@@ -10,146 +10,135 @@ import WindowFilter from './WindowFilter';
 import NavBar from '../navBar/navBar';
 import Api from "../../../services"
 
+const Container1Data = () => {
+  // Array Items
+  let dataItems = []; 
+  // Data Hooks
+  const [data, setData] = useState(dataItems)
+  const [modalUpdate, setModalUpdate] = useState(false)
+  const [modalInsert, setModalInsert] = useState(false)
+  const [form, setForm] = useState({item: "" ,brand: "" ,name: "" ,acquisition_date: "" ,statusD: "" ,value: "" ,supplier: "" ,annual_de: "" ,montly_de: "" ,observation: "" ,insured: ""})
 
-const getData = async () => {
-  const items = await Api.fun2();
+  const getData = async () => {
+    const items = await Api.fun2();
+    if(typeof(items) == "undefined"){
+      // console.log("sin datos disponibles")
+      return null;
+    } else {
+        const url = window.location.href;
+        const electronicEquipment = "/fixedAssets/electronicEquipment/";
+        const furniture = "/fixedAssets/furnitures/"
 
-  if(typeof(items) == "undefined"){
-    console.log("sin datos disponibles")
-  } else {
-      items.forEach( elm => {
-        const details = JSON.parse(elm["assetDetails"].replace(/&quot;/g, '"'));
-        const  item =  {
-              item: elm.id,
-              name: elm.assetName,
-              acquisition_date: elm.assetPurchaseDate,
-              statusD: elm.assetActive,
-              // details
-              brand: details.brand,
-              value: details.value,
-              supplier: details.supplier,
-              annual_de: details.annual_de,
-              montly_de: details.montly_de,
-              observation: details.observation,
-              insured: details.insured,
-            }
-          data.push(item);
-      });
-
-  }
-}
-getData();
-
-const data = [];
-//Data
-
-class Container1Data extends React.Component {
-    //list of characteristics
-      state = {
-      data: data,
-      modalUpdate: false,
-      modalInsert: false,
-      form: {
-        item: "",
-        brand: "",
-        name: "",
-        acquisition_date: "",
-        statusD: "",
-        // details
-        value: "",
-        supplier: "",
-        annual_de: "",
-        montly_de: "",
-        observation: "",
-        insured: "",
-      },
+        const allItems = items.map( elm => {
+          const details = JSON.parse(elm["assetDetails"].replace(/&quot;/g, '"'));
+          const item =  {
+                item: Number(parseInt(elm.id)),
+                name: elm.assetName,
+                acquisition_date: elm.assetPurchaseDate,
+                statusD: elm.assetActive,
+                // details
+                brand: details.brand,
+                value: details.value,
+                supplier: details.supplier,
+                annual_de: details.annual_de,
+                montly_de: details.montly_de,
+                observation: details.observation,
+                insured: details.insured,
+                itemType: details.itemType
+              }
+              // console.log(item)
+              // dataItems.push(item)
+              return item;
+        })
+        if (url.includes(electronicEquipment)) {
+          const electronicItems = allItems.filter(x => x.itemType === "electronicEquipment");
+          electronicItems.forEach( x => dataItems.push(x))
+        } else if(url.includes(furniture)) {
+          const furnitureItems = allItems.filter(x => x.itemType === "furniture");
+          furnitureItems.forEach( x => dataItems.push(x))
+        };
+      };
     };
+  getData();
 
-      //Methods and actions
-      //UPDATE MODAL
-      showModalUpdate = (dato) => {
-        this.setState({
-          form: dato,
-          modalUpdate: true,
-        });
+    //Methods and actions
+    //UPDATE MODAL
+    const showModalUpdate = (dato) => {
+          setForm(dato);
+          setModalUpdate(true);
       };
+    const closeModalUpdate = () => setModalUpdate(false);
     
-      closeModalUpdate = () => {
-        this.setState({ modalUpdate: false });
-      };
-    
-    //ADD
-      showModalInsert = () => {
-        this.setState({
-          modalInsert: true,
-        });
-      };
-    
-      closeModalInsert = () => {
-        this.setState({ modalInsert: false });
-      };
+    //ADD MODAL
+    const showModalInsert = () => setModalInsert(true);
+    const closeModalInsert = () => setModalInsert(false);
 
     // UPDATE
-      edit = (dato) => {
-        console.log(dato); //dato = item editado
-        var counter = 0;
-        var array = this.state.data;
-        console.log(array) //array = todos los items
-        array.map(registration => {
-          if (dato.item === registration.item) {
-            array[counter].brand = dato.brand;
-            array[counter].name = dato.name;
-            array[counter].acquisition_date = dato.acquisition_date;
-            array[counter].value = dato.value;
-            array[counter].supplier = dato.supplier;
-            array[counter].annual_de = dato.annual_de;
-            array[counter].montly_de = dato.montly_de;
-            array[counter].statusD = dato.statusD;
-            array[counter].observation = dato.observation;
-            array[counter].insured = dato.insured;
-            
-            console.log(array[counter])
-          Api.apiUpdate(array[counter]);
-          }
-          counter++;
-        });
-        this.setState({ data: array, modalUpdate: false });
-      };
+    const edit = (dato) => {
+      // console.log(dato); //dato = item editado
+      var counter = 0;
+      var array = data;
+      // console.log(array) //array = todos los items
+      array.map( items => {
+        if (dato.item === items.item) {
+          array[counter].brand = dato.brand;
+          array[counter].name = dato.name;
+          array[counter].acquisition_date = dato.acquisition_date;
+          array[counter].value = dato.value;
+          array[counter].supplier = dato.supplier;
+          array[counter].annual_de = dato.annual_de;
+          array[counter].montly_de = dato.montly_de;
+          array[counter].statusD = dato.statusD;
+          array[counter].observation = dato.observation;
+          array[counter].insured = dato.insured;  
+        Api.apiUpdate(array[counter]);
+        }
+        counter++;
+        return null
+      });
+      setData(array);
+      setModalUpdate(false)
+    };
+
+    // URL/Location
+    const url = window.location.href.toString();
+
     // Insert
-      insert = ()=>{
-        let newValue= {...this.state.form};
+      const insert = () => {
+        let newValue = form
         // id        
-        data.length <= 0 ? 
-        newValue.item = this.state.data.length + 1: 
-        newValue.item = parseInt(this.state.data.pop().item) + 1
+        // data.length <= 0 ? 
+        // newValue.item = data.length + 1: 
+        // newValue.item = parseInt(data.pop().item) + 1;
+        newValue.item = parseInt(newValue.item + newValue.brand.length + newValue.value.length + Math.floor(Math.random()*1000));
+        
+        url.includes("/fixedAssets/electronicEquipment/") ? 
+        newValue["itemType"] = "electronicEquipment" : 
+        url.includes("/fixedAssets/furnitures/") ? 
+        newValue["itemType"] = "furniture" : console.log("caca")
+
+        console.log(newValue);
 
         Api.apiCreate(newValue);
-        let list = this.state.data;
-        // list.push(newValue);
-        // console.log(newValue); //value --------------------------------------------
-        this.setState({ modalInsert: false, data: list});
+        setData([...dataItems, newValue]);
+        setModalInsert(false)
       }
-      
+      // validacion
+      console.log(url.includes("/fixedAssets/electronicEquipment/"))  
 
     // handleChange
-      handleChange = (e) => {
-        this.setState({
-          form: {
-            ...this.state.form,
-            [e.target.name]: e.target.value,
-          },
-        });
+      const handleChange = (e) => {
+        setForm({...form, [e.target.name]: e.target.value})
       };
 
 
-    render() {
-      return (<>
+    return(<>
         <NavBar/>       {/* NavBar 2*/}
         <div id='main-container1'>
         <h1><font size="6">Inventary</font></h1>
 
         <div id='containerBotones'>
-          <Button color="success" id='add' onClick={()=>this.showModalInsert()}>Add</Button>
+          <Button color="success" id='add' onClick={() => showModalInsert()}>Add</Button>
           <WindowExport />
           <WindowFilter />
         </div>
@@ -165,13 +154,11 @@ class Container1Data extends React.Component {
                 <th>Annual Depreciation</th><th>Montly Depreciation</th><th>Status</th><th>Observation</th><th>Insured</th>
                 </tr>
               </thead>
-  
               <tbody>
-                {this.state.data.map((dato) => (
-
+                {data.map( (dato, index) => ( 
                   <tr key={dato.item}>
-                    <th><Button color="primary" onClick={() => this.showModalUpdate(dato)}>🖍</Button></th>
-                    <td>{dato.item}</td>
+                    <th><Button color="primary" onClick={() => showModalUpdate(dato)}>🖊</Button></th>
+                    <td>{index + 1}</td>
                     <td>{dato.brand}</td>
                     <td>{dato.name}</td>
                     <td>{dato.acquisition_date}</td>
@@ -182,8 +169,8 @@ class Container1Data extends React.Component {
                     <td>{dato.statusD}</td>
                     <td>{dato.observation}</td>
                     <td>{dato.insured}</td>
-                  </tr>))}
-
+                  </tr>)
+                  )}
               </tbody>
             </Table>
           </Container>
@@ -192,7 +179,7 @@ class Container1Data extends React.Component {
 
 {/* --------------------MODALS------------------- */}
 {/* edit modal */}
-        <Modal isOpen={this.state.modalUpdate}>
+        <Modal isOpen={modalUpdate}>
           <ModalHeader>
            <div><h3>Edit Registration</h3></div>
           </ModalHeader>
@@ -200,68 +187,68 @@ class Container1Data extends React.Component {
           <ModalBody>
             <FormGroup>
               <label> Item: </label>
-              <input className="form-control" readOnly type="text" value={this.state.form.item} />
+              <input className="form-control" readOnly type="text" value={form.item} />
+            </FormGroup>
+
+            <FormGroup>
+              <label>Brand: </label>
+              <input className="form-control" name="brand" type="text" onChange={handleChange} value={form.brand}/>
             </FormGroup>
 
             <FormGroup>
               <label> Name: </label>
-              <input className="form-control" name="name" type="text" onChange={this.handleChange} value={this.state.form.name} />
-            </FormGroup>
-            
-            <FormGroup>
-              <label>Brand: </label>
-              <input className="form-control" name="brand" type="text" onChange={this.handleChange} value={this.state.form.brand}/>
+              <input className="form-control" name="name" type="text" onChange={handleChange} value={form.name} />
             </FormGroup>
             
             <FormGroup>
               <label>Acquisition date: </label>
-              <input className="form-control" name="acquisition_date" type="date" onChange={this.handleChange} value={this.state.form.acquisition_date}/>
+              <input className="form-control" name="acquisition_date" type="date" onChange={handleChange} value={form.acquisition_date}/>
             </FormGroup>
 
             <FormGroup>
               <label>Value: </label>
-              <input className="form-control" name="value" type="text" onChange={this.handleChange} value={this.state.form.value}/>
+              <input className="form-control" name="value" type="text" onChange={handleChange} value={form.value}/>
             </FormGroup>
 
             <FormGroup>
               <label>Supplier: </label>
-              <input className="form-control" name="supplier" type="text" onChange={this.handleChange} value={this.state.form.supplier}/>
+              <input className="form-control" name="supplier" type="text" onChange={handleChange} value={form.supplier}/>
             </FormGroup>
 
             <FormGroup>
               <label>Annual_de: </label>
-              <input className="form-control" name="annual_de" type="text" onChange={this.handleChange} value={this.state.form.annual_de}/>
+              <input className="form-control" name="annual_de" type="text" onChange={handleChange} value={form.annual_de}/>
             </FormGroup>
 
             <FormGroup>
               <label>Montly_de: </label>
-              <input className="form-control" name="montly_de" type="text" onChange={this.handleChange} value={this.state.form.montly_de}/>
+              <input className="form-control" name="montly_de" type="text" onChange={handleChange} value={form.montly_de}/>
             </FormGroup>
 
             <FormGroup>
               <label>Status: </label>
-              <input className="form-control" name="statusD" type="text" onChange={this.handleChange} value={this.state.form.statusD}/>
+              <input className="form-control" name="statusD" type="text" onChange={handleChange} value={form.statusD}/>
             </FormGroup>
 
             <FormGroup>
               <label>Observation: </label>
-              <input className="form-control" name="observation" type="text" onChange={this.handleChange} value={this.state.form.observation}/>
+              <input className="form-control" name="observation" type="text" onChange={handleChange} value={form.observation}/>
             </FormGroup>
 
             <FormGroup>
               <label>Insured: </label>
-              <input className="form-control" name="insured" type="text" onChange={this.handleChange} value={this.state.form.insured}/>
+              <input className="form-control" name="insured" type="text" onChange={handleChange} value={form.insured}/>
             </FormGroup>
           </ModalBody>
 
           <ModalFooter>
-            <Button color="primary" onClick={() => this.edit(this.state.form)}>Edit</Button>
-            <Button color="danger" onClick={() => this.closeModalUpdate()}>Cancel</Button>
+            <Button color="primary" onClick={() => edit(form)}>Edit</Button>
+            <Button color="danger" onClick={() => closeModalUpdate()}>Cancel</Button>
           </ModalFooter>
         </Modal>
 
 {/* add item Modal */}
-        <Modal isOpen={this.state.modalInsert}>
+        <Modal isOpen={modalInsert}>
           <ModalHeader>
            <div><h3>Insert Item</h3></div>
           </ModalHeader>
@@ -269,70 +256,69 @@ class Container1Data extends React.Component {
           <ModalBody>
             {/* <FormGroup> */}
               {/* <label> Item: </label> */}
-              {/* <input className="form-control" readOnly type="text" value={this.state.data.length+1}/> ---------- */}
+              {/* <input className="form-control" readOnly type="text" value={state.data.length+1}/> ---------- */}
             {/* </FormGroup> */}
             
             <FormGroup>
               <label>Brand: </label>
-              <input className="form-control" name="brand" type="text" onChange={this.handleChange}/>
+              <input className="form-control" name="brand" type="text" onChange={handleChange}/>
             </FormGroup>
 
             <FormGroup>
               <label>Name: </label>
-              <input className="form-control" name="name" type="text" onChange={this.handleChange}/>
+              <input className="form-control" name="name" type="text" onChange={handleChange}/>
             </FormGroup>
             
             <FormGroup>
               <label>Acquisition date: </label>
-              <input className="form-control" name="acquisition_date" type="date" onChange={this.handleChange} />
+              <input className="form-control" name="acquisition_date" type="date" onChange={handleChange} />
             </FormGroup>
 
             <FormGroup>
               <label>Value: </label>
-              <input className="form-control" name="value" type="text" onChange={this.handleChange} />
+              <input className="form-control" name="value" type="text" onChange={handleChange} />
             </FormGroup>
 
             <FormGroup>
               <label>Supplier: </label>
-              <input className="form-control" name="supplier" type="text" onChange={this.handleChange} />
+              <input className="form-control" name="supplier" type="text" onChange={handleChange} />
             </FormGroup>
 
             <FormGroup>
               <label>Annual_de: </label>
-              <input className="form-control" name="annual_de" type="text" onChange={this.handleChange} />
+              <input className="form-control" name="annual_de" type="text" onChange={handleChange} />
             </FormGroup>
 
             <FormGroup>
               <label>Montly_de: </label>
-              <input className="form-control" name="montly_de" type="text" onChange={this.handleChange} />
+              <input className="form-control" name="montly_de" type="text" onChange={handleChange} />
             </FormGroup>
 
             <FormGroup>
               <label>Status: </label>
-              <input className="form-control" name="statusD" type="text" onChange={this.handleChange} />
+              <input className="form-control" name="statusD" type="text" onChange={handleChange} />
             </FormGroup>
 
             <FormGroup>
               <label>Observation: </label>
-              <input className="form-control" name="observation" type="text" onChange={this.handleChange} />
+              <input className="form-control" name="observation" type="text" onChange={handleChange} />
             </FormGroup>
 
             <FormGroup>
               <label>Insured: </label>
-              <input className="form-control" name="insured" type="text" onChange={this.handleChange} />
+              <input className="form-control" name="insured" type="text" onChange={handleChange} />
             </FormGroup>
           </ModalBody>
 
           <ModalFooter>
-            <Button color="primary" onClick={() => this.insert()} > Insert </Button>
-            <Button className="btn btn-danger" onClick={() => this.closeModalInsert()} > Cancel </Button>
+            <Button color="primary" onClick={() => insert()} > Insert </Button>
+            <Button className="btn btn-danger" onClick={() => closeModalInsert()} > Cancel </Button>
           </ModalFooter>
         </Modal>
 
         </div>
-        </>
-      );
-    }
-  }
+      </>
+    )
+  } 
+
   export default Container1Data;
-  
