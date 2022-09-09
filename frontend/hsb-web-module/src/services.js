@@ -1,5 +1,5 @@
 import axios from "axios"
-
+//USERS
 //registro 
 function apiSigiUp (props) {   
     console.log(props);
@@ -19,22 +19,49 @@ async function apiSigiIn (props) {
                 })
 }
 
-
 function apiTokenAcces () {
-
-axios.get('https://jsonplaceholder.typicode.com/todos/1').then((res)=>console.log(res.data));
+    axios.get('https://jsonplaceholder.typicode.com/todos/1').then((res)=>console.log(res.data));
 }
 
 async function apiTokenAccesId(props) {
     return await axios.post('http://localhost/rest-api/api/validate_token.php',{"jwt":props});
 }
+
+// GET USER
+const fun3 = async () => { 
+    async function getUser () {   
+          const res = await axios.get('http://localhost/rest-api/api/get_user.php')
+            if(typeof(res.data) == "string" ) {
+                return console.log("No hay usuarios en la bd");
+            } else {
+                let user = res.data
+                return user
+            }
+    }    
+    return getUser();
+}
+console.log(fun3())
+
+//UPDATE USER
+function apiUpdateUser(props) {    
+    const details = JSON.stringify({
+        fechaIngreso: props["fechaIngreso"], 
+        fechaVacaciones: props["fechaVacaciones"],
+        diasVacacionesRestantes: props["diasVacacionesRestantes"], 
+        fechaPermisos: props["fechaPermisos"]
+    })
+    const item = {"id": props["id"], "name": props["name"], "email": props["email"], "active": props["active"], "details": `${details}`}
+    console.log(item)
+    axios.post('http://localhost/rest-api/api/update_user2.php', item)
+    .then((res) => console.log(res.data))
+    .catch(function (error) {console.log(error);})
+}
     
 
-//pruebas-------------
+//---------------------------------------- ITEMS
 
 // Create items
 function apiCreate (props) {   
-
     const details = JSON.stringify({
         brand: props["brand"], 
         value: props["value"], 
@@ -53,8 +80,7 @@ function apiCreate (props) {
     .catch(function (error) {console.log(error);})
 }
 
-// get Items
-
+// GET ITEMS
 const fun2 = async () => { 
     async function getItems () {   
           const res = await axios.get('http://localhost/rest-api/api/get_item.php')
@@ -69,11 +95,8 @@ const fun2 = async () => {
     return getItems();
 }
 
-//update items
-
+//UPDATE ITEMS
 function apiUpdate(props) {    
-    // const item = {"item": props["item"], "name": props["name"], "details": props["value"], "acquisition_date": props["acquisition_date"], "statusD": props["statusD"]};
-
     const details = JSON.stringify({
         brand: props["brand"], 
         value: props["value"], 
@@ -83,7 +106,6 @@ function apiUpdate(props) {
         observation: props["observation"], 
         insured: props["insured"]
     })
-
     const item = {"item": props["item"], "name": props["name"], "acquisition_date": props["acquisition_date"], "statusD": props["statusD"], "details": `${details}`}
 
     axios.post('http://localhost/rest-api/api/update_item.php', item)
@@ -92,5 +114,5 @@ function apiUpdate(props) {
 }
 
 
-const api = {apiTokenAcces,apiTokenAccesId,apiSigiUp,apiSigiIn, apiCreate, apiUpdate, fun2};
+const api = {apiTokenAcces,apiTokenAccesId,apiSigiUp,apiSigiIn, apiCreate, apiUpdate, fun2, fun3, apiUpdateUser};
 export default api ;

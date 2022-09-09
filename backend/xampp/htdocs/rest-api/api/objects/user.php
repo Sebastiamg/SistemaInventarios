@@ -38,9 +38,9 @@ class User {
         // sanitize --------- quita las etiquetas html y tranforma caracteres a codigo html
         $this->id = htmlspecialchars(strip_tags($this->id));
         $this->name = htmlspecialchars(strip_tags($this->name));
-        $this->details = htmlspecialchars(strip_tags($this->details));
         $this->email = htmlspecialchars(strip_tags($this->email));
         $this->password = htmlspecialchars(strip_tags($this->password));
+        $this->details = htmlspecialchars(strip_tags($this->details));
 
         // bind the values ----- reemplaza o vincula los parametros(:id) por las variables de la clase  
         $stmt->bindParam(':id', $this->id);

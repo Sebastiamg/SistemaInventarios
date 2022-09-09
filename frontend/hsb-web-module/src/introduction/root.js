@@ -11,7 +11,7 @@ function SiginUp(props) {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const details = {"fechaIngreso": "","fechaVacaciones": [],"fechaProvisionVacaciones": "","diasVacacionesRestantes": 11,"fechaPermisos": []};
 
 
   //Register Button
@@ -112,14 +112,18 @@ function SiginUp(props) {
             validInputs.validPassword = false;
           } 
 
+
   const submitValue = () => {
+    const userDetails = JSON.stringify(details);
     const user = {
       'id' : id,
       'name' : username,
       'lastname' : lastname,
       'phone' : phoneNumber,
       'email' : email,
-      'password' : password
+      'password' : password,
+      'details': userDetails
+
     }
       Api.apiSigiUp(user);  //------------------------Le pasamos el usuario
     }
@@ -135,7 +139,7 @@ function SiginUp(props) {
             setTimeout(() => {
 
               submitValue();
-              // window.location.href="/"
+              window.location.href="/"
               
             }, 1000);
 
