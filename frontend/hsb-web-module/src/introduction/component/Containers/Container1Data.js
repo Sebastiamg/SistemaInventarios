@@ -90,7 +90,13 @@ const Container1Data = () => {
           array[counter].montly_de = dato.montly_de;
           array[counter].statusD = dato.statusD;
           array[counter].observation = dato.observation;
-          array[counter].insured = dato.insured;  
+          array[counter].insured = dato.insured; 
+
+          // url.includes("/fixedAssets/electronicEquipment/") ? 
+          // array[counter]["itemType"] = "electronicEquipment" : 
+          // url.includes("/fixedAssets/furnitures/") ? 
+          // array[counter]["itemType"] = "furniture" : console.log(null) 
+        // console.log(array[counter])
         Api.apiUpdate(array[counter]);
         }
         counter++;

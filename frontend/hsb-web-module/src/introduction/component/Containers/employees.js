@@ -14,7 +14,7 @@ const Employees = () => {
   const [data, setData] = useState(dataUsers)
   const [modalUpdate, setModalUpdate] = useState(false)
   const [modalInsert, setModalInsert] = useState(false)
-  const [form, setForm] = useState({id: "",name: "" , email: "" , active: "" ,fechaIngreso: "" ,fechaVacaciones: "", diasVacacionesRestantes: "" , fechaPermisos: ""})
+  const [form, setForm] = useState({id: "",name: "" , email: "" , active: "" ,fechaIngreso: "" ,fechaVacaciones: [], diasVacacionesRestantes: "" , fechaPermisos: []})
 
   const getData = async () => {
     const items = await Api.fun3();
@@ -37,6 +37,7 @@ const Employees = () => {
                   diasVacacionesRestantes: details.diasVacacionesRestantes, //num
                   fechaPermisos: details.fechaPermisos, //Arr
               }
+              console.log(item)
               return dataUsers.push(item)
         })
       };
@@ -67,11 +68,27 @@ const Employees = () => {
           array[counter].name = dato.name;
           array[counter].email = dato.email;
           array[counter].active = dato.active;
-          array[counter].fechaIngreso = dato.fechaIngreso;
-          array[counter].fechaVacaciones = dato.fechaVacaciones;
+          //------------------------details-----------------------//
+          array[counter].fechaIngreso = dato.fechaIngreso; ////////fecha ingreso
+          //dias restantes
           array[counter].diasVacacionesRestantes = dato.diasVacacionesRestantes;
-          array[counter].fechaPermisos = dato.fechaPermisos;  
-        Api.apiUpdateUser(array[counter]);
+          
+          // Fecha Vacaciones
+          array[counter].fechaVacaciones[array[counter].fechaVacaciones.length] = {"Fecha": dato.fechaVacaciones.toString(), NumeroDias: dato.numeroDias};
+            //Fecha Vac no modificado
+          let ultimaFecha = array[counter].fechaVacaciones[array[counter].fechaVacaciones.length-1]["Fecha"];
+          ultimaFecha.includes("[object Object]") || ultimaFecha === "" ?
+          array[counter].fechaVacaciones.pop() : console.log(null)
+
+          //fechaPermisos
+          array[counter].fechaPermisos[array[counter].fechaPermisos.length] = {"Fecha": dato.fechaPermisos.toString(), NumeroDias: dato.numeroDiasP}; 
+            // Fecha Perm no modificado
+          let ultimaFechaP = array[counter].fechaPermisos[array[counter].fechaPermisos.length-1]["Fecha"];
+          ultimaFechaP.includes("[object Object]") || ultimaFechaP === "" ?
+          array[counter].fechaPermisos.pop() : console.log(null)
+
+          console.log(array[counter])
+          Api.apiUpdateUser(array[counter]);
         }
         counter++;
         return null
@@ -82,9 +99,13 @@ const Employees = () => {
 
     // handleChange
       const handleChange = (e) => {
-        setForm({...form, [e.target.name]: e.target.value})
+        if (e.target.name === "fechaVacaciones" || e.target.name === "fechaPermisos") {
+          setForm({...form, [e.target.name]: [e.target.value]}) //Fechas V array
+        }   else { 
+          setForm({...form, [e.target.name]: e.target.value})
+          console.log(form)
+        }
       };
-
 
     return(<>
         <NavBar/>       {/* NavBar 2*/}
@@ -125,52 +146,101 @@ const Employees = () => {
           <ModalHeader>
            <div><h3>Edit User</h3></div>
           </ModalHeader>
-
+<div className='container'>
           <ModalBody>
-            <FormGroup>
-              <label>Id</label>
-              <input className="form-control" name="id" type="number" onChange={handleChange} value={form.id} />
-            </FormGroup>
+            <div className='row'>
+              <FormGroup className='col'>
+                <label>Identification:</label>
+                <input className="form-control" name="id" type="number" onChange={handleChange} value={form.id} />
+              </FormGroup>
 
-            <FormGroup>
-              <label>Name:</label>
-              <input className="form-control" name="name" type="text" onChange={handleChange} value={form.name}/>
-            </FormGroup>
-
+              <FormGroup className='col'> 
+                <label>Name:</label>
+                <input className="form-control" name="name" type="text" onChange={handleChange} value={form.name}/>
+              </FormGroup>
+            </div>
             <FormGroup>
               <label>Email:</label>
               <input className="form-control" name="email" type="email" onChange={handleChange} value={form.email} />
             </FormGroup>
-            
+
+            {/* Active Checkbox */}
+
             <FormGroup>
-              <label>Active:</label>
+            {/* <div className='col'>
+            <p>Active:</p>
+                  <input className="form-check-input me-2" name="active" type="checkbox" id='true' onChange={handleChange} autocomplete="off" value={form.active} />
+                  <label className='form-check-label me-4' for="true">Active</label>
+            </div> */}
+            <label>Active:</label>
               <input className="form-control" name="active" type="text" onChange={handleChange} value={form.active}/>
             </FormGroup>
+
 
             <FormGroup>
               <label>Fecha Ingreso:</label>
               <input className="form-control" name="fechaIngreso" type="date" onChange={handleChange} value={form.fechaIngreso}/>
             </FormGroup>
+                  {/* Fechas Grid */}
+            <div className='row'>
+              <FormGroup className='col'>
+                <label>Fechas Vacaciones:</label>
+                <input className="form-control" name="fechaVacaciones" type="date" onChange={handleChange} value={form.fechaVacaciones}/>
+              </FormGroup>
+              <FormGroup className='col'>
+                <label>Número de Días:</label>
+                <input className="form-control" name="numeroDias" type="number" onChange={handleChange}/>
+              </FormGroup>
+              <FormGroup className='col'>
+                <label>Días restantes:</label>
+                <input className="form-control" name="diasVacacionesRestantes" type="text" readOnly value={form.diasVacacionesRestantes - form.fechaVacaciones.map(x => parseInt(x.NumeroDias)).reduce((total, vActual) => total + vActual, 0)}/> {/*Dias Restantes de acuerdo a las fechas de V*/}
+              </FormGroup>
+            </div>
+            {/* tabla Vacaciones */}
+            <table class="table mb-5">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">Fecha Inicio</th>
+                  <th scope="col">Días</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {(form.fechaVacaciones.map( x => (
+                  <tr key={x["Fecha"]}>  
+                    <td>{x["Fecha"]}</td>
+                    <td>{x["NumeroDias"]}</td>
+                  </tr>
+                    )))}
+              </tbody>
+            </table>
 
-            <FormGroup>
-              <label>Fechas Vacaciones:</label>
-              <input className="form-control" name="fechaVacaciones" type="date" onChange={handleChange} value={form.fechaVacaciones}/>
-            </FormGroup>
-            
-            {/* <FormGroup>
-              <label>Numero de Días:</label>
-              <input className="form-control" name="fechaVacaciones" type="number" onChange={handleChange} value={form.numeroDías}/>
-            </FormGroup> */}
-
-            <FormGroup>
-              <label>Días de Vacaciones restantes:</label>
-              <input className="form-control" name="diasVacacionesRestantes" type="text" onChange={handleChange} value={form.diasVacacionesRestantes}/>
-            </FormGroup>
-            
-            <FormGroup>
-              <label>Fechas de Permisos:</label>
-              <input className="form-control" name="fechaPermisos" type="date" onChange={handleChange} value={form.fechaPermisos}/>
-            </FormGroup>
+            <div className='row'>
+              <FormGroup className='col'>
+                <label>Fechas de Permisos:</label>
+                <input className="form-control" name="fechaPermisos" type="date" onChange={handleChange} value={form.fechaPermisos}/>
+              </FormGroup>
+              <FormGroup className='col'>
+                <label>Número de Días:</label>
+                <input className="form-control" name="numeroDiasP" type="number" onChange={handleChange}/>
+              </FormGroup>
+            </div>
+                        {/* tabla Permisos */}
+            <table class="table mb-5">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">Fecha de Permiso</th>
+                  <th scope="col">Días</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {(form.fechaPermisos.map( x => (
+                  <tr key={x["Fecha"]}>                            
+                    <td>{x["Fecha"]}</td>
+                    <td>{x["NumeroDias"]}</td>
+                  </tr>
+                    )))}
+              </tbody>
+            </table>
             
           </ModalBody>
 
@@ -178,13 +248,13 @@ const Employees = () => {
             <Button color="primary" onClick={() => edit(form)}>Edit</Button>
             <Button color="danger" onClick={() => closeModalUpdate()}>Cancel</Button>
           </ModalFooter>
+    </div>
         </Modal>
 
 {/* add item Modal */}
         <Modal isOpen={modalInsert}>
             <Button className="btn btn-danger" onClick={() => closeModalInsert()} > Cancel </Button>
-        </Modal>
-
+        </Modal>    
         </div>
       </>
     )

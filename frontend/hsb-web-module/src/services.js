@@ -35,23 +35,24 @@ const fun3 = async () => {
                 return console.log("No hay usuarios en la bd");
             } else {
                 let user = res.data
-                return user
+                return await user
             }
     }    
     return getUser();
 }
-console.log(fun3())
+
+// console.log(fun3())
 
 //UPDATE USER
-function apiUpdateUser(props) {    
+function apiUpdateUser(props) { 
     const details = JSON.stringify({
         fechaIngreso: props["fechaIngreso"], 
         fechaVacaciones: props["fechaVacaciones"],
         diasVacacionesRestantes: props["diasVacacionesRestantes"], 
         fechaPermisos: props["fechaPermisos"]
     })
+
     const item = {"id": props["id"], "name": props["name"], "email": props["email"], "active": props["active"], "details": `${details}`}
-    console.log(item)
     axios.post('http://localhost/rest-api/api/update_user2.php', item)
     .then((res) => console.log(res.data))
     .catch(function (error) {console.log(error);})
@@ -104,10 +105,11 @@ function apiUpdate(props) {
         annual_de: props["annual_de"], 
         montly_de: props["montly_de"], 
         observation: props["observation"], 
-        insured: props["insured"]
+        insured: props["insured"],
+        itemType: props["itemType"]
     })
+    // console.log(details)
     const item = {"item": props["item"], "name": props["name"], "acquisition_date": props["acquisition_date"], "statusD": props["statusD"], "details": `${details}`}
-
     axios.post('http://localhost/rest-api/api/update_item.php', item)
     .then((res) => console.log(res.data))
     .catch(function (error) {console.log(error);})

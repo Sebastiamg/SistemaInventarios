@@ -6,19 +6,17 @@
     margin: 10px;
     padding: 0px 0px 50px 0px;
 }
-
 .main-container::-webkit-scrollbar {
     width: 7px;     /* Tamaño del scroll en vertical */
     /*display: none;   Ocultar scroll */
 }
-
 
 #tableDad {
     max-width: 98%;
     position: relative;
     font-size: 3vmin;
     display: block;
-    border-radius: 20px; /*asdf*/
+    border-radius: 20px;
 }
 
 .btnBuscar{
@@ -47,7 +45,6 @@ padding: 20px;
     font-size: 2.5vh;
     padding: 6px 10px;
 } 
-
 
 table{
     background-color: rgb(204, 203, 203);

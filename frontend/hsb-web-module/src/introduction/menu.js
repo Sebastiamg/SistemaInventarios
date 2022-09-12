@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from './component/navBar/navBar';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import '../introduction/activities.css'
 
 const menu = () => {
