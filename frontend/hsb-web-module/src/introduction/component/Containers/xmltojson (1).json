@@ -1,0 +1,132 @@
+{
+  "liquidacionCompra": {
+    "infoTributaria": {
+      "ambiente": 1, //---------------
+      "tipoEmision": 1, //---------------
+      "razonSocial": "razonSocial0", //---------------
+      "nombreComercial": "nombreComercial0", //---------------
+      "ruc": 1, //---------------
+      "claveAcceso": 0, //---------------
+      "codDoc": 3, //---------------
+      "estab": 0, //---------------
+      "ptoEmi": 0, //---------------
+      "secuencial": 0, //---------------
+      "dirMatriz": "dirMatriz0" //---------------
+    },
+
+
+
+
+
+    "infoLiquidacionCompra": {
+      "fechaEmision": "01/01/2000", //---------------
+      "dirEstablecimiento": "dirEstablecimiento0", //---------------
+      "contribuyenteEspecial": "contribuyente", //---------------
+      "obligadoContabilidad": "SI", //---------------
+      "tipoIdentificacionProveedor": 5, //---------------
+      "razonSocialProveedor": "EMPRESA ABC", //---------------
+      "identificacionProveedor": 1750863147, //---------------
+      "direccionProveedor": "direccionProveedor", //---------------
+
+      //------------------ TOTALES
+                      "totalSinImpuestos": 50,//---------------
+                      "totalDescuento": 0,//---------------
+                      "codDocReembolso": 0,//---------------
+                      "totalComprobantesReembolso": 56,//---------------
+                      "totalBaseImponibleReembolso": 50,//---------------
+                      "totalImpuestoReembolso": 6,//---------------
+                      "totalConImpuestos": {//---------------
+                        "totalImpuesto": {//---------------
+                          "codigo": 2,//---------------
+                          "codigoPorcentaje": 2,//---------------
+                          "descuentoAdicional": 0,//---------------
+                          "baseImponible": 50,//---------------
+                          "tarifa": 12,//---------------
+                          "valor": 6//---------------
+                        }
+                      },
+                      "importeTotal": 56,//---------------
+                      "moneda": "moneda0",//---------------
+      "pagos": {
+        "pago": {
+          "formaPago": 1,//------------------------
+          "total": 56,//------------------------
+          "plazo": 30,//------------------------
+          "unidadTiempo": "unidadTiem"//------------------------
+        }
+      }
+    },
+
+
+    
+
+  // ----------------------------DETALLES
+    "detalles": {
+      "detalle": {
+        "codigoPrincipal": "codigoPrincipal0",//---------------
+        "codigoAuxiliar": "codigoAuxiliar0",//---------------
+        "descripcion": "descripcion0",//---------------
+        "unidadMedida": "unidadMedida0",//---------------
+        "cantidad": 1,//---------------
+        "precioUnitario": 50,//---------------
+        "descuento": 0,//---------------
+        "precioTotalSinImpuesto": 50,//---------------
+        "detallesAdicionales": {//??
+          "detAdicional":                                   
+            "",//??
+            ""//??
+          ]
+        },
+        "impuestos": {
+          "impuesto": {
+            "codigo": 2,//-------------------
+            "codigoPorcentaje": 2,//-------------------
+            "tarifa": 12,//-------------------
+            "baseImponible": 50,//-------------------
+            "valor": 6//-------------------
+          }
+        }
+      }
+    },
+
+
+
+// ----------------------OTROS
+
+    "reembolsos": {
+      "reembolsoDetalle": {
+        "tipoIdentificacionProveedorReembolso": 4,
+        "identificacionProveedorReembolso": "identificacionProvee",
+        "codPaisPagoProveedorReembolso": 0,
+        "tipoProveedorReembolso": 1,
+        "codDocReembolso": 0,
+        "estabDocReembolso": 0,
+        "ptoEmiDocReembolso": 0,
+        "secuencialDocReembolso": 0,
+        "fechaEmisionDocReembolso": "01/01/2000",
+        "numeroautorizacionDocReemb": 0,
+        "detalleImpuestos": { //:.........
+          "detalleImpuesto": {
+            "codigo": 2, //-----------------
+            "codigoPorcentaje": 2, //-----------------
+            "tarifa": 12, //-----------------
+            "baseImponibleReembolso": 50, //-----------------
+            "impuestoReembolso": 6 //-----------------
+          }
+        }
+      }
+    },
+    
+    "maquinaFiscal": {
+      "marca": "SISPAU",
+      "modelo": "ABC1234",
+      "serie": "CGMC1405"
+    },
+    "infoAdicional": {
+      "campoAdicional": [
+        "campoAdicional0",
+        "campoAdicional1"
+      ]
+    }
+  }
+}

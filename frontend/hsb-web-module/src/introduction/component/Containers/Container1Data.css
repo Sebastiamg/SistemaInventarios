@@ -76,3 +76,117 @@ tr:hover td{
     background-color: #909091;
     color: white;
 }
+
+/* form */
+
+.infTributaria, .liqCompra {
+    display: flex;
+    align-items:flex-end;
+    justify-content: center;
+    margin: 20px auto;
+    flex-wrap: wrap;
+    width: 90%;
+    border: solid 4px  #094165 ;
+}
+
+.totales{
+    display: flex;
+    flex-wrap: wrap;
+    width: 45%;
+    border: solid 4px  #094165 ;
+    border-left: solid 2px  #094165;
+    float: right;
+    margin-right: 5%;
+    align-items: flex-end;
+}
+
+.detalles{
+    display: flex;
+    flex-wrap: wrap;
+    width: 45%;
+    border: solid 4px  #094165 ;
+    border-right: solid 2px  #094165;
+    float: left;
+    margin-left: 5%;
+    padding-bottom: 40px;
+    margin-bottom: 20px;
+  
+}
+
+#detallesAdicionales label{
+    width: 500px;
+}
+
+#impuestos{
+    display: flex;
+    align-items:flex-end;
+    justify-content: center;
+    margin: 20px auto;
+    flex-wrap: wrap;
+    width: 90%;
+    border: solid 4px  #094165 ;
+}
+
+#tabla-items{
+    margin-left: 10px;
+    margin-right: 10px;
+
+   
+}
+
+#reembolsos{
+    display: flex;
+    align-items:flex-end;
+    justify-content: center;
+    margin: 20px auto;
+    flex-wrap: wrap;
+    width: 90%;
+    border: solid 4px  #094165 ;
+}
+
+.maquinaFiscal{
+    display: flex;
+    align-items:flex-end;
+    justify-content: center;
+    margin: 20px auto;
+    flex-wrap: wrap;
+    width: 90%;
+    border: solid 4px  #094165 ;
+}
+.form-control {
+    width: 50%;
+    background: red;
+}
+
+.titulo {
+    display: inline-block;
+    color: white;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    margin:  auto;
+    background-color: #094165;
+    padding: 10px;
+}
+
+#lcForm label {
+    text-align: start;
+    font-weight: bold;
+    margin: 15px 15px;
+}
+
+label input {
+    margin-top: 10px;
+}
+
+#razonSocial, #nombreComercial, #dirMatriz, #dirEstablecimiento, #tipoIdentificacionProveedor {
+    min-width: 280px;
+}
+
+#ruc, #contribuyenteEspecial, #razonSocialProveedor, #identificacionProveedor {
+    min-width: 150px;
+}
+
+#claveAcceso {
+    min-width: 422px;
+}

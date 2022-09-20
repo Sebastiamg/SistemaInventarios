@@ -9,6 +9,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Container1Data from "./introduction/component/Containers/Container1Data";
 import Menu from "./introduction/menu";
 import Employees from "./introduction/component/Containers/employees";
+import Form from "./introduction/component/Containers/Form";
 
 const Activities = lazy(()=>import("../src/introduction/activities"))
 
@@ -35,6 +36,9 @@ function IntoTokenVerify() {
                               <Route exact path="/activities/fixedAssets/" component={Menu} />
                               <Route exact path="/activities/fixedAssets/electronicEquipment/" component={Container1Data} />
                               <Route exact path="/activities/fixedAssets/furnitures/" component={Container1Data} />
+
+                              {/* form */}
+                              <Route exact path="/activities/form/" component={Form} />
                             {/* </Switch> */}
                           </BrowserRouter>
 
