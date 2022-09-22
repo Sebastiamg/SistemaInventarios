@@ -116,5 +116,18 @@ function apiUpdate(props) {
 }
 
 
-const api = {apiTokenAcces,apiTokenAccesId,apiSigiUp,apiSigiIn, apiCreate, apiUpdate, fun2, fun3, apiUpdateUser};
-export default api ;
+// -----------------------------------------------------------------
+// Liquidacion de compra
+// Create items
+function apiLiquidacionCompra (props) {   
+    const formatoJson = JSON.stringify(props)
+    console.log(formatoJson)
+
+    // axios.post('create_xml.php', formatoJson)
+    // .then((res) => console.log(res.data))
+    // .catch(function (error) {console.log(error);})
+}
+
+
+const api = {apiTokenAcces,apiTokenAccesId,apiSigiUp,apiSigiIn, apiCreate, apiUpdate, fun2, fun3, apiUpdateUser, apiLiquidacionCompra};
+export default api;

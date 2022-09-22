@@ -21,6 +21,7 @@ const liquidacionCompra = {
         "razonSocialProveedor": "", //bien
         "identificacionProveedor": "",  //bien
         "direccionProveedor": "", //bien
+        
         "totalSinImpuestos": "",
         "totalDescuento": "",
         "codDocReembolso": "",
@@ -39,14 +40,15 @@ const liquidacionCompra = {
         },
         "importeTotal": "",
         "moneda": "",
-        "pagos": {
-          "pago": {
-            "formaPago": "",
-            "total": "",
-            "plazo": "",
-            "unidadTiempo": ""
+        "pagos": [  
+            {"pago": { //........
+            "formaPago": "",//bien
+            "total": "",//bien
+            "plazo": "",//bien
+            "unidadTiempo": ""//bien
           }
         }
+      ]
       },
       // detalle
       "detalles":[ 
@@ -61,7 +63,7 @@ const liquidacionCompra = {
           "descuento": "",  //bien
           "precioTotalSinImpuesto": "", //bien
           "detallesAdicionales": {  //.... 
-            "detAdicional": ["",""]
+            "detAdicional": ["",""] //bien
           },
           "impuestos": {  //....  
             "impuesto": { //....
@@ -79,31 +81,31 @@ const liquidacionCompra = {
 
       "reembolsos": {
         "reembolsoDetalle": {
-          "tipoIdentificacionProveedorReembolso": "",
-          "identificacionProveedorReembolso": "",
-          "codPaisPagoProveedorReembolso": "",
-          "tipoProveedorReembolso": "",
-          "codDocReembolso": "",
-          "estabDocReembolso": "",
-          "ptoEmiDocReembolso": "",
-          "secuencialDocReembolso": "",
-          "fechaEmisionDocReembolso": "",
-          "numeroautorizacionDocReemb": "",
+          "tipoIdentificacionProveedorReembolso": "", //Bien
+          "identificacionProveedorReembolso": "", //Bien
+          "codPaisPagoProveedorReembolso": "",  //Bien
+          "tipoProveedorReembolso": "", //Bien
+          "codDocReembolso": "",  //Bien
+          "estabDocReembolso": "",  //Bien
+          "ptoEmiDocReembolso": "", //Bien
+          "secuencialDocReembolso": "", //Bien
+          "fechaEmisionDocReembolso": "", //Bien
+          "numeroautorizacionDocReemb": "", //Bien
           "detalleImpuestos": {
             "detalleImpuesto": {
-              "codigo": "",
-              "codigoPorcentaje": "",
-              "tarifa": "",
-              "baseImponibleReembolso": "",
-              "impuestoReembolso": ""
+              "codigo": "", //Bien
+              "codigoPorcentaje": "", //Bien
+              "tarifa": "", //Bien
+              "baseImponibleReembolso": "", //Bien
+              "impuestoReembolso": "" //Bien
             }
           }
         }
       },
       "maquinaFiscal": {
-        "marca": "",
-        "modelo": "",
-        "serie": ""
+        "marca": "",  //Bien
+        "modelo": "", //Bien
+        "serie": "" //Bien
       },
       "infoAdicional": {
         "campoAdicional": [

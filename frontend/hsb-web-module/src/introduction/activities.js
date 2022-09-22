@@ -57,6 +57,13 @@ function Activities() {
             </button>
         </div>
 
+        <div className='menuTables'>
+            <img className='img' src='https://pildoraslegales.files.wordpress.com/2021/07/adobestock_211934825.jpeg' alt=''/><br/>
+            <button className="ElectronicDocument">
+                <Link className="link" to="/activities/form">Electronic Docs</Link>
+            </button>
+        </div>
+
 
     </div>
       
