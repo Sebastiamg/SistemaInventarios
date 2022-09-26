@@ -37,7 +37,7 @@ const Employees = () => {
                   diasVacacionesRestantes: details.diasVacacionesRestantes, //num
                   fechaPermisos: details.fechaPermisos, //Arr
               }
-              console.log(item)
+              // console.log(item)
               return dataUsers.push(item)
         })
       };
@@ -71,7 +71,7 @@ const Employees = () => {
           //------------------------details-----------------------//
           array[counter].fechaIngreso = dato.fechaIngreso; ////////fecha ingreso
           //dias restantes
-          array[counter].diasVacacionesRestantes = dato.diasVacacionesRestantes;
+          array[counter].diasVacacionesRestantes = dato.diasVacacionesRestantes + Number(document.querySelector("#diasVacacionesAdicionales").value);
           
           // Fecha Vacaciones
           array[counter].fechaVacaciones[array[counter].fechaVacaciones.length] = {"Fecha": dato.fechaVacaciones.toString(), NumeroDias: dato.numeroDias};
@@ -103,7 +103,6 @@ const Employees = () => {
           setForm({...form, [e.target.name]: [e.target.value]}) //Fechas V array
         }   else { 
           setForm({...form, [e.target.name]: e.target.value})
-          console.log(form)
         }
       };
 
@@ -182,7 +181,7 @@ const Employees = () => {
               <input className="form-control" name="fechaIngreso" type="date" onChange={handleChange} value={form.fechaIngreso}/>
             </FormGroup>
                   {/* Fechas Grid */}
-            <div className='row'>
+            <div className='row vacasiones'>
               <FormGroup className='col'>
                 <label>Fechas Vacaciones:</label>
                 <input className="form-control" name="fechaVacaciones" type="date" onChange={handleChange} value={form.fechaVacaciones}/>
@@ -193,7 +192,11 @@ const Employees = () => {
               </FormGroup>
               <FormGroup className='col'>
                 <label>Días restantes:</label>
-                <input className="form-control" name="diasVacacionesRestantes" type="text" readOnly value={form.diasVacacionesRestantes - form.fechaVacaciones.map(x => parseInt(x.NumeroDias)).reduce((total, vActual) => total + vActual, 0)}/> {/*Dias Restantes de acuerdo a las fechas de V*/}
+                <input className="form-control" name="diasVacacionesRestantes" type="number" readOnly value={form.diasVacacionesRestantes - form.fechaVacaciones.map(x => parseInt(x.NumeroDias)).reduce((total, vActual) => total + vActual, 0)}/> {/*Dias Restantes de acuerdo a las fechas de V*/}
+              </FormGroup>
+              <FormGroup className='col'> {/*ADICIONALESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS */}
+                <label>Días adicionales:</label>
+                <input className="form-control" name="diasVacacionesAdicionales" type="number" id="diasVacacionesAdicionales"/>
               </FormGroup>
             </div>
             {/* tabla Vacaciones */}

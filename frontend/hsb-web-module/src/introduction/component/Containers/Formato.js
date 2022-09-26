@@ -51,8 +51,7 @@ const liquidacionCompra = {
       ]
       },
       // detalle
-      "detalles":[ 
-
+      "detalles":[
         {"detalle":{    
           "codigoPrincipal": "",  //bien  
           "codigoAuxiliar": "", //bien 

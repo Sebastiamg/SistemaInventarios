@@ -77,6 +77,11 @@ tr:hover td{
     color: white;
 }
 
+.vacasiones {
+    display: flex;
+    align-items: flex-end;
+}
+
 /* form */
 
 .infTributaria, .liqCompra {

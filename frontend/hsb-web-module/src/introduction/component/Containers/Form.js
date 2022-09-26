@@ -70,8 +70,9 @@ const jsonConverter = (e) => {
         formato.maquinaFiscal[lcForm[0][i+68].id] = lcForm[0][i+68].value     
     }
 
-    Api.apiLiquidacionCompra(formato)
+    // Api.apiLiquidacionCompra(formato)
     // return console.log(formato)
+    return console.log(lcForm)
 }
 
 // handle value (accesCode)
@@ -83,18 +84,27 @@ function handleChange(e){
 
 function handleTotal(e) {
     const lcForm = document.querySelectorAll("#lcForm")
-    // 41 - 42 - 44      des: 43 +1
+    // Descuento Item 48 - 52
+    // 49 - 50 (impuesto unitario IVA - tarifa)
+    lcForm[0][50].value = Number(lcForm[0][49].children[lcForm[0][49].options.selectedIndex].className);
+
+    // 42 - 45  des: 44
     if (lcForm[0][44].value) {
         let porcentaje = lcForm[0][44].value / 100;
-
         lcForm[0][45].value = ((lcForm[0][42].value * lcForm[0][43].value) - ((lcForm[0][42].value * lcForm[0][43].value) * porcentaje)).toFixed(2)
     } else {
         lcForm[0][45].value = (lcForm[0][42].value * lcForm[0][43].value).toFixed(2);
     }
 
-    //50 - 51 base y valor +1
+    //50 - 51 y 52
     lcForm[0][51].value = lcForm[0][45].value;
-    lcForm[0][52].value = ((lcForm[0][43].value * lcForm[0][50].value) / 100).toFixed(2)
+    lcForm[0][52].value = ((lcForm[0][45].value * lcForm[0][50].value) / 100).toFixed(2)
+    
+
+    //26 - 29 (total con impuestos iva - tarifa)
+    lcForm[0][29].value = Number(lcForm[0][26].children[lcForm[0][26].options.selectedIndex].className);
+    lcForm[0][30].value = ((lcForm[0][28].value * lcForm[0][29].value) / 100).toFixed(2)
+
 }  
 
 
@@ -139,8 +149,18 @@ function AddDetail() {
     lcForm[0][20].value = Number(totalDescuentos)   
     console.log(totalNoImpuestos)
 
+    //Totales con Impuestos 25 - 30
+    lcForm[0][28].value = Number(totalNoImpuestos)
+    // lcForm[0][30].value = lcForm[0][28] * 
+
+    // Totales con impuestos 31 - (Importe Total)
+    let valoresImpuestos = base.map(x => parseFloat(x.children[14].textContent)).reduce((total, actual) => total + actual, 0)
+    console.log(valoresImpuestos.toFixed(2));
+    lcForm[0][31].value = totalNoImpuestos + valoresImpuestos;
+
 }
 
+//PAGO  
 function AddPayment() {
     console.log("Hola Luna");
     // 33 - 36
@@ -177,6 +197,9 @@ function removeItem (e) {
     let totalDescuentos = base.map(x => parseFloat(x.children[7].textContent)).reduce((total, actual) => total + actual, 0);
     lcForm[0][19].value = Number(totalNoImpuestos);
     lcForm[0][20].value = Number(totalDescuentos);
+
+    lcForm[0][28].value = base.map(x => parseFloat((x.children[13].textContent))).reduce((total, actual) => total + actual, 0)
+
 }
 
 
@@ -246,18 +269,18 @@ const Form = () => {
                                 <option value="3">ICE</option>
                                 <option value="5">IRBPNR</option>
                             </select></label>
-                        <label htmlFor="codigoPorcentaje" className='form-label col'>Código porcentaje: <select id="codigoPorcentaje" className='form-select'>
+                        <label htmlFor="codigoPorcentaje" className='form-label col'>Código porcentaje: <select id="codigoPorcentaje" className='form-select'onChange={handleTotal}>
                                 {/* <option value="" selected></option> */}
-                                <option value="0">0%</option>
-                                <option value="2" selected>12%</option>
-                                <option value="3">14%</option>
-                                <option value="6">No Objeto de Impuesto</option>
-                                <option value="7">Exento de IVA</option>
-                                <option value="8">IVA diferenciado</option>
+                                <option value="0" className='0'>0%</option>
+                                <option value="2" className='12' selected>12%</option>
+                                <option value="3" className='14'>14%</option>
+                                <option value="6" className='0'>No Objeto de Impuesto</option>
+                                <option value="7" className='0'>Exento de IVA</option>
+                                <option value="8" className='8'>IVA diferenciado</option>
                             </select></label>
                         <label htmlFor="descuentoAdicional" className='form-label col'>Descuento adicional: <input type="number" id="descuentoAdicional" className='form-control'/></label>
                         <label htmlFor="baseImponible" className='form-label col'>Base imponible: <input type="number" id="baseImponible" className='form-control' readOnly/></label> {/* BASE IMPONIBLE */}
-                        <label htmlFor="tarifa" className='form-label col'>Tarifa: <input type="number" id="tarifa" className='form-control' value={12}/></label>
+                        <label htmlFor="tarifa" className='form-label col'>Tarifa: <input type="number" id="tarifa" className='form-control' readOnly defaultValue="12"/></label>
                         <label htmlFor="valor" className='form-label col'>Valor: <input type="number" id="valor" className='form-control' readOnly/></label>
                         <label htmlFor="importeTotal" className='form-label col'>Importe Total: <input type="number" id="importeTotal" className='form-control'/></label>
                         <label htmlFor="moneda" className='form-label col'>Moneda: <input type="text" id="moneda" className='form-control'/></label>
@@ -328,16 +351,16 @@ const Form = () => {
                                         <option value="3">ICE</option>
                                         <option value="5">IRBPNR</option>
                                     </select></label>
-                                <label htmlFor='codigoPorcentaje' className='form-label col'>Código Porcentaje: <select type="number" id="codigoPorcentaje" className='form-select'>
+                                <label htmlFor='codigoPorcentaje' className='form-label col'>Código Porcentaje: <select type="number" id="codigoPorcentaje" className='form-select' onChange={handleTotal}>
                                         {/* <option value="" selected></option> */}
-                                        <option value="0">0%</option>
-                                        <option value="2" selected>12%</option>
-                                        <option value="3">14%</option>
-                                        <option value="6">No Objeto de Impuesto</option>
-                                        <option value="7">Exento de IVA</option>
-                                        <option value="8">IVA diferenciado</option>
+                                        <option value="0" className='0' >0%</option>
+                                        <option value="2" className='12'  selected>12%</option>
+                                        <option value="3" className='14' >14%</option>
+                                        <option value="6" className='0' >No Objeto de Impuesto</option>
+                                        <option value="7" className='0' >Exento de IVA</option>
+                                        <option value="8" className='8' >IVA diferenciado</option>
                                     </select></label>
-                                <label htmlFor='tarifa' className='form-label col'>Tarifa: <input type="number" id="tarifa" className='form-control' defaultValue="12"/></label>
+                                <label htmlFor='tarifa' className='form-label col'>Tarifa: <input type="number" id="tarifa" className='form-control' defaultValue="12" readOnly/></label>
                                 <label htmlFor='baseImponible' className='form-label col'>Base Imponible: <input type="number" id="baseImponible" className='form-control' readOnly/></label>
                                 <label htmlFor='valor' className='form-label col'>Valor: <input type="number" id="valor" className='form-control' readOnly/></label>
                             </div>
