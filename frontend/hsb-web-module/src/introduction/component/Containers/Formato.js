@@ -28,16 +28,17 @@ const liquidacionCompra = {
         "totalComprobantesReembolso": "",
         "totalBaseImponibleReembolso": "",
         "totalImpuestoReembolso": "",
-        "totalConImpuestos": {
-          "totalImpuesto": {
+        "totalConImpuestos": [ 
+          {"totalImpuesto": { //----------
             "codigo": "",
             "codigoPorcentaje": "",
             "descuentoAdicional": "",
             "baseImponible": "",
             "tarifa": "",
             "valor": ""
-          }
-        },
+          }}
+        ],
+
         "importeTotal": "",
         "moneda": "",
         "pagos": [  

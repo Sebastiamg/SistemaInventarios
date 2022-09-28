@@ -1,0 +1,113 @@
+{
+    "infoTributaria": {
+        "ambiente": "1",
+        "tipoEmision": "1",
+        "razonSocial": "fdvdf",
+        "nombreComercial": "dfvdfv",
+        "ruc": "3343434",
+        "claveAcceso": "2509202203334343410010010000000014835434316",
+        "codDoc": "334",
+        "estab": "4343",
+        "ptoEmi": "4343",
+        "secuencial": "3434",
+        "dirMatriz": "34d3xdc"
+    },
+    "infoLiquidacionCompra": {
+        "fechaEmision": "2022-09-09",
+        "dirEstablecimiento": "gvfdgv",
+        "contribuyenteEspecial": "4",
+        "obligadoContabilidad": "si",
+        "tipoIdentificacionProveedor": "05",
+        "razonSocialProveedor": "34543",
+        "identificacionProveedor": "2345432",
+        "direccionProveedor": "345crvf",
+        "totalSinImpuestos": "293.76",
+        "totalDescuento": "32",
+        "codDocReembolso": "3",
+        "totalComprobantesReembolso": "23",
+        "totalBaseImponibleReembolso": "324",
+        "totalImpuestoReembolso": "2121",
+        "totalConImpuestos": {
+            "totalImpuesto": {
+                "codigo": "2",
+                "codigoPorcentaje": "2",
+                "descuentoAdicional": "12",
+                "baseImponible": "",
+                "tarifa": "12",
+                "valor": ""
+            }
+        },
+        "importeTotal": "23",
+        "moneda": "12",
+        "pagos": [
+            {
+                "pago": {
+                    "": "X",
+                    "formaPago": "16",
+                    "total": "213",
+                    "plazo": "2323",
+                    "unidadTiempo": "232323"
+                }
+            }
+        ],
+        "codigo": "2",
+        "codigoPorcentaje": "2"
+    },
+    "detalles": [
+        {
+            "detalle": {
+                "codigoPrincipal": "df verve",
+                "codigoAuxiliar": " efdv ef",
+                "descripcion": "dfscds",
+                "unidadMedida": "sdcsdc",
+                "cantidad": "1",
+                "precioUnitario": "432",
+                "descuento": "32",
+                "precioTotalSinImpuesto": "293.76",
+                "detAdicional": "dfv d d ",
+                "codigo": "2",
+                "codigoPorcentaje": "2",
+                "tarifa": "12",
+                "baseImponible": "293.76",
+                "valor": "51.84"
+            }
+        }
+    ],
+    "reembolsos": {
+        "reembolsoDetalle": {
+            "tipoIdentificacionProveedorReembolso": "05",
+            "identificacionProveedorReembolso": "1234",
+            "codPaisPagoProveedorReembolso": "24453432",
+            "tipoProveedorReembolso": "01",
+            "codDocReembolso": "2353421",
+            "estabDocReembolso": "3432",
+            "ptoEmiDocReembolso": "322",
+            "secuencialDocReembolso": "232323",
+            "fechaEmisionDocReembolso": "2022-09-14",
+            "numeroautorizacionDocReemb": "",
+            "detalleImpuestos": {
+                "detalleImpuesto": {
+                    "codigo": "23432",
+                    "codigoPorcentaje": "3",
+                    "tarifa": "2323",
+                    "baseImponibleReembolso": "2323",
+                    "impuestoReembolso": "",
+                    "numeroautorizacionDocReemb": "2342"
+                }
+            },
+            "": ""
+        }
+    },
+    "maquinaFiscal": {
+        "marca": "232323",
+        "modelo": "234132",
+        "serie": "",
+        "impuestoReembolso": "2322"
+    },
+    "infoAdicional": {
+        "campoAdicional": [
+            "campoAdicional0",
+            "campoAdicional1"
+        ]
+    }
+}

@@ -118,14 +118,14 @@ function apiUpdate(props) {
 
 // -----------------------------------------------------------------
 // Liquidacion de compra
-// Create items
-function apiLiquidacionCompra (props) {   
+function apiLiquidacionCompra (props) {
     const formatoJson = JSON.stringify(props)
-    console.log(formatoJson)
+    // console.log(formatoJson)
+    console.log(props)
 
-    // axios.post('create_xml.php', formatoJson)
-    // .then((res) => console.log(res.data))
-    // .catch(function (error) {console.log(error);})
+    axios.post('http://localhost/rest-api/api/xml/create_xml.php', formatoJson)
+    .then((res) => console.log(res.data))
+    .catch(function (error) {console.log(error);})
 }
 
 

@@ -1,6 +1,5 @@
 import NavBar from '../navBar/navBar';
 import './Container1Data.css'
-import React from 'react'
 import {liquidacionCompra, accessCode} from './Formato';
 import Api from '../../../services';
 
@@ -19,10 +18,31 @@ const jsonConverter = (e) => {
         formato.infoLiquidacionCompra[lcForm[0][i+11].id] = lcForm[0][i+11].value;
     }
 
+
     // Totales con Impuestos 25 - 30
-    for (let i = 0; i < 5; i++) {
-        formato.infoLiquidacionCompra.totalConImpuestos.totalImpuesto[lcForm[0][i+25].id] = lcForm[0][i+25].value
+    formato.infoLiquidacionCompra.totalConImpuestos = [];
+    for (let i = 0; i < 6; i++) {
+        const tablaImpuestos = document.querySelector("#itemsTable3 tbody").children;
+        let detalleImpuesto = {"totalImpuesto": {}}
+
+        if (tablaImpuestos.length < 1) {
+            break
+        } else {
+            if (tablaImpuestos[i].classList.contains("d-none")) {
+                continue;
+            } else {
+                detalleImpuesto.totalImpuesto.codigo = tablaImpuestos[i].children[4].textContent
+                detalleImpuesto.totalImpuesto.codigoPorcentaje = tablaImpuestos[i].children[5].textContent
+                detalleImpuesto.totalImpuesto.descuentoAdicional = tablaImpuestos[i].children[6].textContent
+                detalleImpuesto.totalImpuesto.baseImponible = tablaImpuestos[i].children[1].textContent
+                detalleImpuesto.totalImpuesto.tarifa = tablaImpuestos[i].children[0].textContent
+                detalleImpuesto.totalImpuesto.valor = tablaImpuestos[i].children[2].textContent
+                formato.infoLiquidacionCompra.totalConImpuestos.push(detalleImpuesto)
+            }
+        }
     }
+
+    console.log(formato.infoLiquidacionCompra.totalConImpuestos)
 
     // 31 - 32
     for (let i = 0; i < 2; i++) {
@@ -70,9 +90,9 @@ const jsonConverter = (e) => {
         formato.maquinaFiscal[lcForm[0][i+68].id] = lcForm[0][i+68].value     
     }
 
-    // Api.apiLiquidacionCompra(formato)
+    Api.apiLiquidacionCompra(formato)
     // return console.log(formato)
-    return console.log(lcForm)
+    // return console.log(lcForm)
 }
 
 // handle value (accesCode)
@@ -91,20 +111,18 @@ function handleTotal(e) {
     // 42 - 45  des: 44
     if (lcForm[0][44].value) {
         let porcentaje = lcForm[0][44].value / 100;
-        lcForm[0][45].value = ((lcForm[0][42].value * lcForm[0][43].value) - ((lcForm[0][42].value * lcForm[0][43].value) * porcentaje)).toFixed(2)
+        lcForm[0][45].value = ((lcForm[0][42].value * lcForm[0][43].value) - ((lcForm[0][42].value * lcForm[0][43].value) * porcentaje)).toFixed(2);
     } else {
         lcForm[0][45].value = (lcForm[0][42].value * lcForm[0][43].value).toFixed(2);
     }
 
     //50 - 51 y 52
     lcForm[0][51].value = lcForm[0][45].value;
-    lcForm[0][52].value = ((lcForm[0][45].value * lcForm[0][50].value) / 100).toFixed(2)
+    lcForm[0][52].value = ((lcForm[0][45].value * lcForm[0][50].value) / 100).toFixed(2);
     
-
     //26 - 29 (total con impuestos iva - tarifa)
     lcForm[0][29].value = Number(lcForm[0][26].children[lcForm[0][26].options.selectedIndex].className);
-    lcForm[0][30].value = ((lcForm[0][28].value * lcForm[0][29].value) / 100).toFixed(2)
-
+    lcForm[0][30].value = ((lcForm[0][28].value * lcForm[0][29].value) / 100).toFixed(2);
 }  
 
 
@@ -134,35 +152,105 @@ function AddDetail() {
         <td scope="col" class="${lcForm[0][51].id}"  style="display: none">${lcForm[0][51].value}</td>     
         <td scope="col" class="${lcForm[0][52].id}"  style="display: none">${lcForm[0][52].value}</td>     
     </tr>`
-    itemsTable.innerHTML += row
+    itemsTable.innerHTML += row;
+
     for (let i = 0; i < 9; i++) {
         lcForm[0][i+38].value = "";lcForm[0][51].value = "";lcForm[0][52].value = "";
     }
     }
     document.querySelectorAll(".btn-danger").forEach(x => x.addEventListener("click", removeItem));
 
+    // TABLA TOTALES CON IMPUESTOS
+    const itemsTable3 = document.querySelector("#itemsTable3 tbody"); //Tabla totalesCI
+    let variables = {codP0:[], codP12:[], codP14:[], codPNOI:[], codPEI:[], codPID:[]} 
+
+    if(itemsTable3.children.length === 0) {
+        for (let i = 0 , j = Object.keys(variables); i < Object.keys(variables).length; i++) {
+            const tr = document.createElement("TR");
+            tr.classList.add(`${j[i]}`, "d-none");
+            for (let k = 0; k < 7; k++) {
+                const th = document.createElement("th")
+                if (k > 3) {
+                    th.classList.add("d-none")
+                }
+                tr.appendChild(th);
+            }        
+            itemsTable3.appendChild(tr);
+        }
+    }
+    
+    //Table row Items ( Totales con impuestos )
+    [...itemsTable.children].forEach(x => {
+        const dato = x.children[11].textContent;
+        function datosTabla(rowPosition, codP) {
+            itemsTable3.children[rowPosition].classList.remove("d-none");
+            //0 Tarifas
+            itemsTable3.children[rowPosition].children[0].textContent = variables[`${codP}`][0].children[12].textContent;
+            //1 Bases Imponibles
+            let bImponible = itemsTable3.children[rowPosition].children[1].textContent = ([...variables[`${codP}`]].map(x => Number(x.children[13].textContent)).reduce((total,actual) => total + actual, 0)).toFixed(2);
+            //2 Valor (suma valores de impuestos)
+            let vTotales = itemsTable3.children[rowPosition].children[2].textContent = [...variables[`${codP}`]].map(x => Number(x.children[14].textContent)).reduce((total, actual) => total + actual, 0).toFixed(2);
+            //3 Total - Valores Impuestos + Bases imponibles
+            itemsTable3.children[rowPosition].children[3].textContent = (parseFloat(vTotales) + parseFloat(bImponible)).toFixed(2);
+            bImponible = 0;
+            //4 codigo
+            itemsTable3.children[rowPosition].children[4].textContent = variables[`${codP}`][0].children[10].textContent;
+            //5 codigo Porcentaje
+            itemsTable3.children[rowPosition].children[5].textContent = variables[`${codP}`][0].children[11].textContent;
+            //6 Desc Adiciona, default 0
+            itemsTable3.children[rowPosition].children[6].textContent = "0";
+        }
+        switch (dato) {
+            case "0":
+                variables.codP0.push(x);
+                datosTabla(0,"codP0");
+                break;
+            case "2":
+                variables.codP12.push(x);
+                    datosTabla(1,"codP12");
+                break;
+            case "3":
+                variables.codP14.push(x);
+                datosTabla(2,"codP14");
+                break;
+            case "6":
+                variables.codPNOI.push(x);
+                datosTabla(3,"codPNOI");
+                break;
+            case "7":
+                variables.codPEI.push(x);
+                datosTabla(4,"codPEI");
+                break;
+            case "8":
+                variables.codPID.push(x);
+                datosTabla(5,"codPID");
+                break; 
+            default:
+                console.log("SIN COINCIDENCIAS")
+                break;
+        }
+    })
+
     //Totales sin Impuestos 19 - 24
     const base = [...document.querySelectorAll("#itemsTable #tbody")[0].children]
-    let totalNoImpuestos = base.map(x => parseFloat((x.children[13].textContent))).reduce((total, actual) => total + actual, 0);
-    let totalDescuentos = base.map(x => parseInt(x.children[7].textContent)).reduce((total, actual) => total + actual, 0);
+    let totalNoImpuestos = base.map(x => Number((x.children[13].textContent))).reduce((total, actual) => total + actual, 0).toFixed(2);
+    let totalDescuentos = base.map(x => Number(x.children[7].textContent)).reduce((total, actual) => total + actual, 0).toFixed(2);
     lcForm[0][19].value = Number(totalNoImpuestos)
     lcForm[0][20].value = Number(totalDescuentos)   
-    console.log(totalNoImpuestos)
+    // console.log(totalNoImpuestos)
 
     //Totales con Impuestos 25 - 30
     lcForm[0][28].value = Number(totalNoImpuestos)
-    // lcForm[0][30].value = lcForm[0][28] * 
 
     // Totales con impuestos 31 - (Importe Total)
-    let valoresImpuestos = base.map(x => parseFloat(x.children[14].textContent)).reduce((total, actual) => total + actual, 0)
-    console.log(valoresImpuestos.toFixed(2));
-    lcForm[0][31].value = totalNoImpuestos + valoresImpuestos;
-
+    // let valoresImpuestos = base.map(x => Number(x.children[14].textContent)).reduce((total, actual) => total + actual, 0);
+    
+    lcForm[0][31].value = [...itemsTable3.children].filter(x => !x.classList.contains("d-none")).map(x => Number(x.children[3].textContent)).reduce((total, actual) => total + actual, 0)
+    // console.log();
 }
 
 //PAGO  
 function AddPayment() {
-    console.log("Hola Luna");
     // 33 - 36
     const lcForm = document.querySelectorAll("#lcForm");
     const itemsTable = document.querySelector("#itemsTable2").children[1];
@@ -188,23 +276,72 @@ function AddPayment() {
 }
 
 //Delete item
-function removeItem (e) {
+function removeItem () {
     this.parentElement.parentElement.remove();
 
     const lcForm = document.querySelectorAll("#lcForm");
     const base = [...document.querySelectorAll("#itemsTable #tbody")[0].children];
-    let totalNoImpuestos = base.map(x => parseFloat((x.children[13].textContent))).reduce((total, actual) => total + actual, 0);
-    let totalDescuentos = base.map(x => parseFloat(x.children[7].textContent)).reduce((total, actual) => total + actual, 0);
+    let totalNoImpuestos = base.map(x => parseFloat((x.children[13].textContent))).reduce((total, actual) => total + actual, 0).toFixed(2);
+    let totalDescuentos = base.map(x => parseFloat(x.children[7].textContent)).reduce((total, actual) => total + actual, 0).toFixed(2);
     lcForm[0][19].value = Number(totalNoImpuestos);
     lcForm[0][20].value = Number(totalDescuentos);
 
     lcForm[0][28].value = base.map(x => parseFloat((x.children[13].textContent))).reduce((total, actual) => total + actual, 0)
 
+    //totales con impuestos Rows
+    let itemsTable3 = document.querySelector("#itemsTable3 tbody").children
+    const codPorcentaje = this.parentElement.parentElement.children[11].textContent;
+    const trParent = [...this.parentElement.parentElement.children]
+    //datos de la tabla totales con impuestos
+    function datosTabla2(rowPosition) {
+        // //total
+        itemsTable3[rowPosition].children[3].textContent = (Number(itemsTable3[rowPosition].children[3].textContent) - ((Number(trParent[13].textContent) + Number(trParent[14].textContent))).toFixed(2)).toFixed(2);
+        // //base imponible
+        itemsTable3[rowPosition].children[1].textContent = (Number(itemsTable3[rowPosition].children[1].textContent - Number(trParent[13].textContent))).toFixed(2);
+        // //valor
+        itemsTable3[rowPosition].children[2].textContent = (Number(itemsTable3[rowPosition].children[2].textContent) - Number(trParent[14].textContent)).toFixed(2);
+        
+        if (Number(itemsTable3[rowPosition].children[3].textContent) === 0) {
+            itemsTable3[rowPosition].classList.add("d-none");
+            [...itemsTable3[rowPosition].children].forEach(x => x.textContent = "");
+        }
+    }
+    switch (codPorcentaje) {
+        case "0":
+            datosTabla2(0)
+            break;
+        case "2":
+            datosTabla2(1)
+            break;
+        case "3":
+            datosTabla2(2)
+            break;
+        case "6":
+            datosTabla2(3)
+            break;
+        case "7":
+            datosTabla2(4)
+            break;
+        case "8":
+            datosTabla2(5)
+            break;
+        default:
+            console.log("Sin coincidencias")
+            break;
+    }
+
+    //Importe total
+    let datosDisponibles = [...itemsTable3].filter(x => !x.classList.contains("d-none"))
+    if ( datosDisponibles.length < 1 ) {
+        lcForm[0][31].value = "0";        
+    } else {
+        lcForm[0][31].value = [...itemsTable3].filter(x => !x.classList.contains("d-none")).map(x => Number(x.children[3].textContent)).reduce((total, actual) => total + actual, 0)
+
+    }
+
 }
 
-
 const Form = () => {
-    // console.log(lcForm)
   return (<>
     <NavBar/>
         <h1>Liquidacion de compra</h1>
@@ -282,9 +419,27 @@ const Form = () => {
                         <label htmlFor="baseImponible" className='form-label col'>Base imponible: <input type="number" id="baseImponible" className='form-control' readOnly/></label> {/* BASE IMPONIBLE */}
                         <label htmlFor="tarifa" className='form-label col'>Tarifa: <input type="number" id="tarifa" className='form-control' readOnly defaultValue="12"/></label>
                         <label htmlFor="valor" className='form-label col'>Valor: <input type="number" id="valor" className='form-control' readOnly/></label>
-                        <label htmlFor="importeTotal" className='form-label col'>Importe Total: <input type="number" id="importeTotal" className='form-control'/></label>
-                        <label htmlFor="moneda" className='form-label col'>Moneda: <input type="text" id="moneda" className='form-control'/></label>
+                        {/* tabla TOTALES CON IMPUESTOS */}
                         
+                        <div className='tablaConImpuesto'>
+                            <table className='table w-100' id="itemsTable3">
+                                <thead className='table-dark'>
+                                    <tr>
+                                        <th scope='col'>Tarifa</th>
+                                        <th scope='col'>Base imponible</th>
+                                        <th scope='col'>Valor</th>
+                                        <th scope='col'>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className='tablaConImpuestoFooter'>
+                            <label htmlFor="importeTotal" className='form-label col'>Importe Total: <input type="number" id="importeTotal" className='form-control'/></label>
+                            <label htmlFor="moneda" className='form-label col'>Moneda: <input type="text" id="moneda" className='form-control'/></label>
+                        </div>
+
                         <div id="pagos">
                             <h3 className='titulo'>Pago </h3>
                             <label htmlFor="formaPago" className='form-label col'>Forma Pago: <select type="number" id="formaPago" className='form-select'>

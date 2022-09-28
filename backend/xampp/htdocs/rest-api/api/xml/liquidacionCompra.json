@@ -1,0 +1,257 @@
+{
+  "liquidacionCompra": {
+    "-xmlns:ds": "http://www.w3.org/2000/09/xmldsig#",
+    "-xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "-xsi:noNamespaceSchemaLocation": "file:/C:/borrar/xsd/211-xsd-2_V1.1.0.xsd",
+    "-id": "comprobante",
+    "-version": "version0",
+    "infoTributaria": {
+      "ambiente": "ambienteprueba",
+      "tipoEmision": "tipo de emision prueba",
+      "razonSocial": "eazon social prubea",
+      "nombreComercial": "nomre comercial prueba",
+      "ruc": "ruc prieba",
+      "claveAcceso": "calve prueba",
+      "codDoc": "0cod prueba0",
+      "estab": "estba prueba",
+      "ptoEmi": "emi prueba000",
+      "secuencial": "secua prueba",
+      "dirMatriz": "matrix peruba",
+      "agenteRetencion": "agente prueba",//
+      "contribuyenteRimpe": "CONTRIBUYENTE RpruebaE"//
+    },
+    "infoLiquidacionCompra": {
+      "fechaEmision": "01/01/2000",
+      "dirEstablecimiento": "dirEstablecimiento0",
+      "contribuyenteEspecial": "contribuyente",
+      "obligadoContabilidad": "SI",
+      "tipoIdentificacionProveedor": "04",
+      "razonSocialProveedor": "razonSocialProveedor0",
+      "identificacionProveedor": "identificacionProvee",
+      "direccionProveedor": "direccionProveedor0",
+      "totalSinImpuestos": "50.00",
+      "totalDescuento": "0.00",
+      "codDocReembolso": "00",
+      "totalComprobantesReembolso": "50.00",
+      "totalBaseImponibleReembolso": "50.00",
+      "totalImpuestoReembolso": "50.00",
+      "totalConImpuestos": {
+        "totalImpuesto": [
+          //Esto no es un array en el de Michael
+          {
+            "codigo": "2",
+            "codigoPorcentaje": "0",
+            "descuentoAdicional": "0.00",
+            "baseImponible": "50.00",
+            "tarifa": "49.50",
+            "valor": "50.00"
+          },
+          {
+            "codigo": "2",
+            "codigoPorcentaje": "0",
+            "descuentoAdicional": "0.00",
+            "baseImponible": "50.00",
+            "tarifa": "49.50",
+            "valor": "50.00"
+          }
+        ]
+      },
+      "importeTotal": "50.00",
+      "moneda": "moneda0",
+      "pagos": {
+        "pago": [
+          {
+            "formaPago": "01",
+            "total": "50.00",
+            "plazo": "50.00",
+            "unidadTiempo": "unidadTiem"
+          },
+          {
+            "formaPago": "01",
+            "total": "50.00",
+            "plazo": "50.00",
+            "unidadTiempo": "unidadTiem"
+          }
+        ]
+      }
+    },
+    "detalles": {
+      "detalle": [
+        {
+          "codigoPrincipal": "codigoPrincipal0",
+          "codigoAuxiliar": "codigoAuxiliar0",
+          "descripcion": "descripcion0",
+          "unidadMedida": "unidadMedida0",
+          "cantidad": "50.000000",
+          "precioUnitario": "50.000000",
+          //Falta precio subcidio
+          "precioSinSubsidio": "50.000000",
+          "descuento": "50.00",
+          "precioTotalSinImpuesto": "50.00",
+          "detallesAdicionales": {
+            "detAdicional": [
+              {
+                //Falta esto datos
+                "-nombre": "nombre0",
+                "-valor": "valor0",
+                "-self-closing": "true"
+              },
+              {
+                "-nombre": "nombre1",
+                "-valor": "valor1",
+                "-self-closing": "true"
+              }
+            ]
+          },
+          "impuestos": {
+            //Tampoco es un array
+            "impuesto": [
+              {
+                "codigo": "2",
+                "codigoPorcentaje": "0",
+                "tarifa": "49.50",
+                "baseImponible": "50.00",
+                "valor": "50.00"
+              },
+              {
+                "codigo": "2",
+                "codigoPorcentaje": "0",
+                "tarifa": "49.50",
+                "baseImponible": "50.00",
+                "valor": "50.00"
+              }
+            ]
+          }
+        },
+        {
+          "codigoPrincipal": "codigoPrincipal1",
+          "codigoAuxiliar": "codigoAuxiliar1",
+          "descripcion": "descripcion1",
+          "unidadMedida": "unidadMedida1",
+          "cantidad": "50.000000",
+          "precioUnitario": "50.000000",
+          "precioSinSubsidio": "50.000000",
+          "descuento": "50.00",
+          "precioTotalSinImpuesto": "50.00",
+          "detallesAdicionales": {
+            "detAdicional": [
+              {
+                "-nombre": "nombre2",
+                "-valor": "valor2",
+                "-self-closing": "true"
+              },
+              {
+                "-nombre": "nombre3",
+                "-valor": "valor3",
+                "-self-closing": "true"
+              }
+            ]
+          },
+          "impuestos": {
+            "impuesto": [
+              {
+                "codigo": "2",
+                "codigoPorcentaje": "0",
+                "tarifa": "49.50",
+                "baseImponible": "50.00",
+                "valor": "50.00"
+              },
+              {
+                "codigo": "2",
+                "codigoPorcentaje": "0",
+                "tarifa": "49.50",
+                "baseImponible": "50.00",
+                "valor": "50.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "reembolsos": {
+      "reembolsoDetalle": [
+        {
+          "tipoIdentificacionProveedorReembolso": "04",
+          "identificacionProveedorReembolso": "identificacionProvee",
+          "codPaisPagoProveedorReembolso": "000",
+          "tipoProveedorReembolso": "01",
+          "codDocReembolso": "00",
+          "estabDocReembolso": "000",
+          "ptoEmiDocReembolso": "000",
+          "secuencialDocReembolso": "000000000",
+          "fechaEmisionDocReembolso": "01/01/2000",
+          "numeroautorizacionDocReemb": "0000000000",
+          "detalleImpuestos": {
+            "detalleImpuesto": [
+              //Tampoco le hace array
+              {
+                "codigo": "2",
+                "codigoPorcentaje": "0",
+                "tarifa": "49.50",
+                "baseImponibleReembolso": "50.00",
+                "impuestoReembolso": "50.00"
+              },
+              {
+                "codigo": "2",
+                "codigoPorcentaje": "0",
+                "tarifa": "49.50",
+                "baseImponibleReembolso": "50.00",
+                "impuestoReembolso": "50.00"
+              }
+            ]
+          }
+        },
+        {
+          "tipoIdentificacionProveedorReembolso": "04",
+          "identificacionProveedorReembolso": "identificacionProvee",
+          "codPaisPagoProveedorReembolso": "000",
+          "tipoProveedorReembolso": "01",
+          "codDocReembolso": "00",
+          "estabDocReembolso": "000",
+          "ptoEmiDocReembolso": "000",
+          "secuencialDocReembolso": "000000000",
+          "fechaEmisionDocReembolso": "01/01/2000",
+          "numeroautorizacionDocReemb": "0000000000",
+          "detalleImpuestos": {
+            "detalleImpuesto": [
+              {
+                "codigo": "2",
+                "codigoPorcentaje": "0",
+                "tarifa": "49.50",
+                "baseImponibleReembolso": "50.00",
+                "impuestoReembolso": "50.00"
+              },
+              {
+                "codigo": "2",
+                "codigoPorcentaje": "0",
+                "tarifa": "49.50",
+                "baseImponibleReembolso": "50.00",
+                "impuestoReembolso": "50.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "tipoNegociable": {
+      "correo": "correo0"
+    },
+    "maquinaFiscal": {
+      "marca": "marca0",
+      "modelo": "modelo0",
+      "serie": "serie0"
+    },
+    "infoAdicional": {
+      "campoAdicional": [
+        {
+          "-nombre": "nombre4",
+          "#text": "campoAdicional0"
+        },
+        {
+          "-nombre": "nombre5",
+          "#text": "campoAdicional1"
+        }
+      ]
+    }
+  }
+}

@@ -132,12 +132,27 @@ tr:hover td{
     border: solid 4px  #094165 ;
 }
 
+.tablaConImpuesto{
+ display: inline;
+ width: 95%;
+ margin-left: 2.5%;
+ margin-right: 2.5%;
+ margin-bottom: 30px;
+}
+
 #tabla-items{
     margin-left: 10px;
-    margin-right: 10px;
-
-   
+    margin-right: 10px;   
 }
+
+.tablaConImpuestoFooter{
+    border: solid 4px  #094165 ;
+    width: 100%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-bottom: 20px;
+}
+
 
 #reembolsos{
     display: flex;
