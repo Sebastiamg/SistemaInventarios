@@ -29,13 +29,13 @@ const liquidacionCompra = {
         "totalBaseImponibleReembolso": "",
         "totalImpuestoReembolso": "",
         "totalConImpuestos": [ 
-          {"totalImpuesto": { //----------
-            "codigo": "",
-            "codigoPorcentaje": "",
-            "descuentoAdicional": "",
-            "baseImponible": "",
-            "tarifa": "",
-            "valor": ""
+          {"totalImpuesto": { 
+            "codigo": "", //GOD ---------DEFAULT 0 //////////////////////
+            "codigoPorcentaje": "", //GOD //////////////////////
+            "descuentoAdicional": "", // default 0 //////////////////////
+            "baseImponible": "", //GOOD //////////////////////
+            "tarifa": "", //GOOD //////////////////////
+            "valor": "" //GOOD //////////////////////
           }}
         ],
 
@@ -53,7 +53,7 @@ const liquidacionCompra = {
       },
       // detalle
       "detalles":[
-        {"detalle":{    
+        {"detalle": {   
           "codigoPrincipal": "",  //bien  
           "codigoAuxiliar": "", //bien 
           "descripcion": "",  //bien
@@ -65,15 +65,15 @@ const liquidacionCompra = {
           "detallesAdicionales": {  //.... 
             "detAdicional": ["",""] //bien
           },
-          "impuestos": {  //....  
-            "impuesto": { //....
+          "impuestos": [   //....  
+            {"impuesto": { //....
               "codigo": "", //bien
               "codigoPorcentaje": "", //bien
               "tarifa": "", //bien
               "baseImponible": "",  //bien
               "valor": "" //bien
-            }
-          }
+            }}
+          ]
         }
 
       }

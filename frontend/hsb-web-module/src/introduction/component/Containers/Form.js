@@ -42,24 +42,29 @@ const jsonConverter = (e) => {
         }
     }
 
-    console.log(formato.infoLiquidacionCompra.totalConImpuestos)
-
     // 31 - 32
     for (let i = 0; i < 2; i++) {
         formato.infoLiquidacionCompra[lcForm[0][i+31].id] = lcForm[0][i+31].value
     }
 
-    //Detalles 38 - 52.
+    //Detalles 38 - 46 / Impuetos: (48 -52)
     formato.detalles = []
     let allItems = document.querySelectorAll("#itemsTable #tbody")[0].children;
     for (let i = 0; i < allItems.length; i++) {
-        let itemDetalle = {"detalle": {}}
-
-        for (let j = 0; j < allItems[i].children.length-1; j++) {
+        let itemDetalle = {"detalle": {}, "impuestos": []}
+        for (let j = 0; j < 9; j++) {
             const node = allItems[i].children[j+1];
-            itemDetalle.detalle[`${node.className}`] = node.textContent;  
+            itemDetalle.detalle[`${node.className}`] = node.textContent;
         }
+        itemDetalle.impuestos = [];
+        let itemImpuestos = {"impuesto": {}}
+        for (let k = 0; k < 5; k++) {
+            const node2 = allItems[i].children[k+10];
+            itemImpuestos.impuesto[`${node2.className}`] = node2.textContent; 
+        }
+        itemDetalle.impuestos.push(itemImpuestos);
         formato.detalles.push(itemDetalle);
+        console.log(formato.detalles)
     }
 
     // Pagos 33 - 36
@@ -90,9 +95,10 @@ const jsonConverter = (e) => {
         formato.maquinaFiscal[lcForm[0][i+68].id] = lcForm[0][i+68].value     
     }
 
-    Api.apiLiquidacionCompra(formato)
+    // Api.apiLiquidacionCompra(formato)
     // return console.log(formato)
-    // return console.log(lcForm)
+    console.log(lcForm)
+    console.log(formato.detalles)
 }
 
 // handle value (accesCode)
