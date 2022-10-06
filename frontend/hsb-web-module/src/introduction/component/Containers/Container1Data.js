@@ -14,9 +14,9 @@ const Container1Data = () => {
   // Array Items
   let dataItems = []; 
   // Data Hooks
-  const [data, setData] = useState(dataItems)
-  const [modalUpdate, setModalUpdate] = useState(false)
-  const [modalInsert, setModalInsert] = useState(false)
+  const [data, setData] = useState(dataItems);
+  const [modalUpdate, setModalUpdate] = useState(false);
+  const [modalInsert, setModalInsert] = useState(false);
   const [form, setForm] = useState({item: "" ,brand: "" ,name: "" ,acquisition_date: "" ,statusD: "" ,value: "" ,supplier: "" ,annual_de: "" ,montly_de: "" ,observation: "" ,insured: ""})
 
   const getData = async () => {
@@ -92,10 +92,6 @@ const Container1Data = () => {
           array[counter].observation = dato.observation;
           array[counter].insured = dato.insured; 
 
-          // url.includes("/fixedAssets/electronicEquipment/") ? 
-          // array[counter]["itemType"] = "electronicEquipment" : 
-          // url.includes("/fixedAssets/furnitures/") ? 
-          // array[counter]["itemType"] = "furniture" : console.log(null) 
         // console.log(array[counter])
         Api.apiUpdate(array[counter]);
         }

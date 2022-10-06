@@ -18,7 +18,6 @@ const jsonConverter = (e) => {
         formato.infoLiquidacionCompra[lcForm[0][i+11].id] = lcForm[0][i+11].value;
     }
 
-
     // Totales con Impuestos 25 - 30
     formato.infoLiquidacionCompra.totalConImpuestos = [];
     for (let i = 0; i < 6; i++) {
@@ -73,8 +72,8 @@ const jsonConverter = (e) => {
     for (let i = 0; i < allItems2.length; i++) {
         let payment = {"pago": {}}
 
-        for (let j = 0; j < allItems2[i].children.length; j++) {
-            const node = allItems2[i].children[j];
+        for (let j = 0; j < allItems2[i].children.length-1; j++) {
+            const node = allItems2[i].children[j+1];
             payment.pago[`${node.className}`] = node.textContent;  
         }
         formato.infoLiquidacionCompra.pagos.push(payment);
@@ -95,10 +94,10 @@ const jsonConverter = (e) => {
         formato.maquinaFiscal[lcForm[0][i+68].id] = lcForm[0][i+68].value     
     }
 
-    // Api.apiLiquidacionCompra(formato)
-    // return console.log(formato)
-    console.log(lcForm)
-    console.log(formato.detalles)
+    Api.apiLiquidacionCompra(formato)
+    // return console.log(JSON.stringify(formato))
+    // console.log(lcForm)
+    console.log(formato)
 }
 
 // handle value (accesCode)
@@ -273,7 +272,7 @@ function AddPayment() {
         <td scope="col" class="${lcForm[0][36].id}" >${lcForm[0][36].value}</td>
     </tr>`
     itemsTable.innerHTML += row;
-    document.querySelectorAll(".btn-danger").forEach(x => x.addEventListener("click", removeItem));
+    document.querySelectorAll(".btn-danger").forEach(x => x.addEventListener("click", (e) => e.target.parentElement.parentElement.remove()));
 
     for (let i = 0; i < 3; i++) {
         lcForm[0][i+34].value = "";
@@ -295,7 +294,7 @@ function removeItem () {
     lcForm[0][28].value = base.map(x => parseFloat((x.children[13].textContent))).reduce((total, actual) => total + actual, 0)
 
     //totales con impuestos Rows
-    let itemsTable3 = document.querySelector("#itemsTable3 tbody").children
+    let itemsTable3 = document.querySelector("#itemsTable3 tbody").children;    
     const codPorcentaje = this.parentElement.parentElement.children[11].textContent;
     const trParent = [...this.parentElement.parentElement.children]
     //datos de la tabla totales con impuestos
@@ -407,12 +406,12 @@ const Form = () => {
                         <label htmlFor="totalImpuestoReembolso" className='form-label col'>Total impuestos reembolso: <input type="number" id="totalImpuestoReembolso" className='form-control'/></label>
                         {/* total con impuestos */}
                         <h3 className='titulo'>Totales con impuestos </h3>
-                        <label htmlFor="codigo" className='form-label col'>Código: <select id="codigo" className='form-select'>
+                        <label htmlFor="codigo" className='form-label col d-none'>Código: <select id="codigo" className='form-select'>
                                 <option value="2" selected>IVA</option>
                                 <option value="3">ICE</option>
                                 <option value="5">IRBPNR</option>
                             </select></label>
-                        <label htmlFor="codigoPorcentaje" className='form-label col'>Código porcentaje: <select id="codigoPorcentaje" className='form-select'onChange={handleTotal}>
+                        <label htmlFor="codigoPorcentaje" className='form-label col d-none'>Código porcentaje: <select id="codigoPorcentaje" className='form-select'onChange={handleTotal}>
                                 {/* <option value="" selected></option> */}
                                 <option value="0" className='0'>0%</option>
                                 <option value="2" className='12' selected>12%</option>
@@ -421,10 +420,10 @@ const Form = () => {
                                 <option value="7" className='0'>Exento de IVA</option>
                                 <option value="8" className='8'>IVA diferenciado</option>
                             </select></label>
-                        <label htmlFor="descuentoAdicional" className='form-label col'>Descuento adicional: <input type="number" id="descuentoAdicional" className='form-control'/></label>
-                        <label htmlFor="baseImponible" className='form-label col'>Base imponible: <input type="number" id="baseImponible" className='form-control' readOnly/></label> {/* BASE IMPONIBLE */}
-                        <label htmlFor="tarifa" className='form-label col'>Tarifa: <input type="number" id="tarifa" className='form-control' readOnly defaultValue="12"/></label>
-                        <label htmlFor="valor" className='form-label col'>Valor: <input type="number" id="valor" className='form-control' readOnly/></label>
+                        <label htmlFor="descuentoAdicional" className='form-label col d-none'>Descuento adicional: <input type="number" id="descuentoAdicional" className='form-control'/></label>
+                        <label htmlFor="baseImponible" className='form-label col d-none'>Base imponible: <input type="number" id="baseImponible" className='form-control' readOnly/></label> {/* BASE IMPONIBLE */}
+                        <label htmlFor="tarifa" className='form-label col d-none'>Tarifa: <input type="number" id="tarifa" className='form-control' readOnly defaultValue="12"/></label>
+                        <label htmlFor="valor" className='form-label col d-none'>Valor: <input type="number" id="valor" className='form-control' readOnly/></label>
                         {/* tabla TOTALES CON IMPUESTOS */}
                         
                         <div className='tablaConImpuesto'>
@@ -442,7 +441,7 @@ const Form = () => {
                             </table>
                         </div>
                         <div className='tablaConImpuestoFooter'>
-                            <label htmlFor="importeTotal" className='form-label col'>Importe Total: <input type="number" id="importeTotal" className='form-control'/></label>
+                            <label htmlFor="importeTotal" className='form-label col'>Importe Total: <input type="number" id="importeTotal" className='form-control' readOnly/></label>
                             <label htmlFor="moneda" className='form-label col'>Moneda: <input type="text" id="moneda" className='form-control'/></label>
                         </div>
 
@@ -603,7 +602,7 @@ const Form = () => {
                             
                     </div> */}
                 </div>
-                <input type="submit" name="submitButton" id="submit" value="enviar" style={{position: "fixed", top: "50px"}} onClick={jsonConverter} />
+                <input type="submit" name="submitButton" id="submit" value="enviar" onClick={jsonConverter} />
             </form>
             
         </div>

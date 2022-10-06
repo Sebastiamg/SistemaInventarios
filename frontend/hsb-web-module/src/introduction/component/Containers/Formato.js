@@ -1,26 +1,26 @@
 const liquidacionCompra = {
       "infoTributaria": { 
-        "ambiente": "", //bien  
-        "tipoEmision": "",  //bien
-        "razonSocial": "",  //bien
-        "nombreComercial": "",  //bien
-        "ruc": "",  //bien
-        "claveAcceso": "",  //bien
-        "codDoc": "", //bien
-        "estab": "",  //bien
-        "ptoEmi": "", //bien
-        "secuencial": "", //bien
-        "dirMatriz": "" //bien
+        "ambiente": "",  
+        "tipoEmision": "", 
+        "razonSocial": "", 
+        "nombreComercial": "", 
+        "ruc": "", 
+        "claveAcceso": "", 
+        "codDoc": "",
+        "estab": "", 
+        "ptoEmi": "",
+        "secuencial": "",
+        "dirMatriz": ""
       },
       "infoLiquidacionCompra": {
-        "fechaEmision": "", //bien
-        "dirEstablecimiento": "", //bien
-        "contribuyenteEspecial": "",  //bien
-        "obligadoContabilidad": "", //bien
-        "tipoIdentificacionProveedor": "",  //bien
-        "razonSocialProveedor": "", //bien
-        "identificacionProveedor": "",  //bien
-        "direccionProveedor": "", //bien
+        "fechaEmision": "",
+        "dirEstablecimiento": "",
+        "contribuyenteEspecial": "",
+        "obligadoContabilidad": "",
+        "tipoIdentificacionProveedor": "",
+        "razonSocialProveedor": "",
+        "identificacionProveedor": "",
+        "direccionProveedor": "",
         
         "totalSinImpuestos": "",
         "totalDescuento": "",
@@ -30,23 +30,23 @@ const liquidacionCompra = {
         "totalImpuestoReembolso": "",
         "totalConImpuestos": [ 
           {"totalImpuesto": { 
-            "codigo": "", //GOD ---------DEFAULT 0 //////////////////////
-            "codigoPorcentaje": "", //GOD //////////////////////
-            "descuentoAdicional": "", // default 0 //////////////////////
-            "baseImponible": "", //GOOD //////////////////////
-            "tarifa": "", //GOOD //////////////////////
-            "valor": "" //GOOD //////////////////////
+            "codigo": "",
+            "codigoPorcentaje": "",
+            "descuentoAdicional": "",
+            "baseImponible": "",
+            "tarifa": "",
+            "valor": ""
           }}
         ],
 
         "importeTotal": "",
         "moneda": "",
         "pagos": [  
-            {"pago": { //........
-            "formaPago": "",//bien
-            "total": "",//bien
-            "plazo": "",//bien
-            "unidadTiempo": ""//bien
+            {"pago": {
+            "formaPago": "",
+            "total": "",
+            "plazo": "",
+            "unidadTiempo": ""
           }
         }
       ]
@@ -54,24 +54,24 @@ const liquidacionCompra = {
       // detalle
       "detalles":[
         {"detalle": {   
-          "codigoPrincipal": "",  //bien  
-          "codigoAuxiliar": "", //bien 
-          "descripcion": "",  //bien
-          "unidadMedida": "", //bien
-          "cantidad": "", //bien
-          "precioUnitario": "", //bien
-          "descuento": "",  //bien
-          "precioTotalSinImpuesto": "", //bien
-          "detallesAdicionales": {  //.... 
-            "detAdicional": ["",""] //bien
+          "codigoPrincipal": "",   
+          "codigoAuxiliar": "", 
+          "descripcion": "", 
+          "unidadMedida": "",
+          "cantidad": "",
+          "precioUnitario": "",
+          "descuento": "", 
+          "precioTotalSinImpuesto": "",
+          "detallesAdicionales": {  
+            "detAdicional": ["",""]
           },
-          "impuestos": [   //....  
-            {"impuesto": { //....
-              "codigo": "", //bien
-              "codigoPorcentaje": "", //bien
-              "tarifa": "", //bien
-              "baseImponible": "",  //bien
-              "valor": "" //bien
+          "impuestos": [    
+            {"impuesto": { 
+              "codigo": "",
+              "codigoPorcentaje": "",
+              "tarifa": "",
+              "baseImponible": "", 
+              "valor": ""
             }}
           ]
         }
@@ -81,31 +81,31 @@ const liquidacionCompra = {
 
       "reembolsos": {
         "reembolsoDetalle": {
-          "tipoIdentificacionProveedorReembolso": "", //Bien
-          "identificacionProveedorReembolso": "", //Bien
-          "codPaisPagoProveedorReembolso": "",  //Bien
-          "tipoProveedorReembolso": "", //Bien
-          "codDocReembolso": "",  //Bien
-          "estabDocReembolso": "",  //Bien
-          "ptoEmiDocReembolso": "", //Bien
-          "secuencialDocReembolso": "", //Bien
-          "fechaEmisionDocReembolso": "", //Bien
-          "numeroautorizacionDocReemb": "", //Bien
+          "tipoIdentificacionProveedorReembolso": "",
+          "identificacionProveedorReembolso": "",
+          "codPaisPagoProveedorReembolso": "", 
+          "tipoProveedorReembolso": "",
+          "codDocReembolso": "", 
+          "estabDocReembolso": "", 
+          "ptoEmiDocReembolso": "",
+          "secuencialDocReembolso": "",
+          "fechaEmisionDocReembolso": "",
+          "numeroautorizacionDocReemb": "",
           "detalleImpuestos": {
             "detalleImpuesto": {
-              "codigo": "", //Bien
-              "codigoPorcentaje": "", //Bien
-              "tarifa": "", //Bien
-              "baseImponibleReembolso": "", //Bien
-              "impuestoReembolso": "" //Bien
+              "codigo": "",
+              "codigoPorcentaje": "",
+              "tarifa": "",
+              "baseImponibleReembolso": "",
+              "impuestoReembolso": ""
             }
           }
         }
       },
       "maquinaFiscal": {
-        "marca": "",  //Bien
-        "modelo": "", //Bien
-        "serie": "" //Bien
+        "marca": "", 
+        "modelo": "",
+        "serie": ""
       },
       "infoAdicional": {
         "campoAdicional": [
@@ -115,7 +115,8 @@ const liquidacionCompra = {
       }
     };
 
-  const accessCode = function(TipoC = 3, numRuc = "0000000000000", ambiente = 1, numSerie = "001001", numComp = "000000001"){ //03 - Form - 001001 - form/default
+  // function Generación de clave de acceso
+  const accessCode = function(TipoC = 3, numRuc = "0000000000000", ambiente = 1, numSerie = "001001", numComp = "000000001"){
       //Fecha - 8
       const date = new Date();
       let today;

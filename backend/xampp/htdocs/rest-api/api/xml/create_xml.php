@@ -17,30 +17,25 @@ $decodedJson = json_decode($liquidacionCompraJ, true );
 
 //print_r($decodedJson);
 
+print_r($decodedJson);
 foreach ($decodedJson['detalles'] as $detalle) {
-    /* print_r ($detalle); */
     //validacion detalles
     $cantidad = $detalle['detalle']['cantidad'];
-    /* print_r($cantidad ); */
     $precioUnitario = $detalle['detalle']['precioUnitario'];
-    /*  print_r( $precioUnitario); */
     $descuento = $detalle['detalle']['descuento'];
-    /* print_r( $descuento); */
     $precioTotalSinImpuesto = $detalle['detalle']['precioTotalSinImpuesto']; 
     //formulas
-    /* print_r( $precioTotalSinImpuesto) */ 
     $validacionTotalSinImpuesto =($cantidad * $precioUnitario * (100 - floatval($descuento))) / 100;
-    /*  print_r($validacionTotalSinImpuesto); */
     if ($validacionTotalSinImpuesto == $precioTotalSinImpuesto) {
     } else {
         print_r("Validacion Incorrecta Por favor Corrija \n\n\n");
     }
-};
+}
     foreach ($detalle['impuestos'] as $impuesto) {
     //validacion impuestos
-    $tarifa = $impuesto['impuestos']['tarifa'];
-    $baseImponible = $impuesto['impuestos']['baseImponible'];
-    $valor = $impuesto['impuestos']['valor'];
+    $tarifa = $impuesto['impuesto']['tarifa'];
+    $baseImponible = $impuesto['impuesto']['baseImponible'];
+    $valor = $impuesto['impuesto']['valor'];
     //formulas
     $valorFinal = ($baseImponible * $tarifa) / 100;
     $valorFinal = round($valorFinal, 2);
@@ -53,27 +48,22 @@ foreach ($decodedJson['detalles'] as $detalle) {
         echo "Validacion 2 Incorrecta \"CORRIJA\" \n";
     }
 }
-    //importe Total
-    $info = $decodedJson ['infoLiquidacionCompra'] -> importeTotal;
-    echo $info;
-    $total1 =  $decodedJson ['infoLiquidacionCompra'] -> totalConImpuestos;
+    //Validacion importe Total
+    $info = $decodedJson ['infoLiquidacionCompra']['importeTotal'];
+    /* echo $info; */
+    $total1 =  $decodedJson ['infoLiquidacionCompra']['totalConImpuestos'];
 
     foreach ($total1  as  $value) {
-        $total2 = $value -> totalImpuesto -> valor;
-        /* echo $total2 ; */
+        $total2 = $value['totalImpuesto']['valor'];
     }
-
-    $total3 = $decodedJson ['infoLiquidacionCompra'] -> totalSinImpuestos;
-    /* echo $total3; */
-
+    $total3 = $decodedJson['infoLiquidacionCompra']['totalSinImpuestos'];
     $total4 = $total2 + $total3;
-    echo $total4;
-
+    /* echo $total4; */
     if($info == $total4 ){
     }else{
         echo "Importe total Incorrecto";
     }
-
+   
 $liquidacionCompra = simplexml_load_file('LiquidacionCompra_V1.1.0.xml');
 
 $liquidacionCompra -> infoTributaria -> ambiente = $decodedJson ["infoTributaria"]["ambiente"];
@@ -158,15 +148,13 @@ $liquidacionCompra -> reembolsos -> reembolsoDetalle -> detalleImpuestos -> deta
 
 $liquidacionCompra -> tipoNegociable = $decodedJson ["tipoNegociable"];
 
-$liquidacionCompra -> maquinaFiscal ->marca = $decodedJson ["maquinaFiscal"]["marca"];
-$liquidacionCompra -> maquinaFiscal ->modelo = $decodedJson ["maquinaFiscal"]["modelo"];
-$liquidacionCompra -> maquinaFiscal ->serie = $decodedJson ["maquinaFiscal"]["serie"];
+$liquidacionCompra->maquinaFiscal->marca=$decodedJson["maquinaFiscal"]["marca"];
+$liquidacionCompra->maquinaFiscal->modelo=$decodedJson["maquinaFiscal"]["modelo"];
+$liquidacionCompra->maquinaFiscal->serie=$decodedJson["maquinaFiscal"]["serie"];
 
 $ruc=$decodedJson ["infoTributaria"]["ruc"];
 print_r($liquidacionCompra);
 
 $liquidacionCompra -> asXML($ruc.'.xml');
-
-
 
 ?>
