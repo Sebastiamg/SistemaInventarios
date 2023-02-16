@@ -95,7 +95,7 @@ const jsonConverter = (e) => {
         formato.maquinaFiscal[lcForm[0][i+68].id] = lcForm[0][i+68].value     
     }
 
-    // Api.apiLiquidacionCompra(formato)
+    Api.apiLiquidacionCompra(formato)
     // return console.log(formato)
     console.log(lcForm)
     console.log(formato.detalles)
