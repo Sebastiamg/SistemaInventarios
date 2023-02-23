@@ -1,2 +1,0 @@
-# mgmnt
-Management application

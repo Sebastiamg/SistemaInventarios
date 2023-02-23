@@ -148,7 +148,7 @@ const Container1Data = () => {
         
         </div>
           <Container id='tableDad' className='table-responsive'>
-            <Table id='table' className='table table-hover table-sm'> {/*Bootstrap*/}
+            <Table id='py-10 table' className='table table-hover table-sm'> {/*Bootstrap*/}
               <thead>
                 <tr>
                 <th></th>

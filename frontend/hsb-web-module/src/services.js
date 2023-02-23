@@ -28,34 +28,24 @@ async function apiTokenAccesId(props) {
 }
 
 // GET USER
-const fun3 = async () => { 
-    async function getUser () {   
-          const res = await axios.get('http://localhost/rest-api/api/get_user.php')
-            if(typeof(res.data) == "string" ) {
-                return console.log("No hay usuarios en la bd");
-            } else {
-                let user = res.data
-                return await user
-            }
-    }    
-    return getUser();
-}
-
-// console.log(fun3())
+async function getUsers () {   
+      const res = await axios.get('http://localhost/rest-api/api/get_user.php')
+        if(typeof(res.data) == "string" ) {
+            return console.log("No hay usuarios en la bd");
+        } else {
+            return res.data
+        }
+}    
 
 //UPDATE USER
-function apiUpdateUser(props) { 
-    const details = JSON.stringify({
-        fechaIngreso: props["fechaIngreso"], 
-        fechaVacaciones: props["fechaVacaciones"],
-        diasVacacionesRestantes: props["diasVacacionesRestantes"], 
-        fechaPermisos: props["fechaPermisos"]
-    })
-
-    const item = {"id": props["id"], "name": props["name"], "email": props["email"], "active": props["active"], "details": `${details}`}
-    axios.post('http://localhost/rest-api/api/update_user2.php', item)
-    .then((res) => console.log(res.data))
-    .catch(function (error) {console.log(error);})
+async function apiUpdateUser(props) { 
+    const updatedUser = props;
+    const res = await axios.post('http://localhost/rest-api/api/update_user2.php', updatedUser)
+            if (res.status === 200) {
+            return res.data.message
+        } else {
+            return `Error: ${res.statusText}, Status: ${res.status}`
+    }
 }
     
 
@@ -129,5 +119,5 @@ function apiLiquidacionCompra (props) {
 }
 
 
-const api = {apiTokenAcces,apiTokenAccesId,apiSigiUp,apiSigiIn, apiCreate, apiUpdate, fun2, fun3, apiUpdateUser, apiLiquidacionCompra};
+const api = {apiTokenAcces,apiTokenAccesId,apiSigiUp,apiSigiIn, apiCreate, apiUpdate, fun2, getUsers, apiUpdateUser, apiLiquidacionCompra};
 export default api;

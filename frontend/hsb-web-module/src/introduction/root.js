@@ -11,7 +11,12 @@ function SiginUp(props) {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const details = {"fechaIngreso": "","fechaVacaciones": [],"fechaProvisionVacaciones": "","diasVacacionesRestantes": 11,"fechaPermisos": []};
+    const details = {
+      vacations: [],
+      permissions: [],
+      admissionDate: "",
+      remainingDays : 11
+    };
 
 
   //Register Button
@@ -141,7 +146,7 @@ function SiginUp(props) {
               submitValue();
               window.location.href="/"
               
-            }, 1000);
+            }, 500);
 
           } else {
             SignUpError.classList.add("fail");
@@ -265,7 +270,7 @@ function Root() {
  
   return (
       <div className="root">
-        <NavBarInto/>
+        {/* <NavBarInto/> */}
 
         <div className="container-body">
             <div className="content1">

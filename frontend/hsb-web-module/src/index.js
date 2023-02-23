@@ -1,5 +1,5 @@
-import ReactDOM from "react-dom";
 import "./index.css";
+import ReactDOM from "react-dom";
 import InitRoot from "../src/introduction/root";
 // import Activities from "../src/introduction/activities";
 import "./routes";
@@ -26,7 +26,6 @@ function IntoTokenVerify() {
                         <Suspense fallback="<../src/introduction/component/loading.js>">
                                             {/*Rect Router Dom V5*/}
                           <BrowserRouter basename="/build">
-                            {/* <Switch> */}
 
                               <Route exact path="/activities/" component={Activities} />
 

@@ -1,48 +1,9 @@
 .navBar-container {
-  
-  margin-top: 20px;
-  margin-left: 30px;
-  margin-right: 30px;
-  margin-bottom: 30px;
   background-color: #094165;
-  border: black 2px solid;
-  border-radius: 15px;
-  box-shadow: 10px 10px 10px #999;
-  display: flex;
-  justify-content: space-between;
-
+  border: 3px solid #062c44;
+  width: 98%;
+  box-shadow: -3px 3px 15px black;
 }
-
-.content-div1{
-display: flex;
-width: 20em;
-height: auto;
-padding: 0.3em;
-
-}
-
-.content-div2{
-
-width: 20em;
-height: auto;
-padding: 0.3em;
-
-}
-
-
-.user-out{
-  
-vertical-align: super;
-font-size:1.2em;
-color:white;
-}
-.menu {
-vertical-align: super;
-
-font-size:0.7em;
-color:white;
-}
-
 
 img {
   width: auto;
@@ -50,46 +11,39 @@ img {
   border-radius: 5px;
 }
 .icon-init {
-  width: auto;
-  height: 3em; 
-  border: 1px solid #062c44;
-  border-radius: 25px;
-  background-color: #094165;
+  border: 2px solid #062c44;
 }
 
 
 button {
-  /* border-radius: 25px; */
    width: auto;
    height: auto;
-   /* margin-left: 1.5em; */
    background-color: transparent;
    border-color: transparent;
  }
 
-.dropdown {
-  display: flex;
-  position: relative;
-}
 .dropdown-content {
   display: none;
   position: absolute;
-  width: 14em;
+  left: 15%;
   overflow: auto;
-  box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
   background-color: #FFFFFF;
-  border-radius: 10px;
+  border-radius: 15px;
+  outline: 2px solid #052031;
 }
 .dropdown:hover .dropdown-content {
   display: block;
 }
 .dropdown-content a {
   display: block;
+  border-radius: 5px;
   color: #000000;
+  font-weight: 500;
   padding: 5px;
   text-decoration: none;
 }
 .dropdown-content a:hover {
   color: #FFFFFF;
-  background-color: #00A4BD;
+  background-color: #062c44;
+  outline: 2px solid #052031;
 }
