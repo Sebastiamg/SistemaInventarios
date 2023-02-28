@@ -149,11 +149,14 @@ const liquidacionCompra = {
       for(let i = 0, j = 2, k = 0; i < reverseCode.length; i++){
           k += reverseCode[i] * j;
           j += 1;
+          // eslint-disable-next-line no-self-assign
           j === 8 ? j = 2 : j = j;
           total = k;
       }
       total = 11 - (total % 11)
+      // eslint-disable-next-line no-self-assign
       total === 10 ? total = 1 : total = total;
+      // eslint-disable-next-line no-self-assign
       total === 11 ? total = 0 : total = total;
       let accesCode = code + total.toString()
   

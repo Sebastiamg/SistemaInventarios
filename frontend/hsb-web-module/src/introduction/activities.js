@@ -1,18 +1,13 @@
-import './root.css';
 import NavBar from './component/navBar/navBar'
 import { useState,useEffect } from 'react';
 //import Api from "../services";
 import Loading from "./component/loading"
 import '../introduction/activities.css'
 import { Link } from 'react-router-dom'
-
-
+import './root.css';
 
 function Activities() {
  const [token, settoken] = useState(0)
-
-
-
 
    useEffect(() => {
        //Api.apiTokenAccesId(sessionStorage.getItem("tokenHsb")).then((res)=>{ settoken(res.data.data.id)})

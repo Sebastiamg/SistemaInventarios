@@ -50,32 +50,6 @@ padding: 20px;
     padding: 6px 10px;
 } 
 
-table{
-    background-color: rgb(204, 203, 203);
-    text-align: center;
-    width: 100%;
-    position: relative;
-    top: 10px;
-    margin: auto;
-    text-align : center;
-}
-
-th, td{
-    padding: 20px;
-    
-}
-
-thead{
-    background-color:rgb(185, 185, 185);
-    color: rgb(0, 0, 0);
-    position: sticky;
-    top: 10px;
-}
-
-tr:nth-child(even){
-    background-color: rgb(221, 221, 221);
-}
-
 tr:hover td{
     background-color: #909091;
     color: white;
@@ -199,9 +173,6 @@ tr:hover td{
     margin: 15px 15px;
 }
 
-label input {
-    margin-top: 10px;
-}
 
 #razonSocial, #nombreComercial, #dirMatriz, #dirEstablecimiento, #tipoIdentificacionProveedor {
     min-width: 280px;
@@ -214,3 +185,8 @@ label input {
 #claveAcceso {
     min-width: 422px;
 }
+
+.modal, .fade {
+  overflow: hidden;
+}
+

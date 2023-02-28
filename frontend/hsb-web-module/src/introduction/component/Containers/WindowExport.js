@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './WindowExport.css'
-import './Container1Data'
+// import './Container1Data'
 
 class WindowExport extends React.Component{
   state={

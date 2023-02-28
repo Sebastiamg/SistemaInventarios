@@ -1,261 +1,522 @@
-import './Container1Data.css';
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import {Table,Button,Container,Modal,ModalHeader,ModalBody,FormGroup,ModalFooter} from "reactstrap";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import './Container1Data.css';  
+import React, { useState, useEffect } from "react";
+import { Container, Modal, ModalBody, FormGroup, Form } from "reactstrap";
+
 import NavBar from '../navBar/navBar';
 import Api from "../../../services"
 
 const Employees = () => {
-  // Array Items
-  let dataUsers = []; 
-  // Data Hooks
-  const [data, setData] = useState(dataUsers)
-  const [modalUpdate, setModalUpdate] = useState(false)
-  const [modalInsert, setModalInsert] = useState(false)
-  const [form, setForm] = useState({id: "",name: "" , email: "" , active: "" ,fechaIngreso: "" ,fechaVacaciones: [], diasVacacionesRestantes: "" , fechaPermisos: []})
+  const [ocModal, setOCModal] = useState(false);
+  const [userObj, setUserObj] = useState({user: {}});
 
-  const getData = async () => {
-    const items = await Api.fun3();
-    if(typeof(items) == "undefined"){
-      // console.log("sin datos disponibles")
-      return null;
-    } else {
+  const date = new Date().toJSON().substring(0,10);
+  const [vacation, setVacation] = useState({startVacationDay: date, endVacationDay: date, days: 0});
+  const [permission, setPermission] = useState({permissionDate: date, permissionDays: 0, reason: ""});
 
-        items.map( elm => {
-          const details = JSON.parse(elm["details"].replace(/&quot;/g, '"'));
-          const item =  {
-                  id: elm.id,
-                  name: elm.name,
-                  email: elm.email,
-                  active: elm.active,
-                  //Details
-                  fechaIngreso: details.fechaIngreso,
-                  fechaVacaciones: details.fechaVacaciones,
-                  diasVacacionesRestantes: details.diasVacacionesRestantes,
-                  fechaPermisos: details.fechaPermisos,
-              }
-              return dataUsers.push(item)
-        })
-      };
-    };
-  getData();
+  // get all users
+  useEffect(() =>{
+    getAllUsers();
+  }, [])
 
-    //Methods and actions
-    //UPDATE MODAL
-    const showModalUpdate = (dato) => {
-          setForm(dato);
-          setModalUpdate(true);
-      };
-    const closeModalUpdate = () => setModalUpdate(false);
+  // get difference days
+  useEffect(() => {
+    let getDifference = getDifferenceVDays()
+    setVacation(actualValues => ({
+      ...actualValues,
+      days: Number(getDifference.vacationsDays)
+    }));
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [vacation.endVacationDay, vacation.startVacationDay])
+  
+  function getAllUsers() {
+    Api.getUsers()
+    .then(res => {
+      const users = res.map(user => {
+        const userDetail = user.details.replace(/&quot;/g, '"');
+        return {...user, details: JSON.parse(userDetail)};
+      })
+      fillTable(users)
+    })
+    .catch(err => console.log(err))
+  }
+
+  // get diference vacations days
+  function getDifferenceVDays(obj) {
+    let startDay = new Date(!obj ? vacation.startVacationDay : obj[0]);
+    let endDay = new Date(!obj ? vacation.endVacationDay: obj[1]);
+    let diference = endDay.getTime() - startDay.getTime();
+    let vacationsDays = diference / (1000 * 60 * 60 * 24);
+    return {
+      startDay: startDay,
+      endDay: endDay,
+      diference: diference,
+      vacationsDays: vacationsDays + 1
+    }
+  }
+
+  // fill table
+  function fillTable(users) {
+    document.querySelector("#tableUsers").innerHTML = "";
+    users.forEach(user => {
+      // creation of TR and details BTN
+      const tr = document.createElement("TR");
+      tr.classList.add("h-16", "border-b-2", "border-zinc-300")
+      
+      const btn = document.createElement("BUTTON");
+      btn.textContent = "Details";  
+      btn.classList.add("bg-slate-500", "hover:bg-slate-600", "transition-all", "w-3/5", "border-2", "font-semibold", "py-1", "border-slate-600", "text-slate-100", "rounded-md", "details")
+      btn.addEventListener("click", (e) => opeModal(e, user))
+
+      // Create Td with info and insert into tr
+      for (let i = 0; i < Object.keys(user).length + 1; i++) {
+        const td = document.createElement("TD");
+        // Check If user is active
+        td.textContent = Object.values(user)[i] === "1" ? "Yes" : Object.values(user)[i];
+
+        if(Object.keys(user)[i] === "details") {
+          td.classList.add("hidden")
+          td.textContent = JSON.stringify(user.details);
+        }else if(i === Object.keys(user).length) {
+          td.appendChild(btn);
+          tr.insertAdjacentElement("afterbegin", td);
+          continue
+        }
+        tr.appendChild(td);
+      }
+
+      // Add all table rows
+      document.querySelector("#tableUsers").insertAdjacentElement("beforeend", tr);
+    })
+  }
+
+  // Modal
+  //Open / Close modal
+  function opeModal(e, user) {
+    setUserObj(userObj.user = {})
+    setVacation(vacation => ({...vacation, startVacationDay: date, endVacationDay: date, days: 0}))
+    setPermission({permissionDate: date, permissionDays: 0, reason: ""})
+    setOCModal(true)
+    setUserObj(userObj.user = {
+      ...user,
+      admissionDate: user.details.admissionDate,
+      remainingDays: user.details.remainingDays,
+      vacations: [...user.details.vacations],
+      permissions: [...user.details.permissions],
+      details: user.name
+    })
     
-    //ADD MODAL
-    const showModalInsert = () => setModalInsert(true);
-    const closeModalInsert = () => setModalInsert(false);
+    fillRows(e, userObj.user.vacations, "tableDates")
+    fillRows(e, userObj.user.permissions, "tableDates2")
 
-    // UPDATE
-    const edit = (dato) => {
-      // console.log(dato); //dato = item editado
-      var counter = 0;
-      var array = data;
-      // console.log(array) //array = todos los items
-      array.map( items => {
-        if (dato.id === items.id) {
-          array[counter].id = dato.id;
-          array[counter].name = dato.name;
-          array[counter].email = dato.email;
-          array[counter].active = dato.active;
-          //------------------------details-----------------------//
-          array[counter].fechaIngreso = dato.fechaIngreso; ////////fecha ingreso
-          //dias restantes
-          array[counter].diasVacacionesRestantes = dato.diasVacacionesRestantes + Number(document.querySelector("#diasVacacionesAdicionales").value);
-          
-          // Fecha Vacaciones
-          array[counter].fechaVacaciones[array[counter].fechaVacaciones.length] = {"Fecha": dato.fechaVacaciones.toString(), NumeroDias: dato.numeroDias};
-            //Fecha Vac no modificado
-          let ultimaFecha = array[counter].fechaVacaciones[array[counter].fechaVacaciones.length-1]["Fecha"];
-          ultimaFecha.includes("[object Object]") || ultimaFecha === "" ?
-          array[counter].fechaVacaciones.pop() : console.log(null)
+    // console.log(userObj.user)
 
-          //fechaPermisos
-          array[counter].fechaPermisos[array[counter].fechaPermisos.length] = {"Fecha": dato.fechaPermisos.toString(), NumeroDias: dato.numeroDiasP}; 
-            // Fecha Perm no modificado
-          let ultimaFechaP = array[counter].fechaPermisos[array[counter].fechaPermisos.length-1]["Fecha"];
-          ultimaFechaP.includes("[object Object]") || ultimaFechaP === "" ?
-          array[counter].fechaPermisos.pop() : console.log(null)
+    document.querySelectorAll(".dayDate").forEach(x => x.min = date)
+  }
 
-          console.log(array[counter])
-          Api.apiUpdateUser(array[counter]);
+  // fill rows with every vacation/permision registered
+  function fillRows(e, arrayObjects, tableName) {
+    for (let i = 0; i < arrayObjects.length; i++) {
+      addRows(e, tableName, Object.values(arrayObjects[i]))
+    }
+  }
+
+  //HandleChange
+  function handleChange(e, type) {
+    switch (type) {
+      case "startVacation":
+      case "endVacation":
+        handleVacations(e)
+        break;
+      case "permission":
+        handlePermissions(e);
+        break;
+      case "additionalDaysBtn":
+        handleRemainingDays(e)
+        break;
+      default:
+        setUserObj(userObj.user = {
+          ...userObj, 
+          [e.target.name]: e.target.value
+        })
+        break;
+    }
+  }
+
+  // Handle Additional Days
+  function handleRemainingDays(e, obj) {
+    e.preventDefault()
+
+    // Input value
+    let additionalDaysInput = document.querySelector("#additionalDays");
+    const additionalDays = Number(additionalDaysInput.value);
+    // Get new additional days
+    const newAdditionalDays = userObj.remainingDays + additionalDays;
+
+    setUserObj(userObj.user = {
+      ...userObj, 
+      remainingDays: newAdditionalDays
+    })
+
+    // set default value and disable input
+      additionalDaysInput.value = 0;
+      additionalDaysInput.setAttribute("disabled", true);
+  }
+
+  //get working days
+  function getWorkingDays(startEndVacation) {
+    // sab 5 : dom 6
+    const getDifference = getDifferenceVDays(startEndVacation ? startEndVacation : null);
+    
+    let startDay = new Date(getDifference.startDay).getDay() + 1;
+
+    let numVacationDays = [];
+    for (let i = startDay, j = startDay; i < (startDay + getDifference.vacationsDays); i++) {
+      if (i === 6 || i === 7) {
+        j = 1
+        continue
+      } else {
+        numVacationDays.push(j)
+        j++
+      }
+    }
+
+    const vacationDays = userObj.remainingDays - numVacationDays.length
+    // change Remaining Days
+    if (!startEndVacation) {
+      setUserObj(userObj.user = {
+        ...userObj, 
+        remainingDays: vacationDays
+      })
+    }
+    return numVacationDays.length;
+  }
+
+  // Handle Vacations
+  function handleVacations(e) {
+    setVacation(actualValues => ({
+      ...actualValues,
+      [e.target.name]: e.target.value
+    }))
+
+  }
+
+  // Add all table rows in different tables
+  function addRows(e, tableName, mainObject) {
+    e.preventDefault();
+    // Disable button, no disable details button
+    if (!e.target.classList.contains("details")) {
+      e.target.setAttribute("disabled", true)
+    }
+
+    const table = document.querySelector(`#${tableName}`);
+    // table.innerHTML = "";
+
+    const TR = document.createElement("TR");
+
+    const btn = document.createElement("BUTTON"); 
+    btn.textContent = "Delete";  
+    btn.classList.add("bg-slate-500", "hover:bg-slate-600", "transition-all", "w-4/5", "border-2", "py-1", "my-2", "border-slate-600", "mx-auto", "text-slate-100", "rounded-md");
+    btn.addEventListener("click", (e) => deleteRow(e, tableName, mainObject));
+    TR.insertAdjacentElement("afterbegin",btn);
+
+    for (let i = 0; i < mainObject.length; i++) {
+      const TD = document.createElement("TD");
+      TD.textContent = mainObject[i];
+
+      TR.insertAdjacentElement("beforeend", TD);
+    }
+    table.insertAdjacentElement("beforeend" ,TR);
+
+    const rowInfo = [...TR.childNodes].filter((x, index) => index !== 0).map(x => x.textContent)
+    return rowInfo
+  }
+
+  // Delete row function
+  function deleteRow(e, tableName, startEndVacation) {
+    e.preventDefault()
+    const row = e.target.parentElement
+    row.remove()  
+    switch (tableName) {
+      // tableDates as Vacation
+      case "tableDates":
+        const newVacationArr = userObj.user.vacations.filter(x => {
+          return (
+            x.startVacationDay !== startEndVacation[0] &&
+            x.endVacationDay !== startEndVacation[1] &&
+            x.days !== startEndVacation[2]
+          )
+        })
+
+        const newRemainingDays = getWorkingDays(startEndVacation);
+          setUserObj(actualValues => ({
+            ...actualValues,
+            remainingDays: userObj.user.remainingDays + newRemainingDays,
+            vacations: newVacationArr,
+          }));
+        
+        //Disable all delete buttons
+        [...document.querySelector("#tableDates").children].forEach(x => x.children[0].setAttribute("disabled", true))
+
+        break;
+
+      // tableDates2 as Permission
+      case "tableDates2":
+      const newPermissionArr = userObj.user.permissions.filter(x => {
+        return (
+          x.permissionDate !== startEndVacation[0] &&
+          x.permissionDays !== startEndVacation[1] &&
+          x.reason !== startEndVacation[2]
+        )
+      })
+        setUserObj(actualValues => ({
+          ...actualValues,
+          permissions: newPermissionArr
+        }))
+        break;
+      default:
+        break;
+    }
+
+    // console.log(row)
+  }
+
+  //Add dates
+  function addDates(e) {
+    const rowInfo = addRows(e, "tableDates", Object.values(vacation))
+
+    // Get working days and reduce remaining days
+    getWorkingDays()
+
+    // Add new Vacation date
+    setUserObj(actualValues => ({
+      ...actualValues,
+      vacations: [
+        ...userObj.vacations,
+        {
+          startVacationDay: rowInfo[0], 
+          endVacationDay: rowInfo[1],
+          days: rowInfo[2]
         }
-        counter++;
-        return null
-      });
-      setData(array);
-      setModalUpdate(false)
-    };
+      ]
+    }))
 
-    // handleChange
-      const handleChange = (e) => {
-        if (e.target.name === "fechaVacaciones" || e.target.name === "fechaPermisos") {
-          setForm({...form, [e.target.name]: [e.target.value]}) //Fechas V array
-        }   else { 
-          setForm({...form, [e.target.name]: e.target.value})
+  }
+
+  //add permission row
+  function addPermissions(e) {
+    const rowInfo = addRows(e, "tableDates2", Object.values(permission))
+
+    setUserObj(actualValues => ({
+      ...actualValues,
+      permissions: [
+        ...userObj.permissions,
+        {
+          permissionDate: rowInfo[0],
+          permissionDays: rowInfo[1],
+          reason: rowInfo[2]
         }
-      };
+      ]
+    }))
+  }
 
-    return(<>
-        <NavBar/>       {/* NavBar 2*/}
-        <div id='main-container1'>
-        <h1><font size="6">Inventary</font></h1>
+  // Handle Permissions
+  function handlePermissions(e) {
+    setPermission({
+      ...permission,
+      [e.target.name]: e.target.value
+    })
+  }
 
-        <div id='containerBotones'>
-          <Button color="success" id='add' onClick={() => showModalInsert()}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bug-fill" viewBox="0 0 16 16">
-  <path d="M4.978.855a.5.5 0 1 0-.956.29l.41 1.352A4.985 4.985 0 0 0 3 6h10a4.985 4.985 0 0 0-1.432-3.503l.41-1.352a.5.5 0 1 0-.956-.29l-.291.956A4.978 4.978 0 0 0 8 1a4.979 4.979 0 0 0-2.731.811l-.29-.956z"/>
-  <path d="M13 6v1H8.5v8.975A5 5 0 0 0 13 11h.5a.5.5 0 0 1 .5.5v.5a.5.5 0 1 0 1 0v-.5a1.5 1.5 0 0 0-1.5-1.5H13V9h1.5a.5.5 0 0 0 0-1H13V7h.5A1.5 1.5 0 0 0 15 5.5V5a.5.5 0 0 0-1 0v.5a.5.5 0 0 1-.5.5H13zm-5.5 9.975V7H3V6h-.5a.5.5 0 0 1-.5-.5V5a.5.5 0 0 0-1 0v.5A1.5 1.5 0 0 0 2.5 7H3v1H1.5a.5.5 0 0 0 0 1H3v1h-.5A1.5 1.5 0 0 0 1 11.5v.5a.5.5 0 1 0 1 0v-.5a.5.5 0 0 1 .5-.5H3a5 5 0 0 0 4.5 4.975z"/>
-</svg></Button>
+  // Update user function
+  function finalEdit() {
+    const updatedUserDetails = {
+      admissionDate: userObj.admissionDate,
+      remainingDays: userObj.remainingDays,
+      vacations: [...userObj.vacations],
+      permissions: [...userObj.permissions],
+    }
+
+    const updatedUser = {
+      id: userObj.id,
+      name: userObj.name,
+      email: userObj.email,
+      active: userObj.active,
+      details: JSON.stringify(updatedUserDetails)
+    }
+
+    Api.apiUpdateUser(updatedUser)
+      .then(res => {
+        console.log(res)
+        setOCModal(false);
+        getAllUsers();
+        console.log(userObj)
+      })
+      .catch(err => console.error(err))
+  }
+
+  return(
+    <>
+        <NavBar/>
+        <div className='border-3 border-slate-800 rounded-xl mx-5 my-4 shadow-xl bg-zinc-200'>
+          <h1 className='text-5xl font-bold py-3 bg-slate-300 rounded-t-xl border-b-4 border-slate-800'>Users</h1>
+          {/* <div>button</div> */}
+            <div>
+              <Container className='text-xl table-responsive'>
+                  <table className='table-auto w-full mb-4'>
+                    <thead className='border-b-2 border-slate-500'>
+                      <tr className='h-16'>
+                        <th></th>
+                        <th>Identification</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Active</th>
+                      </tr>
+                    </thead>
+                    <tbody id='tableUsers'>
+      
+                    </tbody>
+                  </table>
+                </Container>
+            </div>
         </div>
-        <div className="table-responsive">
+
+      {/* modal */}
+      <Modal isOpen={ocModal}>
+        <div className='text-center bg-slate-700'>
+          <h3 className='font-bold text-center text-2xl py-2 text-slate-200'>Edit User</h3>
+        </div>
+        {/* form */}
+        <div className='bg-slate-200'>
+          <ModalBody>
+          <Form>
+            {/* id/active */}
+            <div className='flex flex-wrap justify-evenly items-start'>
+              <FormGroup className='w-2/5 flex flex-col px-2 '>
+                <label className='font-bold mr-4'>Identification: </label>
+                <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="number" name='id' defaultValue={userObj.id} onChange={handleChange}/>
+              </FormGroup>
+
+              <FormGroup className='w-2/5 flex flex-col px-2 '>
+                <label className='font-bold mr-4'>Name: </label>
+                <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="text" name='name' defaultValue={userObj.name} onChange={handleChange} />
+              </FormGroup>
+            </div>
+
+            <div className='flex flex-wrap justify-evenly'>
+              <FormGroup className='w-3/5 flex flex-col px-2 '>
+                <label className='font-bold mr-4'>Email: </label>
+                <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="text" name='email' defaultValue={userObj.email} onChange={handleChange} />
+              </FormGroup>
+
+              <FormGroup className='w-1/5 flex flex-col px-2 '>
+                <label className='font-bold mr-4'>Active: </label>
+                <select className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' name='active' onChange={handleChange}>
+                  {/* <option value="1" selected></option> */}
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </FormGroup>
+            </div>
+
+            <div className='flex flex-wrap px-4'>
+              <FormGroup className='w-full flex flex-col px-3 '>
+                <label className='font-bold mr-4'>Date of admission: </label>
+                <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="date" name='admissionDate' defaultValue={ userObj.admissionDate } onChange={handleChange}/>
+              </FormGroup>
+            </div>
+            {/* VACATIONS */}
+          <div className='w-full flex flex-col px-4 my-2 '>
+            <span className='w-full text-center font-bold text-xl py-2 text-slate-800 bg-slate-500 rounded-t-md hover:text-cyan-900 transition-all cursor-pointer' onClick={(e) => {e.preventDefault(); document.querySelector("#vacationsContainer").classList.toggle("hidden")}}>Vacations</span>
+            <div className='grid grid-cols-5 bg-slate-300 rounded-b-md py-1' id='vacationsContainer'>
+                <FormGroup className='col-span-2 w-full flex flex-col pl-4 '>
+                  <label className='font-bold mr-4'>From: </label>
+                  <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none dayDate' type="date" name='startVacationDay' value={vacation.startVacationDay} onChange={(evt) => handleChange(evt, "startVacation")}/>
+                </FormGroup>
+                <FormGroup className='col-span-2 w-full flex flex-col pl-4 '>
+                  <label className='font-bold mr-4'>Until: </label>
+                  <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none dayDate' type="date" name='endVacationDay' value={vacation.endVacationDay} onChange={(evt) => handleChange(evt, "endVacation")}/>
+                </FormGroup>
+                <FormGroup className='col-span-1 w-full flex my-auto pr-3 font-semibold'>
+                  <button className='bg-slate-500 hover:bg-slate-600 transition-all w-4/5 border-2 py-1 border-slate-600 mx-auto text-slate-100 rounded-md' onClick={addDates} id="addDateBtn">Add</button>
+                </FormGroup>
+                <FormGroup className='col-span-full w-full flex flex-col px-3'>
+                  <table className='bg-slate-400 text-center'>
+                    <thead className='bg-slate-500'>
+                      <tr>
+                        <th className='text-slte-500'><button onClick={(e) => {e.preventDefault(); document.querySelector("#tableDates").classList.toggle("hidden")}}>▼</button></th>
+                        <th>From</th>
+                        <th>Until</th>
+                        <th>Days</th>
+                      </tr>
+                    </thead>
+                    <tbody className='mx-2' id='tableDates'>
+                      {/* vacations rows */}
+                    </tbody>
+                  </table>
+                </FormGroup>
+              {/* remaning Days */}
+              <FormGroup className='col-span-2 w-full flex flex-col px-3 '>
+                <label className='font-bold mr-4'>Remaining days: </label>
+                <input className='w-full border-2 p-1 border-slate-300 bg-slate-200 rounded-md outline-none' type="number" name='remainingDays' defaultValue={userObj.remainingDays} readOnly/>
+              </FormGroup>
+              {/* Additional Days */}
+              <FormGroup className='col-span-2 w-full flex flex-col px-3 '>
+                <label className='font-bold mr-4'>Additional days: </label>
+                <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="number" name='additionalDays' defaultValue={0} min="1" max="10" id='additionalDays'/>
+              </FormGroup>
+              <FormGroup className='col-span-1 w-full flex my-auto pr-3 font-semibold'>
+                <button className='bg-slate-500 hover:bg-slate-600 transition-all w-4/5 border-2 border-slate-600 mx-auto text-slate-100 rounded-md text-2xl' onClick={(e) => handleChange(e, "additionalDaysBtn")}>±</button>
+              </FormGroup>
+            </div>
+          </div>
+          {/* PERMISSIONS */}
+          <div className='w-full flex flex-col px-4 my-2'>
+            <span className='w-full text-center font-bold text-xl py-2 text-slate-800 bg-slate-500 rounded-t-md hover:text-cyan-900 transition-all cursor-pointer' onClick={(e) => {e.preventDefault(); document.querySelector("#permissionsContainer").classList.toggle("hidden")}}>Permissions</span>
+            <div className='grid grid-cols-6 bg-slate-300 rounded-b-md py-1' id='permissionsContainer'>
+              <FormGroup className='col-span-2 w-full flex flex-col pl-4 '>
+                <label className='font-bold mr-4'>Permission: </label>
+                <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="date" name='permissionDate' value={permission.permissionDate} onChange={(e) => handleChange(e, "permission")}/>
+              </FormGroup>
+              <FormGroup className='col-span-2 w-full flex flex-col pl-4 '>
+                <label className='font-bold mr-4'>Days: </label>
+                <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="number" name='permissionDays' defaultValue={0} min="1" max="30" onChange={(e) => handleChange(e, "permission")}/>
+              </FormGroup>
+              <FormGroup className='col-span-2 w-full flex my-auto pr-2 font-semibold'>
+                <button className='bg-slate-500 hover:bg-slate-600 py-0.5 transition-all w-4/5 border-2 border-slate-600 mx-auto text-slate-100 rounded-md text-lg' onClick={addPermissions}>Add</button>
+              </FormGroup>
+              <FormGroup className='col-span-6 w-full flex flex-col pl-4 pr-5'>
+                <label className='font-bold mr-4'>Reason: </label>
+                <textarea className='w-full border-2 p-1 border-slate-400 rounded-md outline-none resize-none' name='reason' rows={2} value={permission.reason} onChange={(e) => handleChange(e, "permission")}></textarea>
+              </FormGroup>
+              <FormGroup className='col-span-full w-full flex flex-col px-3'>
+                  <table className='bg-slate-400 text-center'>
+                    <thead className='bg-slate-500'>
+                      <tr>
+                        <th className='text-slte-500'><button onClick={(e) => {e.preventDefault(); document.querySelector("#tableDates2").classList.toggle("hidden")}}>▼</button></th>
+                        <th>Date</th>
+                        <th>Days</th>
+                        <th>Reason</th>
+                      </tr>
+                    </thead>
+                    <tbody className='mx-2' id='tableDates2'>
+                      {/* permissions rows */}
+                    </tbody>
+                  </table>
+              </FormGroup>
+            </div>
+          </div>
+          </Form>
+          </ModalBody>
         
         </div>
-          <Container id='tableDad' className='table-responsive'>
-            <Table id='table' className='table table-hover table-sm'> {/*Bootstrap*/}
-              <thead>
-                <tr>
-                <th></th>
-                <th>Id</th><th>Name</th><th>Email</th><th>Active</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map( (dato) => ( 
-                  <tr key={dato.id}>
-                    <th><Button color="primary" onClick={() => showModalUpdate(dato)}>Details</Button></th>
-                    <td>{dato.id}</td>
-                    <td>{dato.name}</td>
-                    <td>{dato.email}</td>
-                    <td>{dato.active}</td>
-                  </tr>)
-                  )}
-              </tbody>
-            </Table>
-          </Container>
-
-{/* --------------------MODALS------------------- */}
-{/* edit modal */}
-        <Modal isOpen={modalUpdate}>
-          <ModalHeader>
-           <div><h3>Edit User</h3></div>
-          </ModalHeader>
-<div className='container'>
-          <ModalBody>
-            <div className='row'>
-              <FormGroup className='col'>
-                <label>Identification:</label>
-                <input className="form-control" name="id" type="number" onChange={handleChange} value={form.id} />
-              </FormGroup>
-
-              <FormGroup className='col'> 
-                <label>Name:</label>
-                <input className="form-control" name="name" type="text" onChange={handleChange} value={form.name}/>
-              </FormGroup>
-            </div>
-            <FormGroup>
-              <label>Email:</label>
-              <input className="form-control" name="email" type="email" onChange={handleChange} value={form.email} />
-            </FormGroup>
-
-            {/* Active Checkbox */}
-
-            <FormGroup>
-            <label>Active:</label>
-              <input className="form-control" name="active" type="text" onChange={handleChange} value={form.active}/>
-            </FormGroup>
-
-
-            <FormGroup>
-              <label>Fecha Ingreso:</label>
-              <input className="form-control" name="fechaIngreso" type="date" onChange={handleChange} value={form.fechaIngreso}/>
-            </FormGroup>
-                  {/* Fechas Grid */}
-            <div className='row vacasiones'>
-              <FormGroup className='col'>
-                <label>Fechas Vacaciones:</label>
-                <input className="form-control" name="fechaVacaciones" type="date" onChange={handleChange} value={form.fechaVacaciones}/>
-              </FormGroup>
-              <FormGroup className='col'>
-                <label>Número de Días:</label>
-                <input className="form-control" name="numeroDias" type="number" onChange={handleChange}/>
-              </FormGroup>
-              <FormGroup className='col'>
-                <label>Días restantes:</label>
-                <input className="form-control" name="diasVacacionesRestantes" type="number" readOnly value={form.diasVacacionesRestantes - form.fechaVacaciones.map(x => parseInt(x.NumeroDias)).reduce((total, vActual) => total + vActual, 0)}/> {/*Dias Restantes de acuerdo a las fechas de V*/}
-              </FormGroup>
-              <FormGroup className='col'> {/*ADICIONALESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS */}
-                <label>Días adicionales:</label>
-                <input className="form-control" name="diasVacacionesAdicionales" type="number" id="diasVacacionesAdicionales"/>
-              </FormGroup>
-            </div>
-            {/* tabla Vacaciones */}
-            <table class="table mb-5">
-              <thead class="table-dark">
-                <tr>
-                  <th scope="col">Fecha Inicio</th>
-                  <th scope="col">Días</th>
-                </tr>
-              </thead>
-              <tbody>
-                  {(form.fechaVacaciones.map( x => (
-                  <tr key={x["Fecha"]}>  
-                    <td>{x["Fecha"]}</td>
-                    <td>{x["NumeroDias"]}</td>
-                  </tr>
-                    )))}
-              </tbody>
-            </table>
-
-            <div className='row'>
-              <FormGroup className='col'>
-                <label>Fechas de Permisos:</label>
-                <input className="form-control" name="fechaPermisos" type="date" onChange={handleChange} value={form.fechaPermisos}/>
-              </FormGroup>
-              <FormGroup className='col'>
-                <label>Número de Días:</label>
-                <input className="form-control" name="numeroDiasP" type="number" onChange={handleChange}/>
-              </FormGroup>
-            </div>
-                        {/* tabla Permisos */}
-            <table class="table mb-5">
-              <thead class="table-dark">
-                <tr>
-                  <th scope="col">Fecha de Permiso</th>
-                  <th scope="col">Días</th>
-                </tr>
-              </thead>
-              <tbody>
-                  {(form.fechaPermisos.map( x => (
-                  <tr key={x["Fecha"]}>                            
-                    <td>{x["Fecha"]}</td>
-                    <td>{x["NumeroDias"]}</td>
-                  </tr>
-                    )))}
-              </tbody>
-            </table>
-            
-          </ModalBody>
-
-          <ModalFooter>
-            <Button color="primary" onClick={() => edit(form)}>Edit</Button>
-            <Button color="danger" onClick={() => closeModalUpdate()}>Cancel</Button>
-          </ModalFooter>
-    </div>
-        </Modal>
-
-{/* add item Modal */}
-        <Modal isOpen={modalInsert}>
-            <Button className="btn btn-danger" onClick={() => closeModalInsert()} > Cancel </Button>
-        </Modal>    
+        <div className='flex justify-evenly'>
+          <button className='text-2xl font-bold text-slate-300 w-1/2 py-1 bg-slate-500 hover:bg-slate-800' onClick={finalEdit}>Edit</button>
+          <button className='text-2xl font-bold text-slate-300 w-1/2 py-1 bg-slate-600 hover:bg-slate-800' onClick={() => setOCModal(false)}>Cancel</button>
         </div>
-      </>
+      </Modal>
+
+    </>
     )
   } 
 
