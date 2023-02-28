@@ -13,6 +13,8 @@ function SiginUp(props) {
     const [password, setPassword] = useState('');
     const details = {
       vacations: [],
+      addedDays: 0,
+      takenDays: 0,
       permissions: [],
       admissionDate: "",
       remainingDays : 11

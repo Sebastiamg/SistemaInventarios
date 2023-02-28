@@ -1,4 +1,4 @@
-import './Container1Data.css';
+import './Container1Data.css';  
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Table,Button,Container,Modal,ModalHeader,ModalBody,FormGroup,ModalFooter} from "reactstrap";

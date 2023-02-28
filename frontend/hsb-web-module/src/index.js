@@ -11,7 +11,7 @@ import Menu from "./introduction/menu";
 import Employees from "./introduction/component/Containers/employees";
 import Form from "./introduction/component/Containers/Form";
 
-const Activities = lazy(()=>import("../src/introduction/activities"))
+const Activities = lazy(() => import("../src/introduction/activities"))
 
 
 function IntoTokenVerify() {
@@ -21,30 +21,30 @@ function IntoTokenVerify() {
     settoken(sessionStorage.getItem("tokenHsb"));
   }, [token]);
 
-  return token === null ? (<div className="root"> <InitRoot /> </div>) 
-                        : (<div className="root">
-                        <Suspense fallback="<../src/introduction/component/loading.js>">
-                                            {/*Rect Router Dom V5*/}
-                          <BrowserRouter basename="/build">
+  return token === null ? (<div className="root"> <InitRoot /> </div>)
+    : (<div className="root">
+      <Suspense fallback="<../src/introduction/component/loading.js>">
+        {/*Rect Router Dom V5*/}
+        <BrowserRouter basename="/build">
 
-                              <Route exact path="/activities/" component={Activities} />
+          <Route exact path="/activities/" component={Activities} />
 
-                              <Route exact path="/activities/humanResources/" component={Employees} />
-          
-                              {/* menu */}
-                              <Route exact path="/activities/fixedAssets/" component={Menu} />
-                              <Route exact path="/activities/fixedAssets/electronicEquipment/" component={Container1Data} />
-                              <Route exact path="/activities/fixedAssets/furnitures/" component={Container1Data} />
+          <Route exact path="/activities/humanResources/" component={Employees} />
 
-                              {/* form */}
-                              <Route exact path="/activities/form/" component={Form} />
-                            {/* </Switch> */}
-                          </BrowserRouter>
+          {/* menu */}
+          <Route exact path="/activities/fixedAssets/" component={Menu} />
+          <Route exact path="/activities/fixedAssets/electronicEquipment/" component={Container1Data} />
+          <Route exact path="/activities/fixedAssets/furnitures/" component={Container1Data} />
 
-                        </Suspense>
+          {/* form */}
+          <Route exact path="/activities/form/" component={Form} />
+          {/* </Switch> */}
+        </BrowserRouter>
 
-                        </div>);
-      
+      </Suspense>
+
+    </div>);
+
 };
 
 ReactDOM.render(<IntoTokenVerify />, document.getElementById("root"));
