@@ -25,31 +25,17 @@ function IntoTokenVerify() {
   return token === null ? (<div className="root"> <InitRoot /> </div>)
     : (<div className="root">
       <Suspense fallback="<../src/introduction/component/loading.js>">
-        {/*Rect Router Dom V5*/}
         <BrowserRouter basename="/build">
 
           <Route exact path="/activities/" component={Activities} />
-
-<<<<<<< HEAD
-          <Route exact path="/activities/humanResources/" component={Employees} />
-=======
-                              <Route exact path="/activities/humanResources/" component={Employees} />
-          
-                              {/* menu */}
-                              <Route exact path="/activities/expenses/" component={Expenses} />
-                              <Route exact path="/activities/fixedAssets/" component={Menu} />
-                              <Route exact path="/activities/fixedAssets/electronicEquipment/" component={Container1Data} />
-                              <Route exact path="/activities/fixedAssets/furnitures/" component={Container1Data} />
->>>>>>> b78c1864192b59bd0518c65215128a26217ef1c8
-
           {/* menu */}
+          <Route exact path="/activities/humanResources/" component={Employees} />
+          <Route exact path="/activities/expenses/" component={Expenses} />
           <Route exact path="/activities/fixedAssets/" component={Menu} />
-          <Route exact path="/activities/fixedAssets/electronicEquipment/" component={Container1Data} />
-          <Route exact path="/activities/fixedAssets/furnitures/" component={Container1Data} />
-
+            <Route exact path="/activities/fixedAssets/electronicEquipment/" component={Container1Data} />
+            <Route exact path="/activities/fixedAssets/furnitures/" component={Container1Data} />
           {/* form */}
           <Route exact path="/activities/form/" component={Form} />
-          {/* </Switch> */}
         </BrowserRouter>
 
       </Suspense>
