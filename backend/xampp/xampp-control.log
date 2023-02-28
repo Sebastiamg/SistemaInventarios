@@ -1416,3 +1416,62 @@
 18:22:21  [main] 	Deinitializing Modules
 18:22:21  [main] 	Deinitializing Control Panel
 
+5:30:02  [main] 	Initializing Control Panel
+5:30:02  [main] 	Windows Version:  Home  64-bit
+5:30:02  [main] 	XAMPP Version: 8.0.10
+5:30:02  [main] 	Control Panel Version: 3.3.0  [ Compiled: Apr 6th 2021 ]
+5:30:02  [main] 	You are not running with administrator rights! This will work for
+5:30:02  [main] 	most application stuff but whenever you do something with services
+5:30:02  [main] 	there will be a security dialogue or things will break! So think 
+5:30:02  [main] 	about running this application with administrator rights!
+5:30:02  [main] 	XAMPP Installation Directory: "c:\hsb\sistemainventarios\backend\xampp\"
+5:30:02  [main] 	Checking for prerequisites
+5:30:03  [main] 	All prerequisites found
+5:30:03  [main] 	Initializing Modules
+5:30:03  [main] 	The FileZilla module is disabled
+5:30:03  [main] 	The Mercury module is disabled
+5:30:03  [main] 	Starting Check-Timer
+5:30:03  [main] 	Control Panel Ready
+5:30:10  [Apache] 	Attempting to start Apache app...
+5:30:11  [Apache] 	Status change detected: running
+5:30:19  [mysql] 	Attempting to start MySQL app...
+5:30:19  [mysql] 	Status change detected: running
+5:30:22  [mysql] 	Status change detected: stopped
+5:30:22  [mysql] 	Error: MySQL shutdown unexpectedly.
+5:30:22  [mysql] 	This may be due to a blocked port, missing dependencies, 
+5:30:22  [mysql] 	improper privileges, a crash, or a shutdown by another method.
+5:30:22  [mysql] 	Press the Logs button to view error logs and check
+5:30:22  [mysql] 	the Windows Event Viewer for more clues
+5:30:22  [mysql] 	If you need more help, copy and post this
+5:30:22  [mysql] 	entire log window on the forums
+5:30:29  [Apache] 	Attempting to stop Apache (PID: 12896)
+5:30:29  [Apache] 	Attempting to stop Apache (PID: 15424)
+5:30:30  [Apache] 	Status change detected: stopped
+5:30:39  [main] 	Deinitializing Modules
+5:30:39  [main] 	Deinitializing Control Panel
+
+5:32:05  [main] 	Initializing Control Panel
+5:32:05  [main] 	Windows Version:  Home  64-bit
+5:32:05  [main] 	XAMPP Version: 8.0.10
+5:32:05  [main] 	Control Panel Version: 3.3.0  [ Compiled: Apr 6th 2021 ]
+5:32:05  [main] 	Running with Administrator rights - good!
+5:32:05  [main] 	XAMPP Installation Directory: "c:\hsb\sistemainventarios\backend\xampp\"
+5:32:05  [main] 	Checking for prerequisites
+5:32:09  [main] 	All prerequisites found
+5:32:09  [main] 	Initializing Modules
+5:32:09  [main] 	The FileZilla module is disabled
+5:32:09  [main] 	The Mercury module is disabled
+5:32:09  [main] 	Starting Check-Timer
+5:32:09  [main] 	Control Panel Ready
+5:32:11  [mysql] 	Attempting to start MySQL app...
+5:32:12  [mysql] 	Status change detected: running
+5:32:18  [Apache] 	Attempting to start Apache app...
+5:32:18  [Apache] 	Status change detected: running
+6:02:38  [Apache] 	Attempting to stop Apache (PID: 15040)
+6:02:38  [Apache] 	Attempting to stop Apache (PID: 15116)
+6:02:38  [Apache] 	Status change detected: stopped
+6:02:39  [mysql] 	Attempting to stop MySQL app...
+6:02:39  [mysql] 	Status change detected: stopped
+6:03:02  [main] 	Deinitializing Modules
+6:03:02  [main] 	Deinitializing Control Panel
+

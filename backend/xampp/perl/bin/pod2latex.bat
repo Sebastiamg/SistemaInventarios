@@ -11,9 +11,9 @@
 @if %ErrorLevel% == 9009 @echo You do not have Perl in your PATH.
 @goto endofperl
 @rem ';
-#!\Users\steve\OneDrive\Escritorio\repositorio\SistemaInventarios\backend\xampp\perl\bin\perl.exe 
+#!\hsb\SistemaInventarios\backend\xampp\perl\bin\perl.exe 
 #line 30
-    eval 'exec \Users\steve\OneDrive\Escritorio\repositorio\SistemaInventarios\backend\xampp\perl\bin\perl.exe -S $0 ${1+"$@"}'
+    eval 'exec \hsb\SistemaInventarios\backend\xampp\perl\bin\perl.exe -S $0 ${1+"$@"}'
 	if $running_under_some_shell;
 
 # pod2latex conversion program

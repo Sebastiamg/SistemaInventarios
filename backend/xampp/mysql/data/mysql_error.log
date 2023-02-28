@@ -308,3 +308,36 @@
 2022-09-01 18:16:43 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\steve\OneDrive\Escritorio\repositorio\SistemaInventarios\backend\xampp\mysql\data\ib_buffer_pool
 2022-09-01 18:16:43 0 [Note] Plugin 'FEEDBACK' is disabled.
 2022-09-01 18:16:43 0 [Note] Server socket created on IP: '::'.
+2023-02-23  5:30:19 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2023-02-23  5:30:19 0 [Note] InnoDB: Uses event mutexes
+2023-02-23  5:30:19 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+2023-02-23  5:30:19 0 [Note] InnoDB: Number of pools: 1
+2023-02-23  5:30:19 0 [Note] InnoDB: Using SSE2 crc32 instructions
+2023-02-23  5:30:19 0 [Note] InnoDB: Initializing buffer pool, total size = 16M, instances = 1, chunk size = 16M
+2023-02-23  5:30:19 0 [Note] InnoDB: Completed initialization of buffer pool
+2023-02-23  5:30:20 0 [Note] InnoDB: 128 out of 128 rollback segments are active.
+2023-02-23  5:30:20 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2023-02-23  5:30:20 0 [Note] InnoDB: Setting file '\hsb\SistemaInventarios\backend\xampp\mysql\data\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2023-02-23  5:30:20 0 [Note] InnoDB: File '\hsb\SistemaInventarios\backend\xampp\mysql\data\ibtmp1' size is now 12 MB.
+2023-02-23  5:30:20 0 [Note] InnoDB: Waiting for purge to start
+2023-02-23  5:30:20 0 [Note] InnoDB: 10.4.21 started; log sequence number 527101; transaction id 1305
+2023-02-23  5:30:20 0 [Note] InnoDB: Loading buffer pool(s) from C:\hsb\SistemaInventarios\backend\xampp\mysql\data\ib_buffer_pool
+2023-02-23  5:30:20 0 [Note] Plugin 'FEEDBACK' is disabled.
+2023-02-23  5:30:20 0 [Note] Server socket created on IP: '::'.
+2023-02-23  5:32:12 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2023-02-23  5:32:12 0 [Note] InnoDB: Uses event mutexes
+2023-02-23  5:32:12 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+2023-02-23  5:32:12 0 [Note] InnoDB: Number of pools: 1
+2023-02-23  5:32:12 0 [Note] InnoDB: Using SSE2 crc32 instructions
+2023-02-23  5:32:12 0 [Note] InnoDB: Initializing buffer pool, total size = 16M, instances = 1, chunk size = 16M
+2023-02-23  5:32:12 0 [Note] InnoDB: Completed initialization of buffer pool
+2023-02-23  5:32:12 0 [Note] InnoDB: 128 out of 128 rollback segments are active.
+2023-02-23  5:32:12 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2023-02-23  5:32:12 0 [Note] InnoDB: Setting file '\hsb\SistemaInventarios\backend\xampp\mysql\data\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2023-02-23  5:32:12 0 [Note] InnoDB: File '\hsb\SistemaInventarios\backend\xampp\mysql\data\ibtmp1' size is now 12 MB.
+2023-02-23  5:32:12 0 [Note] InnoDB: Waiting for purge to start
+2023-02-23  5:32:12 0 [Note] InnoDB: 10.4.21 started; log sequence number 527110; transaction id 1305
+2023-02-23  5:32:12 0 [Note] InnoDB: Loading buffer pool(s) from C:\hsb\SistemaInventarios\backend\xampp\mysql\data\ib_buffer_pool
+2023-02-23  5:32:12 0 [Note] Plugin 'FEEDBACK' is disabled.
+2023-02-23  5:32:12 0 [Note] InnoDB: Buffer pool(s) load completed at 230223  5:32:12
+2023-02-23  5:32:12 0 [Note] Server socket created on IP: '::'.
