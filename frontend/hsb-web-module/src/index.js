@@ -10,6 +10,7 @@ import Container1Data from "./introduction/component/Containers/Container1Data";
 import Menu from "./introduction/menu";
 import Employees from "./introduction/component/Containers/employees";
 import Form from "./introduction/component/Containers/Form";
+import Expenses from "./introduction/component/Containers/Expenses";
 
 const Activities = lazy(() => import("../src/introduction/activities"))
 
@@ -29,7 +30,17 @@ function IntoTokenVerify() {
 
           <Route exact path="/activities/" component={Activities} />
 
+<<<<<<< HEAD
           <Route exact path="/activities/humanResources/" component={Employees} />
+=======
+                              <Route exact path="/activities/humanResources/" component={Employees} />
+          
+                              {/* menu */}
+                              <Route exact path="/activities/expenses/" component={Expenses} />
+                              <Route exact path="/activities/fixedAssets/" component={Menu} />
+                              <Route exact path="/activities/fixedAssets/electronicEquipment/" component={Container1Data} />
+                              <Route exact path="/activities/fixedAssets/furnitures/" component={Container1Data} />
+>>>>>>> b78c1864192b59bd0518c65215128a26217ef1c8
 
           {/* menu */}
           <Route exact path="/activities/fixedAssets/" component={Menu} />

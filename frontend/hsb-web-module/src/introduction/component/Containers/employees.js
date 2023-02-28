@@ -12,7 +12,6 @@ const Employees = () => {
   const date = new Date().toJSON().substring(0, 10);
   const [vacation, setVacation] = useState({ startVacationDay: date, endVacationDay: date, days: 0 });
   const [permission, setPermission] = useState({ permissionDate: date, permissionDays: 0, reason: "" });
-  const [addedTakenDays, setAddedTakenDays] = useState({addedDays: 0, takenDays: 0})
 
   // get all users
   useEffect(() => {
