@@ -55,7 +55,8 @@ async function apiUpdateUser(props) {
 function apiCreate (props) {   
     const details = JSON.stringify({
         brand: props["brand"], 
-        value: props["value"], 
+        value: props["value"],
+        months_de:props["months_de"], 
         supplier: props["supplier"], 
         annual_de: props["annual_de"], 
         montly_de: props["montly_de"], 
@@ -90,7 +91,8 @@ const fun2 = async () => {
 function apiUpdate(props) {    
     const details = JSON.stringify({
         brand: props["brand"], 
-        value: props["value"], 
+        value: props["value"],
+        months_de:props["months_de"], 
         supplier: props["supplier"], 
         annual_de: props["annual_de"], 
         montly_de: props["montly_de"], 
