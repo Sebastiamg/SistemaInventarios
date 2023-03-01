@@ -89,6 +89,7 @@ const edit = (dato) => {
 const url = window.location.href.toString();
 
 const insert = () => {
+  console.log("hgola")
   let newValue = form
         newValue.item = parseInt(newValue.item + newValue.brand.length + newValue.value.length + Math.floor(Math.random()*1000));
         
@@ -138,7 +139,7 @@ const handleChange = (e) => {
                     <tbody>
                     {data.map( (dato, index) => ( 
                         <tr key={dato.item}>
-                            <th><Button color="primary" onClick={() => showModalUpdate()}>Details</Button></th>
+                            <th><Button color="primary" onClick={() => showModalUpdate(dato)}>Details</Button></th>
                             <td>{index + 1}</td>
                             <td>{dato.name}</td>
                             <td>{dato.brand}</td>
@@ -209,7 +210,7 @@ const handleChange = (e) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button color="primary" onClick={() => edit()}>Edit</Button>
+            <Button color="primary" onClick={() => edit(form)}>Edit</Button>
             <Button color="danger" onClick={() => closeModalUpdate()}>Cancel</Button>
           </ModalFooter>
         </Modal>
@@ -268,7 +269,7 @@ const handleChange = (e) => {
             </FormGroup>            
           </ModalBody>
 
-          <ModalFooter>
+          <ModalFooter> 
             <Button color="primary" onClick={() => insert()} > Insert </Button>
             <Button className="btn btn-danger" onClick={() => closeModalInsert()} > Cancel </Button>
           </ModalFooter>

@@ -52,7 +52,7 @@ if ($asset->update()) {
     // response in json format
     echo json_encode(
         array(
-            "message" => "Asset was updated."
+            "message" => "Item was updated."
         )
     );
 }

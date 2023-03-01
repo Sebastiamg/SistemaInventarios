@@ -117,7 +117,7 @@ const Container1Data = () => {
         url.includes("/fixedAssets/electronicEquipment/") ? 
         newValue["itemType"] = "electronicEquipment" : 
         url.includes("/fixedAssets/furnitures/") ? 
-        newValue["itemType"] = "furniture" : console.log("caca")
+        newValue["itemType"] = "furniture" : console.log("nothing")
 
         console.log(newValue);
 

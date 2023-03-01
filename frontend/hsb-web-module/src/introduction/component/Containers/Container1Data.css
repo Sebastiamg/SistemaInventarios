@@ -51,14 +51,10 @@ padding: 20px;
 } 
 
 tr:hover td{
-    background-color: #909091;
-    color: white;
+    /* background-color: #909091; */
+    /* color: white; */
 }
 
-.vacasiones {
-    display: flex;
-    align-items: flex-end;
-}
 
 /* form */
 
