@@ -86,6 +86,15 @@ const fun2 = async () => {
     return getItems();
 }
 
+const funExport = async () => { 
+    async function getExport () {   
+          const res = await axios.get('http://localhost/rest-api/api/export_excel.php');
+    }    
+
+    return getExport();
+}
+
+
 //UPDATE ITEMS
 function apiUpdate(props) {    
     const details = JSON.stringify({
@@ -119,5 +128,5 @@ function apiLiquidacionCompra (props) {
 }
 
 
-const api = {apiTokenAcces,apiTokenAccesId,apiSigiUp,apiSigiIn, apiCreate, apiUpdate, fun2, getUsers, apiUpdateUser, apiLiquidacionCompra};
+const api = {apiTokenAcces,apiTokenAccesId,apiSigiUp,apiSigiIn, apiCreate, apiUpdate, fun2, funExport, getUsers, apiUpdateUser, apiLiquidacionCompra};
 export default api;
