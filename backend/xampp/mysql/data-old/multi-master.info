@@ -1,0 +1,5 @@
+2022-08-31 14:11:12 0 [Note] Reading of all Master_info entries succeeded
+2022-08-31 14:11:12 0 [Note] Added new Master_info '' to hash table
+2022-08-31 14:11:12 0 [Note] c:\users\steve\onedrive\escritorio\repositorio\sistemainventarios\backend\xampp\mysql\bin\mysqld.exe: ready for connections.
+Version: '10.4.21-MariaDB'  socket: ''  port: 3306  mariadb.org binary distribution
+2022-08-31 14:11:37 12 [ERROR] mysqld.exe: Informacion erronea en el archivo: '.\mysql\user.frm'

@@ -109,24 +109,39 @@ const Employees = () => {
     });
 
     // fill all tables, vacations and permissions
-    fillRows(e, userObj.user.vacations, "tableDates");
-    fillRows(e, userObj.user.permissions, "tableDates2");
+    fillDatesInfoTable(e, userObj.user.vacations, "tableDates");
+    fillDatesInfoTable(e, userObj.user.permissions, "tableDates2");
 
   }
 
   //-------------------------------------------------------------------------addTakenDays
-  function addAndTakenDays(type, quantity) {
+  function addAndTakenDays(type, quantity, operation) {
       if (type === "takenDays") {
-        const newTakenDays = userObj.takenDays + quantity;
-        setUserObj(userObj.takenDays = newTakenDays);
+        console.log(userObj.takenDays)
+        console.log(userObj.user.takenDays)
+        const newTakenDays = operation === "substract" ?
+          userObj.user.takenDays - quantity :
+          userObj.user.takenDays + quantity;
+          console.log(userObj.user)
+        
+        setUserObj(actualValues => ({
+          ...actualValues,
+            takenDays: newTakenDays
+        }))
       } else if (type === "addedDays") {
-        const newAdditionalDays = userObj.addedDays + quantity;
-        setUserObj(userObj.addedDays = newAdditionalDays);
+        console.log(userObj.addedDays)
+        const newAdditionalDays = operation === "add" ?
+        userObj.addedDays + quantity : null
+
+        setUserObj(actualValues => ({
+          ...actualValues,
+            addedDays: newAdditionalDays
+        }))
       }
   }
 
   // fill rows with every vacation/permision registered
-  function fillRows(e, arrayObjects, tableName) {
+  function fillDatesInfoTable(e, arrayObjects, tableName) {
     document.querySelectorAll(".dayDate").forEach(x => x.min = date);
     
     for (let i = 0; i < arrayObjects.length; i++) {
@@ -148,10 +163,10 @@ const Employees = () => {
         handleRemainingDays(e)
         break;
       default:
-        setUserObj(userObj.user = {
-          ...userObj,
+        setUserObj(actualValues => ({
+          ...actualValues,
           [e.target.name]: e.target.value
-        })
+        }))
         break;
     }
   }
@@ -159,17 +174,18 @@ const Employees = () => {
   // Handle Additional Days
   function handleRemainingDays(e, obj) {
     e.preventDefault()
-
     // Input value
     let additionalDaysInput = document.querySelector("#additionalDays");
     const additionalDays = Number(additionalDaysInput.value);
     // Get new additional days
     const newAdditionalDays = userObj.remainingDays + additionalDays;
-    addAndTakenDays("addedDays", additionalDays);
-    setUserObj(userObj.user = {
-      ...userObj,
+    addAndTakenDays("addedDays", additionalDays, "add");
+
+    console.log(newAdditionalDays)
+    setUserObj(actualValues => ({
+      ...actualValues,
       remainingDays: newAdditionalDays
-    })
+    }))
 
     // set default value and disable input
     additionalDaysInput.value = 0;
@@ -199,10 +215,10 @@ const Employees = () => {
     if (!startEndVacation) {
       addAndTakenDays("takenDays", numVacationDays.length)
 
-      setUserObj(userObj.user = {
-        ...userObj,
+      setUserObj(actualValues => ({
+        ...actualValues,
         remainingDays: vacationDays
-      });
+      }))
     }
     return numVacationDays.length;
   }
@@ -279,15 +295,19 @@ const Employees = () => {
           )
         })
 
-        const newRemainingDays = getWorkingDays(startEndVacation);
+        const workingDays = getWorkingDays(startEndVacation);
+        const newRemainingDays = userObj.user.remainingDays + workingDays;
         setUserObj(actualValues => ({
           ...actualValues,
-          remainingDays: userObj.user.remainingDays + newRemainingDays,
+          remainingDays: newRemainingDays,
           vacations: newVacationArr,
         }));
 
         //Disable all delete buttons
         [...document.querySelector("#tableDates").children].forEach(x => x.children[0].setAttribute("disabled", true))
+
+        //Change taken days (substract) aqui
+        addAndTakenDays("takenDays", workingDays, "substract")
 
         break;
 
@@ -383,11 +403,8 @@ const Employees = () => {
         console.log(res)
         setOCModal(false);
         getAllUsers();
-        console.log(userObj)
       })
       .catch(err => console.error(err))
-
-      // console.log(userObj.vacations)
   }
 
   return (

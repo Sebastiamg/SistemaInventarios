@@ -91,6 +91,7 @@ const edit = (dato) => {
 const url = window.location.href.toString();
 
 const insert = () => {
+  console.log("hgola")
   let newValue = form
         newValue.item = parseInt(newValue.item + newValue.brand.length + newValue.value.length + Math.floor(Math.random()*1000));
         
@@ -150,6 +151,7 @@ const handleChange = (e) => {
                             <td>{dato.statusD}</td>
                         </tr>)
                     )}
+                    <div></div>
                     </tbody>
                 </Table>
             </Container>
@@ -259,6 +261,7 @@ const handleChange = (e) => {
             <Button className='text-2xl font-bold text-slate-300 py-1 bg-slate-600 hover:bg-slate-800' onClick={() => closeModalInsert()} > Cancel </Button>
           </ModalFooter>
         </Modal>
+
 
         </div>
     </>
