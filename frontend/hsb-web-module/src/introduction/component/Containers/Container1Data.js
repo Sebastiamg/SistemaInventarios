@@ -196,7 +196,7 @@ const Container1Data = () => {
       return setForm((values) => ({
         ...values,
         montly_de: allDe.mensD.toFixed(2),
-        annual_de: allDe.anualD,
+        annual_de: allDe.anualD.toFixed(2),
       }))
     }
     //calculo depreciacion en create
@@ -209,12 +209,26 @@ const Container1Data = () => {
   
       let montly_de = document.querySelector('#montly_de')
       let annual_de = document.querySelector('#annual_de')
-    
+      
+      if (
+        isNaN(allDe.mensD) ||
+        isNaN(allDe.anualD) ||
+        !isFinite(allDe.mensD) ||
+        !isFinite(allDe.anualD)
+      ) {
+        allDe.mensD = 0;
+        allDe.anualD = 0;
+      }
+
       montly_de.value = allDe.mensD.toFixed(2)
-      annual_de.value = allDe.anualD
+      annual_de.value = allDe.anualD.toFixed(2)
+
   
       setForm((form.montly_de = allDe.mensD))
       setForm((form.annual_de = allDe.anualD))
+      
+      
+      
       // console.log(allDe)
       // console.log(form)
     }
