@@ -58,7 +58,8 @@ function apiCreate (props) {
         value: props["value"], 
         supplier: props["supplier"], 
         annual_de: props["annual_de"], 
-        montly_de: props["montly_de"], 
+        montly_de: props["montly_de"],
+        responsible: props["responsible"], 
         observation: props["observation"], 
         insured: props["insured"],
         itemType: props["itemType"]
@@ -103,6 +104,7 @@ function apiUpdate(props) {
         supplier: props["supplier"], 
         annual_de: props["annual_de"], 
         montly_de: props["montly_de"], 
+        responsible: props["responsible"], 
         observation: props["observation"], 
         insured: props["insured"],
         itemType: props["itemType"]
