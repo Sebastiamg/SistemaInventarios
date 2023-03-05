@@ -55,11 +55,13 @@ async function apiUpdateUser(props) {
 function apiCreate (props) {   
     const details = JSON.stringify({
         brand: props["brand"], 
-        value: props["value"], 
-        supplier: props["supplier"], 
+        value: props["value"],
+        months_de:props["months_de"], 
+        supplier: props["supplier"],
+        re_value: props["re_value"],
         annual_de: props["annual_de"], 
         montly_de: props["montly_de"],
-        responsible: props["responsible"], 
+        value_books:props["value_books"], 
         observation: props["observation"], 
         insured: props["insured"],
         itemType: props["itemType"]
@@ -100,11 +102,13 @@ const funExport = async () => {
 function apiUpdate(props) {    
     const details = JSON.stringify({
         brand: props["brand"], 
-        value: props["value"], 
-        supplier: props["supplier"], 
+        value: props["value"],
+        months_de:props["months_de"], 
+        supplier: props["supplier"],
+        re_value: props["re_value"], 
         annual_de: props["annual_de"], 
-        montly_de: props["montly_de"], 
-        responsible: props["responsible"], 
+        montly_de: props["montly_de"],
+        value_books:props["value_books"],
         observation: props["observation"], 
         insured: props["insured"],
         itemType: props["itemType"]
