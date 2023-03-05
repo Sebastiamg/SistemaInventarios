@@ -783,6 +783,6 @@ class __TwigTemplate_6dabd7ea135c28c14e495d83dddd36f25ffba97364d45c40de605ece9f9
 
     public function getSourceContext()
     {
-        return new Source("", "columns_definitions/column_attributes.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\proyecto\\mgmnt\\backend\\xampp\\phpMyAdmin\\templates\\columns_definitions\\column_attributes.twig");
+        return new Source("", "columns_definitions/column_attributes.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\repositorio\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\columns_definitions\\column_attributes.twig");
     }
 }

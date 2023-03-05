@@ -300,6 +300,6 @@ class __TwigTemplate_20fde64d95b04fe9c79a51f9a4a2286aeb83b2262a848f0b9f2fdf80c22
 
     public function getSourceContext()
     {
-        return new Source("", "columns_definitions/table_fields_definitions.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\proyecto\\mgmnt\\backend\\xampp\\phpMyAdmin\\templates\\columns_definitions\\table_fields_definitions.twig");
+        return new Source("", "columns_definitions/table_fields_definitions.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\repositorio\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\columns_definitions\\table_fields_definitions.twig");
     }
 }

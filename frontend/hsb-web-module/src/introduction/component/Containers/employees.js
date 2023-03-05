@@ -7,7 +7,23 @@ import Api from "../../../services";
 
 const Employees = () => {
   const [ocModal, setOCModal] = useState(false);
-  const [userObj, setUserObj] = useState({ user: {} });
+  const [ocModal2, setOcModal2] = useState(false);
+
+  const [userObj, setUserObj] = useState({user: {}});
+  const [newUserObj, setNewUserObj] = useState({details: JSON.stringify({
+    vacations: [],
+    addedDays: 0,
+    takenDays: 0,
+    permissions: [],
+    admissionDate: "",
+    remainingDays : 11
+  }),
+    id: "",
+    name: "",
+    email: "",
+    password: "",
+    active: 1
+})
 
   const date = new Date().toJSON().substring(0, 10);
   const [vacation, setVacation] = useState({ startVacationDay: date, endVacationDay: date, days: 0 });
@@ -29,16 +45,35 @@ const Employees = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vacation.endVacationDay, vacation.startVacationDay])
 
-  function getAllUsers() {
+  function getAllUsers(userName) {
     Api.getUsers()
       .then(res => {
-        const users = res.map(user => {
+        let activeUsers = [];
+        let inactiveUsers = [];
+
+        res.data.map(user => {
+          // change &quot; to "
           const userDetail = user.details.replace(/&quot;/g, '"');
-          return { ...user, details: JSON.parse(userDetail) };
+          // new fixedUser
+          const fixedUser = { ...user, details: JSON.parse(userDetail) };
+          
+           return user.active === "1" ? activeUsers.push(fixedUser) : inactiveUsers.push(fixedUser);
         })
-        fillTable(users)
+
+        // return fillTable(filteredUsers);
+        if (userName) {
+          let filteredUser = activeUsers.concat(inactiveUsers).filter(user => {
+            return user.name.toUpperCase().match(userName.toUpperCase())
+          })
+          console.log(filteredUser)
+          return fillTable(filteredUser);
+        } else {
+          const filteredUsers = activeUsers.concat(inactiveUsers);
+          return fillTable(filteredUsers);
+        }
+
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   }
 
   // get diference vacations days
@@ -66,13 +101,15 @@ const Employees = () => {
       const btn = document.createElement("BUTTON");
       btn.textContent = "Details";
       btn.classList.add("bg-slate-500", "hover:bg-slate-600", "transition-all", "w-3/5", "border-2", "font-semibold", "py-1", "border-slate-600", "text-slate-100", "rounded-md", "details")
-      btn.addEventListener("click", (e) => opeModal(e, user))
+      btn.addEventListener("click", (e) => openModal(e, user))
 
       // Create Td with info and insert into tr
       for (let i = 0; i < Object.keys(user).length + 1; i++) {
         const td = document.createElement("TD");
         // Check If user is active
-        td.textContent = Object.values(user)[i] === "1" ? "Yes" : Object.values(user)[i];
+        td.textContent = Object.values(user)[i] === "1" ? "Yes" :
+          Object.values(user)[i] === "0" ? "No" :
+          Object.values(user)[i]
 
         if (Object.keys(user)[i] === "details") {
           td.classList.add("hidden")
@@ -92,13 +129,14 @@ const Employees = () => {
 
   // Modal
   //Open / Close modal
-  function opeModal(e, user) {
+  function openModal(e, user) {
     setUserObj(userObj.user = {});
     setVacation(vacation => ({ ...vacation, startVacationDay: date, endVacationDay: date, days: 0 }))
     setPermission({ permissionDate: date, permissionDays: 0, reason: "" });
     setOCModal(true);
     setUserObj(userObj.user = {
       ...user,
+      active: Number(user.active),
       admissionDate: user.details.admissionDate,
       remainingDays: user.details.remainingDays,
       addedDays: user.details.addedDays,
@@ -112,17 +150,14 @@ const Employees = () => {
     fillDatesInfoTable(e, userObj.user.vacations, "tableDates");
     fillDatesInfoTable(e, userObj.user.permissions, "tableDates2");
 
+
   }
 
-  //-------------------------------------------------------------------------addTakenDays
-  function addAndTakenDays(type, quantity, operation) {
+    function addAndTakenDays(type, quantity, operation) {
       if (type === "takenDays") {
-        console.log(userObj.takenDays)
-        console.log(userObj.user.takenDays)
         const newTakenDays = operation === "substract" ?
           userObj.user.takenDays - quantity :
           userObj.user.takenDays + quantity;
-          console.log(userObj.user)
         
         setUserObj(actualValues => ({
           ...actualValues,
@@ -162,6 +197,9 @@ const Employees = () => {
       case "additionalDaysBtn":
         handleRemainingDays(e)
         break;
+      case "active":
+        handleActiveUser(e)
+      break;
       default:
         setUserObj(actualValues => ({
           ...actualValues,
@@ -169,6 +207,15 @@ const Employees = () => {
         }))
         break;
     }
+  }
+
+  //Handle active or not User
+  function handleActiveUser(e) {
+    const newActiveValue = userObj.active === 1 ? 0 : 1;
+    setUserObj(defaultValues => ({
+      ...defaultValues,
+      active: newActiveValue
+    }))
   }
 
   // Handle Additional Days
@@ -379,6 +426,65 @@ const Employees = () => {
     })
   }
 
+  //handleSearch
+  function handleSearch(e) {
+    getAllUsers(e.target.value.trim())
+  }
+
+  function closeModal() {
+      setOCModal(false);
+      document.querySelector("#search").value = "";
+      getAllUsers()
+  }
+
+  //dd new User 
+  function openAddModal() {
+    setOcModal2(true)
+  }
+
+  const regexs = {
+    id: /^\d{7}$/,
+    name: /^[a-zA-ZÀ-ÿ\s]{3,10}$/,
+    email: /^[a-zA-Z0-9_.-]+@(\w{3,20})(\.[a-zA-Z]{2,5}){1,2}$/i,
+    password: /^.{5,15}$/,
+  };
+
+  function handleUserChange(e) {
+    //input
+    const input = document.querySelector(`#user${e.target.name}`);
+    const inputValidation = regexs[`${e.target.name}`].test(e.target.value)
+
+    input.classList.toggle("border-lime-800", inputValidation);
+    input.classList.toggle("border-rose-900", !inputValidation);
+
+    // if input value is correct fill State
+    if (inputValidation) {
+      setNewUserObj(actualValues => ({
+        ...actualValues,
+        [e.target.name]: e.target.value.trim()
+    }))
+    } else {
+      setNewUserObj(actualValues => ({
+        ...actualValues,
+        [e.target.name]: ""
+      }))
+    }
+  }
+
+  function createSuper() {
+    const newUser = newUserObj;
+    const validation = Object.values(newUser).map(value => value === "").some(x => x === true);
+    if (validation) {
+      console.log("LLena bien todos los campos")
+    } else {
+      Api.apiSigiUp(newUser).then(res => {
+        console.log(res);
+        setOcModal2(false);
+        getAllUsers();
+      }).catch(err => console.error(err))
+    }
+  }
+
   // Update user function
   function finalEdit() {
     const updatedUserDetails = {
@@ -398,6 +504,9 @@ const Employees = () => {
       details: JSON.stringify(updatedUserDetails)
     };
 
+    // empty the search input
+    document.querySelector("#search").value = "";
+
     Api.apiUpdateUser(updatedUser)
       .then(res => {
         console.log(res)
@@ -412,17 +521,25 @@ const Employees = () => {
       <NavBar />
       <div className='border-3 border-slate-500 rounded-xl mx-5 my-4 shadow-md shadow-slate-600'>
         <h1 className='text-5xl font-bold py-3 bg-slate-300 rounded-t-xl border-b-4 border-slate-400 text-center'>Users</h1>
-        {/* <div>button</div> */}
         <div>
+          {/* search and add user */}
+          <div className='w-full flex justify-end font-semibold'>
+            <div className='w-fit border-2 border-slate-400 rounded-md px-1 mx-3 flex items-center text-slate-700'>
+              <input type="search" className='rounded-md outline-none' id='search' placeholder='search user' onChange={handleSearch}/>
+              <i className="border-l-2 px-2 fa-solid fa-magnifying-glass"></i>
+            </div>
+              <button className='mx-3 border-2 border-slate-600 p-1 rounded-md bg-slate-500 hover:bg-slate-600 text-slate-50' onClick={openAddModal}>Add User</button>
+          </div>
+
           <Container className='text-xl table-responsive'>
-            <table className='table-auto w-full mb-4'>
-              <thead className='border-b-2 border-slate-500'>
-                <tr className='h-16'>
-                  <th></th>
-                  <th>Identification</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Active</th>
+            <table className='w-full mb-4 text-center'>
+              <thead className='w-full border-b-2 border-slate-500'>
+                <tr className='h-16 w-full'>
+                  <th className='w-1/5'></th>
+                  <th className='w-1/5'>Identification</th>
+                  <th className='w-1/5'>Name</th>
+                  <th className='w-1/5'>Email</th>
+                  <th className='w-1/5'>Active</th>
                 </tr>
               </thead>
               <tbody id='tableUsers'>
@@ -461,13 +578,9 @@ const Employees = () => {
                   <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="text" name='email' defaultValue={userObj.email} onChange={handleChange} />
                 </FormGroup>
 
-                <FormGroup className='w-1/5 flex flex-col px-2 '>
-                  <label className='font-bold mr-4'>Active: </label>
-                  <select className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' name='active' onChange={handleChange}>
-                    {/* <option value="1" selected></option> */}
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
-                  </select>
+                <FormGroup className='w-1/5 flex flex-col px-2 justify-start '>
+                  <label className='font-bold text-center '>Active: </label>
+                  <input className='mx-auto w-2/5 h-full outline-none bg-red-800' type="checkbox" name='active' onClick={(e) => handleChange(e, "active")} defaultChecked={userObj.active}/>
                 </FormGroup>
               </div>
 
@@ -575,7 +688,46 @@ const Employees = () => {
         </div>
         <div className='flex justify-evenly'>
           <button className='text-2xl font-bold text-slate-300 w-1/2 py-1 bg-slate-500 hover:bg-slate-800' onClick={finalEdit}>Edit</button>
-          <button className='text-2xl font-bold text-slate-300 w-1/2 py-1 bg-slate-600 hover:bg-slate-800' onClick={() => setOCModal(false)}>Cancel</button>
+          <button className='text-2xl font-bold text-slate-300 w-1/2 py-1 bg-slate-600 hover:bg-slate-800' onClick={closeModal}>Cancel</button>
+        </div>
+      </Modal>
+
+    {/* ADD user modal */}
+      <Modal isOpen={ocModal2}>
+        <div className='text-center bg-slate-700'>
+          <h3 className='font-bold text-center text-2xl py-2 text-slate-200'>Create User</h3>
+        </div>
+        <div className='bg-slate-200'>
+          <ModalBody>
+             <Form>
+              <div className='flex flex-wrap justify-evenly items-start'>
+                  <FormGroup className='w-1/2 flex flex-col px-2 '>
+                    <label className='font-bold mr-4'>Identification: </label>
+                    <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="number" name='id' id="userid" onChange={handleUserChange} />
+                  </FormGroup>
+
+                  <FormGroup className='w-1/2 flex flex-col px-2 '>
+                    <label className='font-bold mr-4'>Name: </label>
+                    <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="text" name='name' id="username" onChange={handleUserChange} />
+                  </FormGroup>
+              </div>
+              <div className='flex flex-wrap justify-evenly items-start'>
+                  <FormGroup className='w-full flex flex-col px-2 '>
+                    <label className='font-bold mr-4'>Email: </label>
+                    <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="email" name='email' id="useremail" onChange={handleUserChange} />
+                  </FormGroup>
+
+                  <FormGroup className='w-full flex flex-col px-2 '>
+                    <label className='font-bold mr-4'>Password: </label>
+                    <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="text" name='password' id="userpassword" onChange={handleUserChange} />
+                  </FormGroup>
+              </div>
+            </Form>
+          </ModalBody>
+        </div>
+        <div className='flex justify-evenly'>
+          <button className='text-2xl font-bold text-slate-300 w-1/2 py-1 bg-slate-500 hover:bg-slate-800' onClick={createSuper}>Create</button>
+          <button className='text-2xl font-bold text-slate-300 w-1/2 py-1 bg-slate-600 hover:bg-slate-800' onClick={() => setOcModal2(false)}>Cancel</button>
         </div>
       </Modal>
 

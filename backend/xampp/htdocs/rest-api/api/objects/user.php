@@ -116,6 +116,7 @@ class User {
             SET
                 name = :name,
                 details = :details,
+                active = :active,
                 email = :email
                 {$password_set}
             WHERE id = :id";
@@ -127,11 +128,13 @@ class User {
         $this->name = htmlspecialchars(strip_tags($this->name));
         $this->details = htmlspecialchars(strip_tags($this->details));
         $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->active = htmlspecialchars(strip_tags($this->active));
 
         // bind the values from the form
         $stmt->bindParam(':name', $this->name);
         $stmt->bindParam(':details', $this->details);
         $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':active', $this->active);
 
         // hash the password before saving to database
         if (!empty($this->password)) {
