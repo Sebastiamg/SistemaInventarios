@@ -38,6 +38,12 @@ padding: 20px;
     margin-right: 20px;
 }
 
+#containerSearch {
+    flex-direction: row;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
 #tabla_cont{
     font-weight: normal;
 }
