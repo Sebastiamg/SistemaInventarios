@@ -35,7 +35,7 @@ async function apiTokenAccesId(props) {
 async function getUsers() {
     const res = await axios.get('http://localhost/rest-api/api/get_user.php');
     if (typeof (res.data) == "string") {
-        return console.log("No hay usuarios en la bd");
+        return console.log("Empty BD");
     } else {
         return {
             data: res.data,

@@ -48,7 +48,7 @@ const Expenses = () => {
   getData();
 
   const getExport = async () => {
-    const exports = await Api.funExport();
+    // const exports = await Api.funExport();
     };
   getExport();
 

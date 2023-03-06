@@ -45,6 +45,8 @@ const Employees = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vacation.endVacationDay, vacation.startVacationDay])
 
+  // get all user function
+
   function getAllUsers(userName) {
     Api.getUsers()
       .then(res => {
@@ -60,15 +62,16 @@ const Employees = () => {
            return user.active === "1" ? activeUsers.push(fixedUser) : inactiveUsers.push(fixedUser);
         })
 
-        // return fillTable(filteredUsers);
+        // find user with username or return all users
         if (userName) {
           let filteredUser = activeUsers.concat(inactiveUsers).filter(user => {
             return user.name.toUpperCase().match(userName.toUpperCase())
           })
-          console.log(filteredUser)
+
           return fillTable(filteredUser);
-        } else {
+        } else if (!userName) {
           const filteredUsers = activeUsers.concat(inactiveUsers);
+          
           return fillTable(filteredUsers);
         }
 
@@ -107,9 +110,29 @@ const Employees = () => {
       for (let i = 0; i < Object.keys(user).length + 1; i++) {
         const td = document.createElement("TD");
         // Check If user is active
-        td.textContent = Object.values(user)[i] === "1" ? "Yes" :
-          Object.values(user)[i] === "0" ? "No" :
-          Object.values(user)[i]
+        // td.textContent = Object.values(user)[i] === "1" ? "Yes" :
+        //   Object.values(user)[i] === "0" ? "No" :
+        //   Object.values(user)[i]
+
+        // -----------
+        const statusMark = document.createElement("DIV");
+        statusMark.classList.add("rounded-full", "w-4", "h-4", "mx-auto", "shadow-inner")
+        td.insertAdjacentElement('afterbegin', statusMark)
+
+          switch (Object.values(user)[i]) {
+            case "1":
+              // td.textContent = "Yes"
+              statusMark.classList.add("bg-lime-700")
+              break;
+            case "0":
+              // td.textContent = "No"
+              statusMark.classList.add("bg-red-700")
+            break
+            default:
+              td.textContent = Object.values(user)[i]
+              break;
+          }
+        // -----------
 
         if (Object.keys(user)[i] === "details") {
           td.classList.add("hidden")
@@ -155,9 +178,10 @@ const Employees = () => {
 
     function addAndTakenDays(type, quantity, operation) {
       if (type === "takenDays") {
+        //cuado añado fecha
         const newTakenDays = operation === "substract" ?
           userObj.user.takenDays - quantity :
-          userObj.user.takenDays + quantity;
+          userObj.takenDays + quantity;
         
         setUserObj(actualValues => ({
           ...actualValues,
@@ -280,13 +304,13 @@ const Employees = () => {
   }
 
   // Add all table rows in different tables
+
   function addRows(e, tableName, mainObject) {
     e.preventDefault();
     // Disable button, no disable details button
     if (!e.target.classList.contains("details")) {
       e.target.setAttribute("disabled", true)
     }
-
     const table = document.querySelector(`#${tableName}`);
 
     const TR = document.createElement("TR");
@@ -398,7 +422,6 @@ const Employees = () => {
         }
       ]
     }))
-    console.log(userObj.vacations)
   }
 
   //add permission row
@@ -444,26 +467,37 @@ const Employees = () => {
 
   const regexs = {
     id: /^\d{7}$/,
-    name: /^[a-zA-ZÀ-ÿ\s]{3,10}$/,
+    name: /^[a-zA-ZÀ-ÿ\s]{3,15}$/,
     email: /^[a-zA-Z0-9_.-]+@(\w{3,20})(\.[a-zA-Z]{2,5}){1,2}$/i,
-    password: /^.{5,15}$/,
+    password: /^.{6,15}$/,
   };
 
   function handleUserChange(e) {
-    //input
-    const input = document.querySelector(`#user${e.target.name}`);
+    //inputContainer
+    const inputContainer = document.querySelector(`#user${e.target.name}`);
     const inputValidation = regexs[`${e.target.name}`].test(e.target.value)
+    // input classes
+    inputContainer.classList.remove("border-slate-400");
+    inputContainer.classList.toggle("border-lime-900", inputValidation);
+    inputContainer.classList.toggle("border-rose-700", !inputValidation);
+    
+    inputContainer.lastChild.innerHTML = "";
+    const statusIcon = document.createElement("I")
+    statusIcon.classList.add("fa-solid")
 
-    input.classList.toggle("border-lime-800", inputValidation);
-    input.classList.toggle("border-rose-900", !inputValidation);
+    inputContainer.lastChild.insertAdjacentElement("afterbegin",statusIcon);
+
+    
 
     // if input value is correct fill State
     if (inputValidation) {
+      statusIcon.classList.add("fa-circle-check", "text-green-700");
       setNewUserObj(actualValues => ({
         ...actualValues,
         [e.target.name]: e.target.value.trim()
     }))
     } else {
+      statusIcon.classList.add("fa-circle-xmark", "text-red-700");
       setNewUserObj(actualValues => ({
         ...actualValues,
         [e.target.name]: ""
@@ -507,13 +541,15 @@ const Employees = () => {
     // empty the search input
     document.querySelector("#search").value = "";
 
-    Api.apiUpdateUser(updatedUser)
-      .then(res => {
-        console.log(res)
-        setOCModal(false);
-        getAllUsers();
-      })
-      .catch(err => console.error(err))
+    // Api.apiUpdateUser(updatedUser)
+    //   .then(res => {
+    //     console.log(res)
+    //     setOCModal(false);
+    //     getAllUsers();
+    //   })
+    //   .catch(err => console.error(err))
+    //   console.log(updatedUserDetails)
+      console.log(userObj)
   }
 
   return (
@@ -525,17 +561,17 @@ const Employees = () => {
           {/* search and add user */}
           <div className='w-full flex justify-end font-semibold'>
             <div className='w-fit border-2 border-slate-400 rounded-md px-1 mx-3 flex items-center text-slate-700'>
-              <input type="search" className='rounded-md outline-none' id='search' placeholder='search user' onChange={handleSearch}/>
+              <input type="search" className='rounded-md outline-none' id='search' placeholder='Find user' onChange={handleSearch}/>
               <i className="border-l-2 px-2 fa-solid fa-magnifying-glass"></i>
             </div>
               <button className='mx-3 border-2 border-slate-600 p-1 rounded-md bg-slate-500 hover:bg-slate-600 text-slate-50' onClick={openAddModal}>Add User</button>
           </div>
 
           <Container className='text-xl table-responsive'>
-            <table className='w-full mb-4 text-center'>
+            <table className='w-full mb-4 text-center table-fixed'>
               <thead className='w-full border-b-2 border-slate-500'>
                 <tr className='h-16 w-full'>
-                  <th className='w-1/5'></th>
+                  <th className='w-1/5'>▼</th>
                   <th className='w-1/5'>Identification</th>
                   <th className='w-1/5'>Name</th>
                   <th className='w-1/5'>Email</th>
@@ -606,13 +642,13 @@ const Employees = () => {
                     <button className='bg-slate-500 hover:bg-slate-600 transition-all w-4/5 border-2 py-1 border-slate-600 mx-auto text-slate-100 rounded-md' onClick={addDates} id="addDateBtn">Add</button>
                   </FormGroup>
                   <FormGroup className='col-span-full w-full flex flex-col px-3'>
-                    <table className='bg-slate-400 text-center'>
-                      <thead className='bg-slate-500'>
-                        <tr>
-                          <th className='text-slte-500'><button onClick={(e) => { e.preventDefault(); document.querySelector("#tableDates").classList.toggle("hidden") }}>▼</button></th>
-                          <th>From</th>
-                          <th>Until</th>
-                          <th>Days</th>
+                    <table className='bg-slate-400 text-center table-fixed'>
+                      <thead className='bg-slate-500 w-full'>
+                        <tr className='w-full'>
+                          <th className='text-slte-500 w-1/4'><button onClick={(e) => { e.preventDefault(); document.querySelector("#tableDates").classList.toggle("hidden") }}>▼</button></th>
+                          <th className='w-1/4'>From</th>
+                          <th className='w-1/4'>Until</th>
+                          <th className='w-1/4'>Days</th>
                         </tr>
                       </thead>
                       <tbody className='mx-2' id='tableDates'>
@@ -703,23 +739,35 @@ const Employees = () => {
               <div className='flex flex-wrap justify-evenly items-start'>
                   <FormGroup className='w-1/2 flex flex-col px-2 '>
                     <label className='font-bold mr-4'>Identification: </label>
-                    <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="number" name='id' id="userid" onChange={handleUserChange} />
+                    <div className='flex w-full items-center justify-between border-2 p-1 border-slate-400 rounded-md bg-white' id="userid">
+                      <input className='w-5/6 outline-none' type="number" name='id' onChange={handleUserChange} />
+                      <div></div>
+                    </div>
                   </FormGroup>
 
                   <FormGroup className='w-1/2 flex flex-col px-2 '>
                     <label className='font-bold mr-4'>Name: </label>
-                    <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="text" name='name' id="username" onChange={handleUserChange} />
+                    <div className='flex w-full items-center justify-between border-2 p-1 border-slate-400 rounded-md bg-white' id="username">
+                      <input className='w-5/6 outline-none' type="text" name='name' onChange={handleUserChange} />
+                      <div></div>
+                    </div>
                   </FormGroup>
               </div>
               <div className='flex flex-wrap justify-evenly items-start'>
                   <FormGroup className='w-full flex flex-col px-2 '>
                     <label className='font-bold mr-4'>Email: </label>
-                    <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="email" name='email' id="useremail" onChange={handleUserChange} />
+                    <div className='flex w-full items-center justify-between border-2 p-1 border-slate-400 rounded-md bg-white' id="useremail">
+                      <input className='w-5/6 outline-none' type="email" name='email' onChange={handleUserChange} />
+                      <div></div>
+                    </div>
                   </FormGroup>
 
                   <FormGroup className='w-full flex flex-col px-2 '>
                     <label className='font-bold mr-4'>Password: </label>
-                    <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' type="text" name='password' id="userpassword" onChange={handleUserChange} />
+                    <div className='flex w-full items-center justify-between border-2 p-1 border-slate-400 rounded-md bg-white' id="userpassword">
+                      <input className='w-5/6 outline-none' type="text" name='password' onChange={handleUserChange} />
+                      <div></div>
+                    </div>
                   </FormGroup>
               </div>
             </Form>

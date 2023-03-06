@@ -56,10 +56,10 @@ padding: 20px;
     padding: 6px 10px;
 } 
 
-tr:hover td{
+/* tr:hover td{ */
     /* background-color: #909091; */
     /* color: white; */
-}
+/* } */
 
 
 /* form */
@@ -192,3 +192,10 @@ tr:hover td{
   overflow: hidden;
 }
 
+.statusMarkActive {
+    box-shadow: 0px 0px 5px 1px #65a30d;
+}
+
+.statusMarkInactive{
+    box-shadow: 0px 0px 5px 1px #be123c;
+}
