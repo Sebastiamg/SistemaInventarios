@@ -334,7 +334,7 @@ const calcCreateModal = () => {
         <div className='text-sl table-responsive '>
           <table className='table-auto w-full mb-4'> 
             <thead className='border-b-2 border-slate-500 '>
-              <tr className='h-16 '>
+              <tr className='h-16 text-center'>
                 <th></th>
                 <th>Item</th>
                 <th>Brand</th>
@@ -352,9 +352,9 @@ const calcCreateModal = () => {
                 <th>Insured</th>
               </tr>
             </thead>
-            <tbody >
+            <tbody>
               {data.map((dato, index) => (
-                <tr key={dato.item} className='h-16 border-b-2 border-zinc-300'>
+                <tr key={dato.item} className='h-16 border-b-2 border-zinc-300 text-center'>
                   <th >
                     <button className='bg-slate-500 hover:bg-slate-600 transition-all w-20 mr-3 mt-3 border-2 font-semibold py-1 border-slate-600 text-slate-100 rounded-md '
                       color="primary"
