@@ -1,18 +1,15 @@
 import './Container1Data.css'
 import React, { useState, useEffect } from 'react'
 import {
-  Table,
   Button,
-  Container,
   Modal,
   ModalHeader,
   ModalBody,
   FormGroup,
+  Form,
   ModalFooter,
 } from 'reactstrap'
 import ContainerDepre from './ContainerDepre'
-import WindowExport from './WindowExport'
-import WindowFilter from './WindowFilter'
 import NavBar from '../navBar/navBar'
 import Api from '../../../services'
 
@@ -42,15 +39,6 @@ const Container1Data = () => {
   useEffect(()=>{
     calcEditModal()
   },[form.months_de,form.value,form.acquisition_date])
-  // useEffect(() => {
-  //   calcEditModal().editDepreciation()
-  // }, [form.months_de,form.value])
-  // useEffect(() => {
-  //   calcEditModal().reValueEdit()
-  // }, [form.value])
-  // useEffect(() => {
-  //   calcEditModal().valueBooksEdit()
-  // }, [form.value,form.acquisition_date])
 
   const getData = async () => {
     const items = await Api.fun2()
@@ -325,26 +313,28 @@ const calcCreateModal = () => {
 }
 
 
+
+
+
+
+  
+
+
   return (
     <>
-      <NavBar /> {/* NavBar 2*/}
-      <div id="main-container1">
-        <h1>
-          <font size="6">Inventary</font>
-        </h1>
+      <NavBar /> 
+      <div className='border-3 border-slate-500 rounded-xl mx-5 my-4 shadow-md shadow-slate-600'>
+        <h1 className='text-4xl font-bold py-3 bg-slate-300 rounded-t-xl border-b-4 border-slate-400 text-center'>Inventary</h1>
         <div id="containerBotones">
-          <Button color="success" id="add" onClick={() => showModalInsert()}>
+          <button className='bg-slate-500 hover:bg-slate-600 transition-all w-20 mr-3 mt-3 border-2 font-semibold py-1 border-slate-600 text-slate-100 rounded-md' id="add" onClick={() => showModalInsert()}>
             Add
-          </Button>
-          <WindowExport />
-          <WindowFilter />
+          </button>
         </div>
-        <div className="table-responsive"></div>
-        <Container id="tableDad" className="table-responsive">
-          <Table id="table" className="table table-hover table-sm">
-            {' '}
-            <thead>
-              <tr>
+        <div className='mx-8'>
+        <div className='text-sl table-responsive '>
+          <table className='table-auto w-full mb-4'> 
+            <thead className='border-b-2 border-slate-500 '>
+              <tr className='h-16 '>
                 <th></th>
                 <th>Item</th>
                 <th>Brand</th>
@@ -362,16 +352,16 @@ const calcCreateModal = () => {
                 <th>Insured</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody >
               {data.map((dato, index) => (
-                <tr key={dato.item}>
-                  <th>
-                    <Button
+                <tr key={dato.item} className='h-16 border-b-2 border-zinc-300'>
+                  <th >
+                    <button className='bg-slate-500 hover:bg-slate-600 transition-all w-20 mr-3 mt-3 border-2 font-semibold py-1 border-slate-600 text-slate-100 rounded-md '
                       color="primary"
                       onClick={() => showModalUpdate(dato)}
                     >
-                      🖊
-                    </Button>
+                      Edit
+                    </button>
                   </th>
                   <td>{index + 1}</td>
                   <td>{dato.brand}</td>
@@ -390,33 +380,36 @@ const calcCreateModal = () => {
                 </tr>
               ))}
             </tbody>
-          </Table>
-        </Container>
+          </table>
+        </div>
+        </div>
         <ContainerDepre />
         {/* --------------------MODALS------------------- */}
         {/* edit modal */}
         <Modal isOpen={modalUpdate}>
-          <ModalHeader>
-            <div>
-              <h3>Edit Registration</h3>
+          
+            <div className='text center bg-slate-700'>
+              <h3 className='font-bold text-center text-2x1 py-2 text-slate-200'>Edit Registration</h3>
             </div>
-          </ModalHeader>
-
+          
+        <div className='bg-slate-200'>
           <ModalBody>
-            <FormGroup>
-              <label> Item: </label>
+            <Form>
+
+            <FormGroup className=' flex flex-col px-2'>
+              <label className='font-bold mr-4'> Item: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none"
                 readOnly
                 type="text"
                 value={form.item}
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Brand: </label>
+            <FormGroup className=' flex flex-col px-2'>
+              <label className='font-bold mr-4'>Brand: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none"
                 name="brand"
                 type="text"
                 onChange={handleChange}
@@ -424,10 +417,10 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label> Name: </label>
+            <FormGroup className=' flex flex-col px-2'>
+              <label className='font-bold mr-4'> Name: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none"
                 name="name"
                 type="text"
                 onChange={handleChange}
@@ -435,10 +428,10 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Acquisition date: </label>
+            <FormGroup className=' flex flex-col px-2'>
+              <label className='font-bold mr-4'>Acquisition date: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none"
                 name="acquisition_date"
                 type="date"
                 onChange={handleChange}
@@ -446,10 +439,10 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Value: </label>
+            <FormGroup className=' flex flex-col px-2'>
+              <label className='font-bold mr-4'>Value: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none"
                 name="value"
                 type="text"
                 onChange={handleChange}
@@ -458,10 +451,10 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Months of depreciation: </label>
+            <FormGroup className=' flex flex-col px-2'>
+              <label className='font-bold mr-4'>Months of depreciation: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none"
                 name="months_de"
                 type="text"
                 onChange={handleChange}
@@ -470,20 +463,20 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Supplier: </label>
+            <FormGroup className=' flex flex-col px-2'>
+              <label className='font-bold mr-4'>Supplier: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none"
                 name="supplier"
                 type="text"
                 onChange={handleChange}
                 value={form.supplier}
               />
             </FormGroup>
-            <FormGroup>
-              <label>Residual value: </label>
+            <FormGroup className=' flex flex-col px-2'>
+              <label className='font-bold mr-4'>Residual value: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none bg-slate-300 font-semibold"
                 name="re_value"
                 type="text"
                 onChange={handleChange}
@@ -493,10 +486,10 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Annual_de: </label>
+            <FormGroup className=' flex flex-col px-2'>
+              <label className='font-bold mr-4'>Annual_de: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none bg-slate-300 font-semibold"
                 name="annual_de"
                 type="text"
                 value={form.annual_de}
@@ -505,10 +498,10 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Montly_de: </label>
+            <FormGroup className=' flex flex-col px-2'>
+              <label className='font-bold mr-4'>Montly_de: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none bg-slate-300 font-semibold"
                 name="montly_de"
                 type="text"
                 value={form.montly_de}
@@ -516,10 +509,10 @@ const calcCreateModal = () => {
                 readOnly
               />
             </FormGroup>
-            <FormGroup>
-              <label>Value in Books: </label>
+            <FormGroup className=' flex flex-col px-2'>
+              <label className='font-bold mr-4'>Value in Books: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none bg-slate-300 font-semibold"
                 name="value_books"
                 type="text"
                 value={form.value_books}
@@ -528,10 +521,10 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Status: </label>
+            <FormGroup className=' flex flex-col px-2'>
+              <label className='font-bold mr-4'>Status: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none"
                 name="statusD"
                 type="text"
                 onChange={handleChange}
@@ -539,10 +532,10 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Observation: </label>
+            <FormGroup className=' flex flex-col px-2'>
+              <label className='font-bold mr-4'>Observation: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none"
                 name="observation"
                 type="text"
                 onChange={handleChange}
@@ -550,65 +543,62 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Insured: </label>
+            <FormGroup className=' flex flex-col px-2'>
+              <label className='font-bold mr-4'>Insured: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none"
                 name="insured"
                 type="text"
                 onChange={handleChange}
                 value={form.insured}
               />
             </FormGroup>
+            </Form>
           </ModalBody>
-
-          <ModalFooter>
-            <Button color="primary" onClick={() => edit(form)}>
+          </div>
+          <div className='flex justify-evenly'>
+            <button className='text-2xl font-bold text-slate-300 w-1/2 py-1 bg-slate-500 hover:bg-slate-800' onClick={() => edit(form)}>
               Edit
-            </Button>
-            <Button color="danger" onClick={() => closeModalUpdate()}>
+            </button>
+            <button className='text-2xl font-bold text-slate-300 w-1/2 py-1 bg-slate-600 hover:bg-slate-800' onClick={() => closeModalUpdate()}>
               Cancel
-            </Button>
-          </ModalFooter>
+            </button>
+          </div>
         </Modal>
+
         {/* add item Modal */}
         <Modal isOpen={modalInsert}>
-          <ModalHeader>
-            <div>
-              <h3>Insert Item</h3>
+            <div className='text-center bg-slate-700'>
+              <h3 className='font-bold text-center text-2xl py-2 text-slate-200'>Insert Item</h3>
             </div>
-          </ModalHeader>
-
+        {/* form */}
+        <div className='bg-slate-200'>
           <ModalBody>
-            {/* <FormGroup> */}
-            {/* <label> Item: </label> */}
-            {/* <input className="form-control" readOnly type="text" value={state.data.length+1}/> ---------- */}
-            {/* </FormGroup> */}
-
-            <FormGroup>
-              <label>Brand: </label>
+            <Form>
+            <FormGroup className='flex flex-col px-2 '>
+              <label className='font-bold mr-4'>Brand: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none "
                 name="brand"
                 type="text"
                 onChange={handleChange}
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Name: </label>
+            <FormGroup className='flex flex-col px-2 '>
+              <label className='font-bold mr-4'>Name: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none "
                 name="name"
                 type="text"
                 onChange={handleChange}
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Acquisition date: </label>
+            <FormGroup className='flex flex-col px-2 '>
+              <label className='font-bold mr-4'>Acquisition date: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none "
                 name="acquisition_date"
                 type="date"
                 onChange={handleChange}
@@ -617,10 +607,10 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Value: </label>
+            <FormGroup className='flex flex-col px-2 '>
+              <label className='font-bold mr-4'>Value: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none "
                 name="value"
                 type="text"
                 onChange={handleChange}
@@ -629,10 +619,10 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Months of depreciation: </label>
+            <FormGroup className='flex flex-col px-2 '>
+              <label className='font-bold mr-4'>Months of depreciation: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none "
                 name="months_de"
                 type="text"
                 onChange={handleChange}
@@ -641,19 +631,19 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Supplier: </label>
+            <FormGroup className='flex flex-col px-2 '>
+              <label className='font-bold mr-4'>Supplier: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none "
                 name="supplier"
                 type="text"
                 onChange={handleChange}
               />
             </FormGroup>
-            <FormGroup>
-              <label>Residual Value: </label>
+            <FormGroup className='flex flex-col px-2 '>
+              <label className='font-bold mr-4'>Residual Value: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none bg-slate-300 font-semibold "
                 name="re_value"
                 type="text"
                 onChange={handleChange}
@@ -663,10 +653,10 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Annual_de: </label>
+            <FormGroup className='flex flex-col px-2 '>
+              <label className='font-bold mr-4'>Annual_de: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none bg-slate-300 font-semibold "
                 name="annual_de"
                 type="text"
                 defaultValue={0}
@@ -675,10 +665,10 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Montly_de: </label>
+            <FormGroup className='flex flex-col px-2 '>
+              <label className='font-bold mr-4'>Montly_de: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none bg-slate-300 font-semibold "
                 name="montly_de"
                 type="text"
                 defaultValue={0}
@@ -686,10 +676,10 @@ const calcCreateModal = () => {
                 readOnly
               />
             </FormGroup>
-            <FormGroup>
-              <label>Value in Books: </label>
+            <FormGroup className='flex flex-col px-2 '>
+              <label className='font-bold mr-4'>Value in Books: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none bg-slate-300 font-semibold "
                 name="value_books"
                 type="text"
                 defaultValue={0}
@@ -698,50 +688,51 @@ const calcCreateModal = () => {
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Status: </label>
+            <FormGroup className='flex flex-col px-2 '>
+              <label className='font-bold mr-4'>Status: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none "
                 name="statusD"
                 type="text"
                 onChange={handleChange}
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Observation: </label>
+            <FormGroup className='flex flex-col px-2 '>
+              <label className='font-bold mr-4'>Observation: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none "
                 name="observation"
                 type="text"
                 onChange={handleChange}
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>Insured: </label>
+            <FormGroup className='flex flex-col px-2'>
+              <label className='font-bold mr-4'>Insured: </label>
               <input
-                className="form-control"
+                className="w-full border-2 p-1 border-slate-400 rounded-md outline-none "
                 name="insured"
                 type="text"
                 onChange={handleChange}
               />
             </FormGroup>
+            </Form>
           </ModalBody>
 
-          <ModalFooter>
-            <Button color="primary" onClick={() => insert()}>
-              {' '}
-              Insert{' '}
-            </Button>
-            <Button
-              className="btn btn-danger"
+          </div>
+
+            <div className='flex justify-evenly'>
+            <button className='text-2xl font-bold text-slate-300 w-1/2 py-1 bg-slate-500 hover:bg-slate-800' onClick={() => insert()}>
+              Insert
+            </button>
+            <button 
+              className='text-2xl font-bold text-slate-300 w-1/2 py-1 bg-slate-600 hover:bg-slate-800'
               onClick={() => closeModalInsert()}
-            >
-              {' '}
-              Cancel{' '}
-            </Button>
-          </ModalFooter>
+              >
+              Cancel
+            </button>
+            </div>
         </Modal>
       </div>
     </>
