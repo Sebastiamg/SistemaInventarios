@@ -6,6 +6,7 @@ export const HRExport = (props) => {
 
     const createExcel = async () => {
         try {
+            const hola = "hola"
             // new Excel doc
             const workBook = new Excel.Workbook();
 
