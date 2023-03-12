@@ -683,15 +683,6 @@ const Employees = () => {
       })
       .catch(err => console.error(err))
 
-    // console.log({
-    //   addmisionDate: userObj.admissionDate,
-    //   remDays: userObj.remainingDays,
-    //   additionalYearsToFillNewVacDates: userObj.oldAditionalDays,
-    //   completeYearsWorked: userObj.completeYearsWorked,
-
-    //   userVacations: userObj.vacations
-    // })
-    console.log(userObj.vacations)
   }
 
   return (
