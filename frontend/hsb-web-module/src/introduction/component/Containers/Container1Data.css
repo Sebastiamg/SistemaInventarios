@@ -11,6 +11,10 @@
     /*display: none;   Ocultar scroll */
 }
 
+#tableExport {
+    display: none
+}
+
 #tableDad {
     max-width: 98%;
     position: relative;

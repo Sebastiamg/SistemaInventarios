@@ -53,6 +53,20 @@ async function getUsers() {
   }
 }
 
+const fun3 = async () => { 
+  async function getUser () {   
+        const res = await axios.get('http://localhost/rest-api/api/get_user.php')
+          if(typeof(res.data) == "string" ) {
+              return console.log("Sin usuarios registrados");
+          } else {
+              let user = res.data
+              return await user
+          }
+  }    
+  return getUser();
+}
+
+
 //UPDATE USER
 async function apiUpdateUser(props) {
   const updatedUser = props
@@ -97,16 +111,6 @@ async function getItems() {
   }
 }
 
-const funExport = async () => {
-  async function getExport() {
-    const res = await axios.get(
-      'http://localhost/rest-api/api/export_excel.php',
-    )
-  }
-
-  return getExport()
-}
-
 //UPDATE ITEMS
 async function updateItem(props) {
   const item = props
@@ -138,6 +142,65 @@ function apiLiquidacionCompra(props) {
     })
 }
 
+// -----------------------------------------------------------------
+function apiUpdate(props) {
+  const details = JSON.stringify({
+      brand: props["brand"], 
+      value: props["value"],
+      months_de:props["months_de"], 
+      supplier: props["supplier"],
+      re_value: props["re_value"], 
+      annual_de: props["annual_de"], 
+      montly_de: props["montly_de"],
+      value_books:props["value_books"],
+      responsible: props["responsible"], 
+      observation: props["observation"], 
+      insured: props["insured"],
+      itemType: props["itemType"]
+  })
+  // console.log(details)
+  const item = { "item": props["item"], "name": props["name"], "acquisition_date": props["acquisition_date"], "statusD": props["statusD"], "details": `${details}` }
+  axios.post('http://localhost/rest-api/api/update_item.php', item)
+      .then((res) => console.log(res.data))
+      .catch(function (error) { console.log(error); })
+}
+
+function apiCreate(props) {
+  const details = JSON.stringify({
+      brand: props["brand"], 
+      value: props["value"],
+      months_de:props["months_de"], 
+      supplier: props["supplier"],
+      re_value: props["re_value"],
+      annual_de: props["annual_de"], 
+      montly_de: props["montly_de"],
+      value_books:props["value_books"], 
+      observation: props["observation"], 
+      responsible: props["responsible"], 
+      insured: props["insured"],
+      itemType: props["itemType"]
+  })
+  const item = { "item": props["item"], "name": props["name"], "acquisition_date": props["acquisition_date"], "statusD": props["statusD"], "details": `${details}` }
+  axios.post('http://localhost/rest-api/api/create_item.php', item)
+      .then((res) => console.log(res.data))
+      .catch(function (error) { console.log(error); })
+}
+
+const fun2 = async () => { 
+  async function getItems () {   
+        const res = await axios.get('http://localhost/rest-api/api/get_item.php')
+          if(typeof(res.data) == "string" ) {
+              return console.log("No hay nada en la base de datos");
+          } else {
+              let items = res.data
+              return items
+          }
+  }    
+  return getItems();
+}
+// -----------------------------------------------------------------
+
+
 const api = {
   apiTokenAcces,
   apiTokenAccesId,
@@ -146,9 +209,13 @@ const api = {
   createItem,
   updateItem,
   getItems,
-  funExport,
   getUsers,
   apiUpdateUser,
   apiLiquidacionCompra,
+  fun3,
+  fun2,
+  apiUpdate,
+  apiCreate
+
 }
 export default api
