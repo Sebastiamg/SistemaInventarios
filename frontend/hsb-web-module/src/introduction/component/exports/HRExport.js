@@ -25,6 +25,7 @@ export const HRExport = (props) => {
             const vacations = vac.sort((a,b) => new Date(b.startVacationDay) - new Date(a.startVacationDay))
 
             vacations.forEach(singleData => {
+                console.log(singleData)
                 workSheet.addRow(singleData)
             })
 
@@ -77,7 +78,7 @@ export const HRExport = (props) => {
                 document.body.appendChild(a);
                 a.href = url;
                 a.download = `${userName}.xlsx`;
-                a.click();
+                // a.click();
             })
 
         } catch (err) {

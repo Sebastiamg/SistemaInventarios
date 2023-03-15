@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Container, Modal, ModalBody, FormGroup, Form } from 'reactstrap'
 import NavBar from '../navBar/navBar'
 import api from '../../../services'
-import { Switch } from 'react-router-dom'
+import FAExport from '../exports/FAExport'
+
 
 const Container1Data = () => {
   const [ocModalAdd, setOcModalAdd] = useState(false)
@@ -10,6 +11,7 @@ const Container1Data = () => {
   const [itemObj, setItemObj] = useState({})
   const [itemsLenght, setItemsLenght] = useState(0)
   const [activeUserName, setActiveUserName] = useState([])
+  const [ocModalWarning, setOcModalWarning] = useState(false)
 
   const [newItemObj, setNewItemObj] = useState({
     acquisition_date: '',
@@ -27,6 +29,8 @@ const Container1Data = () => {
     status: 1,
     responsible: '',
   })
+
+  const [allItems, setAllItems] = useState([]);
 
   useEffect(() => {
     getAllItems(false)
@@ -61,6 +65,9 @@ const Container1Data = () => {
 
         let inactiveItems = []
 
+        let electronicItems = [];
+        let furnitureAndFixtures = []
+
         if (res !== null) {
           res.items.map((item) => {
             const itemDetails = item.assetDetails.replace(/&quot;/g, '"')
@@ -82,16 +89,17 @@ const Container1Data = () => {
               responsible: fixedItemDetails.responsible,
             }
 
-            // ------------- filtrar
+
+            const itemType = allInfoItem.itemType.toLowerCase()
+
+            if (itemType === "electronicequipment") {
+              electronicItems.push(allInfoItem)
+            } else if(itemType === "furnitureandfixtures") {
+              furnitureAndFixtures.push(allInfoItem)
+            }
+            setAllItems([...electronicItems])
 
             const checkDepreItem = filterDepre(allInfoItem)
-
-            // -------------
-            // return item.assetActive === '1' &&
-            //   checkDepreItem.nexToDepre === true
-            //   ? (activeDepreItems.push(fixedItem),
-            //     allInfoDepreItems.push(checkDepreItem)) :
-            //   (activeItems.push(fixedItem), allInfoItems.push(checkDepreItem))
 
             // console.log(fixedItem)
             setItemsLenght(res.items.length || 0)
@@ -152,7 +160,7 @@ const Container1Data = () => {
       TR.classList.add('h-16', 'border-b-2', 'border-zinc-400', 'text-center')
 
       if (allInfoItems[index].nexToDepre) {
-        TR.classList.add('bg-stone-300')
+        TR.classList.add('bg-red-300')
       }
 
       const btn = document.createElement('BUTTON')
@@ -480,6 +488,80 @@ const Container1Data = () => {
       .catch((err) => console.log(err))
   }
 
+  // open modal warning (copy items)
+    function openModalWarning() {
+      let copiedItem = itemObj
+      setOcModalWarning(true)
+      return copiedItem
+    }
+    function closeModalWarning() {
+      setOcModalWarning(false)
+    }
+
+    function createItemCopied(e) {
+      e.preventDefault()
+      let copiedItem = openModalWarning()
+      const itemDetails = JSON.stringify({
+        brand: copiedItem.brand,
+        value: copiedItem.value,
+        months_de: copiedItem.months_de,
+        supplier: copiedItem.supplier,
+        re_value: copiedItem.re_value,
+        annual_de: copiedItem.annual_de,
+        montlhy_de: copiedItem.montlhy_de,
+        value_books: copiedItem.value_books,
+        observation: copiedItem.observation,
+        insured: copiedItem.insured,
+        itemType: 'ElectronicEquipment',
+        responsible: copiedItem.responsible,
+      })
+  
+      const newCopiedItem = {
+        item: itemsLenght + 1 ,
+        name: copiedItem.assetName,
+        acquisition_date: copiedItem.assetPurchaseDate,
+        statusD: 1,
+        details: itemDetails,
+      }
+      const oldItemDetails = JSON.stringify({
+        brand: copiedItem.brand,
+        value: copiedItem.value,
+        months_de: copiedItem.months_de,
+        supplier: copiedItem.supplier,
+        re_value: copiedItem.re_value,
+        annual_de: copiedItem.annual_de,
+        montlhy_de: copiedItem.montlhy_de,
+        value_books: copiedItem.value_books,
+        observation: copiedItem.observation,
+        insured: copiedItem.insured,
+        itemType: 'ElectronicEquipment',
+        responsible: copiedItem.responsible,
+      })
+  
+      const oldCopiedItem = {
+        item: itemsLenght,
+        name: copiedItem.assetName,
+        acquisition_date: copiedItem.assetPurchaseDate,
+        statusD: 0,
+        details: oldItemDetails,
+      }
+
+      api.createItem(newCopiedItem)
+        api.updateItem(oldCopiedItem)
+        .then(res=>{
+          console.log(res)
+        }).catch((err)=> console.log(err))
+      .then((res => {
+        console.log(res)
+        setOcModalWarning(false)
+        setOcModalUpdate(false)
+        getAllItems()
+      }))
+      .catch((err)=> console.log(err))
+    }
+
+    
+
   return (
     <>
       <NavBar />
@@ -499,6 +581,9 @@ const Container1Data = () => {
               />
               <i className="border-l-2 px-2 fa-solid fa-magnifying-glass"></i>
             </div>
+            <FAExport 
+                allItems = {allItems}
+            />
             <button
               className="mx-3 border-2 border-slate-600 p-1 rounded-md bg-slate-500 hover:bg-slate-600 text-slate-50 px-3 py-2"
               onClick={openModal}
@@ -682,6 +767,9 @@ const Container1Data = () => {
               </FormGroup>
             </Form>
           </ModalBody>
+          <div className='flex justify-evenly'>
+          <button className='mb-4 w-25 py-2 font-semibold bg-slate-500 text-slate-300 text-md rounded-md hover:bg-slate-700' onClick={openModalWarning}>Copy Item</button>
+          </div>
         </div>
         <div className="flex justify-evenly">
           <button
@@ -880,6 +968,20 @@ const Container1Data = () => {
             Cancel
           </button>
         </div>
+      </Modal>
+
+      {/* Modal Warning */}
+      <Modal isOpen = {ocModalWarning}>
+        <div className='bg-slate-200'>
+         <h1 className='text-center w-full font-semibold my-2 text-red-600'>⚠️Warning⚠️</h1>
+        <ModalBody>
+          <h3 className='text-lg text-center font-semibold'>ARE YOU SURE YOU WANT TO COPY THIS DATA?</h3>
+        </ModalBody>
+        <div className='flex justify-evenly'>
+          <button className='text-2xl text-slate-300 w-1/2 bg-slate-500 py-1 font-bold' onClick={createItemCopied} >Accept</button> 
+          <button className='text-2xl text-slate-300 w-1/2 bg-slate-600 py-1 font-bold hover:bg-slate-800'  onClick={closeModalWarning}>Cancel</button> 
+        </div>           
+      </div>    
       </Modal>
     </>
   )
