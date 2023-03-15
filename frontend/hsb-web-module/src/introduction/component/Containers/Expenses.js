@@ -150,9 +150,9 @@ const Expenses = () => {
     let newValue = form
     newValue.item = parseInt(
       newValue.item +
-        newValue.brand.length +
-        newValue.value.length +
-        Math.floor(Math.random() * 1000),
+      newValue.brand.length +
+      newValue.value.length +
+      Math.floor(Math.random() * 1000),
     )
 
     url.includes('/expenses/')

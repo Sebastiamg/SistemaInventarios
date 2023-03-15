@@ -57,6 +57,11 @@ const Employees = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vacation.endVacationDay, vacation.startVacationDay])
 
+  useEffect(() => {
+    // getAllUsers();
+    console.log(userObj.remainingDays)
+  }, [userObj.remainingDays])
+
   // get all user function
   function getAllUsers(userName) {
     Api.getUsers()
@@ -196,7 +201,6 @@ const Employees = () => {
     let userObject = !existOrNot ? userObj.user : userObj;
 
     if (type === "takenDays") {
-      // console.log(userObj.takenDays)
       //cuado añado fecha
       const newTakenDays = operation === "substract" ?
         userObject.takenDays - quantity :
@@ -204,7 +208,9 @@ const Employees = () => {
 
       setUserObj(actualValues => ({
         ...actualValues,
-        takenDays: newTakenDays
+        takenDays: operation === "substract" ?
+          actualValues.takenDays - quantity :
+          actualValues.takenDays + quantity
       }))
     } else if (type === "addedDays") {
       const newAdditionalDays = operation === "add" ?
@@ -495,11 +501,13 @@ const Employees = () => {
         })
 
         const workingDays = getWorkingDays(startEndVacation);
-        const newRemainingDays = userObject.remainingDays + workingDays;
+        const newRemainingDays = userObj.remainingDays + workingDays;
+        console.log(userObj);
+        // make changes here -----------------------------------------
 
         setUserObj(actualValues => ({
           ...actualValues,
-          remainingDays: newRemainingDays,
+          remainingDays: actualValues.remainingDays + workingDays,
           vacations: newVacationArr,
         }));
 
@@ -551,6 +559,7 @@ const Employees = () => {
         }
       ]
     }))
+
   }
 
   //add permission row
