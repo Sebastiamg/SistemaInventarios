@@ -78,7 +78,7 @@ export const HRExport = (props) => {
                 document.body.appendChild(a);
                 a.href = url;
                 a.download = `${userName}.xlsx`;
-                // a.click();
+                a.click();  
             })
 
         } catch (err) {

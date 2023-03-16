@@ -18,23 +18,21 @@ const Employees = () => {
 
   //new user
   const [newUserObj, setNewUserObj] = useState({
-    details: JSON.stringify({
-      lastname: "",
-      phone: 0,
+    details: {
       vacations: [],
       addedDays: 0,
       takenDays: 0,
       permissions: [],
       admissionDate: "",
-      remainingDays: 11,
-      // ----new-----
-
-    }),
+      remainingDays: 0
+    },
     id: "",
     name: "",
     email: "",
     password: "",
-    active: 1
+    active: 1,
+    lastname: "",
+    phone: 0,
   })
 
   const date = new Date().toJSON().substring(0, 10);
@@ -56,11 +54,6 @@ const Employees = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vacation.endVacationDay, vacation.startVacationDay])
-
-  useEffect(() => {
-    // getAllUsers();
-    console.log(userObj.remainingDays)
-  }, [userObj.remainingDays])
 
   // get all user function
   function getAllUsers(userName) {
@@ -287,7 +280,6 @@ const Employees = () => {
     // difference in miliseconds
     let diference = nowDate.getTime() - admsDate.getTime();
 
-    // ---
     const newAdmsDate = new Date(diference);
     const yearZero = new Date("01-01-1970");
 
@@ -337,7 +329,7 @@ const Employees = () => {
   function resetVacations(aditionalInfo) {
     setUserObj(actualValues => ({
       ...actualValues,
-      remainingDays: 11 + aditionalInfo.oldAditionalDays,
+      remainingDays: aditionalInfo.oldAditionalDays,
       takenDays: 0,
       addedDays: 0,
       //reset vacations
@@ -606,8 +598,10 @@ const Employees = () => {
   const regexs = {
     id: /^\d{7}$/,
     name: /^[a-zA-ZÀ-ÿ\s]{3,15}$/,
+    lastname: /^[a-zA-ZÀ-ÿ\s]{3,15}$/,
     email: /^[a-zA-Z0-9_.-]+@(\w{3,20})(\.[a-zA-Z]{2,5}){1,2}$/i,
     password: /^.{6,15}$/,
+    phone: /^\d{10}$/
   };
 
   function handleUserChange(e) {
@@ -643,8 +637,15 @@ const Employees = () => {
   }
 
   function createSuper() {
-    const newUser = newUserObj;
-    const validation = Object.values(newUser).map(value => value === "").some(x => x === true);
+    const newUser = {
+      ...newUserObj, 
+      details: JSON.stringify({
+        ...newUserObj.details, 
+        lastname: newUserObj.lastname, 
+        phone: newUserObj.phone
+      })
+    };
+    const validation = Object.values(newUser).map(value => value === "" || value === 0).some(x => x === true);
     if (validation) {
       console.log("LLena bien todos los campos")
     } else {
@@ -667,10 +668,6 @@ const Employees = () => {
       addedDays: userObj.addedDays,
       takenDays: userObj.takenDays,
       permissions: [...userObj.permissions],
-
-      // ----New---- //
-      // oldAditionalDays: userObj.oldAditionalDays,
-      // completeYearsWorked: userObj.completeYearsWorked
     };
 
     const updatedUser = {
@@ -933,14 +930,28 @@ const Employees = () => {
                 </FormGroup>
 
                 <FormGroup className='w-1/2 flex flex-col px-2 '>
+                  <label className='font-bold mr-4'>Phone: </label>
+                  <div className='flex w-full items-center justify-between border-2 p-1 border-slate-400 rounded-md bg-white' id="userphone">
+                    <input className='w-5/6 outline-none' type="number" name='phone' onChange={handleUserChange} />
+                    <div></div>
+                  </div>
+                </FormGroup>
+              </div>
+              <div className='flex flex-wrap justify-evenly items-start'>
+                <FormGroup className='w-1/2 flex flex-col px-2 '>
                   <label className='font-bold mr-4'>Name: </label>
                   <div className='flex w-full items-center justify-between border-2 p-1 border-slate-400 rounded-md bg-white' id="username">
                     <input className='w-5/6 outline-none' type="text" name='name' onChange={handleUserChange} />
                     <div></div>
                   </div>
                 </FormGroup>
-              </div>
-              <div className='flex flex-wrap justify-evenly items-start'>
+                <FormGroup className='w-1/2 flex flex-col px-2 '>
+                  <label className='font-bold mr-4'>Surname: </label>
+                  <div className='flex w-full items-center justify-between border-2 p-1 border-slate-400 rounded-md bg-white' id="userlastname">
+                    <input className='w-5/6 outline-none' type="text" name='lastname' onChange={handleUserChange} />
+                    <div></div>
+                  </div>
+                </FormGroup>
                 <FormGroup className='w-full flex flex-col px-2 '>
                   <label className='font-bold mr-4'>Email: </label>
                   <div className='flex w-full items-center justify-between border-2 p-1 border-slate-400 rounded-md bg-white' id="useremail">

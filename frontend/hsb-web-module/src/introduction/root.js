@@ -16,7 +16,9 @@ function SiginUp(props) {
     takenDays: 0,
     permissions: [],
     admissionDate: "",
-    remainingDays: 11
+    remainingDays: 0,
+    lastname: lastname,
+    phone: phoneNumber,
   };
 
 
