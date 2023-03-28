@@ -3,9 +3,9 @@
 class Database{
     // specify your own database credentials
     private $host = "localhost";
-    private $db_name = "hsbSoft";
-    private $username = "root";
-    private $password = "";
+    private $db_name = "hsbsoft";
+    private $username = "gibran";
+    private $password = "password";
     public $conn;
  
     // get the database connection
