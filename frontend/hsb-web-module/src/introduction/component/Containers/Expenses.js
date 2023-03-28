@@ -10,18 +10,40 @@ const Expenses = () => {
   let dataExpenses = [];
   let dataUsers = [];
   let result=[];
+  let dataCatalog=[];
+  const [datac, setDatac] = useState(dataCatalog);
   const [data, setData] = useState(dataExpenses);
-  const [datas, setDatas] = useState(dataUsers);
+  const [datas] = useState(dataUsers);
   const [modalUpdate, setModalUpdate] = useState(false);
   const [modalInsert, setModalInsert] = useState(false);
   const [form, setForm] = useState({item: "" ,name: "" ,brand: "" ,acquisition_date: "" ,statusD: "" ,value: "" ,supplier: "" , responsible: "", observation: ""})
+  const [formData, setFormData] = useState({catalogName: '', id: '' });
   const [search, setSearch] = useState("");
   const [order, setOrder] = useState("ASC");
-  const [mesSeleccionado, setMesSeleccionado] = useState("");
+  const [total, setTotal] = useState(0);
+  const [month, setMonth] = useState('');
+  const [successMessage, setSuccessMessage] = useState([dataExpenses]);
   
+  const getCatalog = async () => {
+    const itemsc = await Api.apiGetCatalog();
+    if(typeof(itemsc) == "undefined"){
+      // console.log("sin datos disponibles")
+      return null;
+    } else {
+
+      itemsc.map( elm => {
+          const itemc =  {
+                  id: elm.id,
+                  catalogName: elm.catalogName,
+              }
+              return dataCatalog.push(itemc)
+        })
+      };
+  };
+  getCatalog();
 
   const getDatas = async () => {
-    const itemse = await Api.fun3();
+    const itemse = await Api.apiGetUser();
     if(typeof(itemse) == "undefined"){
       // console.log("sin datos disponibles")
       return null;
@@ -43,7 +65,7 @@ const Expenses = () => {
   getDatas();
 
   const getData = async () => {
-    const items = await Api.fun2();
+    const items = await Api.apiGetItem();
     if(typeof(items) == "undefined"){
       return null;
     } else {
@@ -61,6 +83,7 @@ const Expenses = () => {
                   value: details.value,
                   supplier: details.supplier,
                   responsible: details.responsible,
+                  description: details.description,
                   observation: details.observation,
                   itemType: details.itemType
                 }
@@ -73,9 +96,7 @@ const Expenses = () => {
         }
       };
   };
-  useEffect(() => {
-    getData();
-  }, []);
+  getData();
 
   const searcher = (e) =>{
     setSearch(e.target.value)
@@ -91,7 +112,7 @@ const Expenses = () => {
   }
   
   const sorting = (col) => {
-    if (order == "ASC"){
+    if (order === "ASC"){
       const sorted = [...data].sort((a,b) =>
       a[col].toLowerCase() > b[col].toLowerCase() ? 1: -1
       );
@@ -107,50 +128,9 @@ const Expenses = () => {
     }
   }
 
-  const handleChangeM = (event) => {
-    setMesSeleccionado(event.target.value);
-  };
-
-  const filteredData = data.filter(
-    (dato) => dato.acquisition_date.slice(5, 7) === mesSeleccionado
-  );
-  
-  /*
-  const exportToExcel = () => {
-    const workbook = new ExcelJS.Workbook();
-    const worksheet = workbook.addWorksheet("Datos");
-
-    // Definir las columnas de la hoja de cálculo
-    worksheet.columns = [
-      { header: "name", key: "name", width: 10 },
-      //{ header: "brand", key: "brand", width: 30 },
-      //{ header: "Correo electrónico", key: "email", width: 30 },
-    ];
-
-    // Añadir los datos a la hoja de cálculo
-    /*this.state.data.forEach((dato) => {
-      worksheet.addRow({
-        //id: dato.id,
-        name: dato.name,
-        //email: dato.email,
-
-      });
-    });
-
-    // Descargar el archivo Excel
-    workbook.xlsx.writeBuffer().then((buffer) => {
-      const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "datos.xlsx";
-      a.click();
-    });
-  };*/
-
   const createExcel = async () => {
     // Obtener los datos de la API
-    const items = await Api.fun2();
+    const items = await Api.apiGetItem();
     
     // Crear un nuevo libro de Excel y agregar una nueva hoja
     const workbook = new ExcelJS.Workbook();
@@ -216,17 +196,6 @@ const Expenses = () => {
       column.width = column.header.length < 18 ? 18 : column.header.length;
     });
 
-    const activeItems = items.filter((elm) => elm.assetActive === "1");
-
-    // Sumar los valores de "value" de los elementos filtrados
-    const totalValue = activeItems.reduce((acc, elm) => {
-      const details = JSON.parse(elm.assetDetails.replace(/&quot;/g, '"'));
-      return acc + parseFloat(details.value);
-    }, 0);
-
-    worksheet.addRow([]);
-    worksheet.addRow(['Total value:', totalValue]);
-
     // Guardar el libro de Excel
     const buffer = await workbook.xlsx.writeBuffer();
     const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
@@ -237,10 +206,35 @@ const Expenses = () => {
     link.click();
   };
 
+  const handleKeyPress = (event) => {
+    // Obtener el valor del carácter ingresado
+    const charCode = event.which ? event.which : event.keyCode;
+    const char = String.fromCharCode(charCode);
+
+    // Validar que el carácter ingresado es un número
+    if (!/^\d+$/.test(char)) {
+      event.preventDefault();
+    }
+  }
+
   const calculateTotal = () => {
-    return data.reduce((total, dato) => total + parseFloat(dato.value), 0);
+    let sum = 0;
+    data.forEach(dato => {
+      if (dato.statusD === '1' && (month === '' || dato.acquisition_date.includes(month))) {
+        sum += parseFloat(dato.value);
+      }
+    });
+    setTotal(sum);
   };
-   
+
+  useEffect(() => {
+    calculateTotal();
+  }, [month, data]);
+
+  const handleSelectChange = (event) => {
+    setMonth(event.target.value);
+  };
+
   const showModalUpdate = (dato) => {
     setForm(dato);
     setModalUpdate(true);
@@ -261,6 +255,7 @@ const Expenses = () => {
       array[counter].value = dato.value;
       array[counter].supplier = dato.supplier;
       array[counter].responsible = dato.responsible;
+      array[counter].description = dato.description;
       array[counter].observation = dato.observation;
       array[counter].statusD = dato.statusD;
     //console.log(array[counter])
@@ -284,8 +279,14 @@ const Expenses = () => {
 
         Api.apiCreate(newValue);
         setData([...dataExpenses, newValue]);
-        setModalInsert(false)
+        setModalInsert(false);
+        setSuccessMessage('Successfully created');
+    setTimeout(() => {
+      setSuccessMessage('');
+    }, 3000);
+        
   };
+  
   const handleChange = (e) => {
     setForm({...form, [e.target.name]: e.target.value})
   };
@@ -300,8 +301,8 @@ const Expenses = () => {
               <input type="search" className='rounded-md outline-none' id='search' placeholder='Search Expenses'  onChange={searcher} value={search} />
               <i className="border-l-2 px-2 fa-solid fa-magnifying-glass"></i>
             </div>
-            <button className='mx-3 border-2 border-slate-600 p-1 rounded-md bg-slate-500 hover:bg-slate-600 text-slate-50 px-3 py-2' onClick={() => createExcel()}>Export</button> 
-            <button className='mx-3 border-2 border-slate-600 p-1 rounded-md bg-slate-500 hover:bg-slate-600 text-slate-50 px-3 py-2' onClick={() => showModalInsert()}>Add Expense</button>
+            <button className='mx-3 border-2 border-slate-600 p-1 rounded-md bg-slate-500 hover:bg-slate-600 text-slate-50 px-3 py-2' onClick={() => createExcel()}><svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="20" height="20"><path d="M9.878,18.122a3,3,0,0,0,4.244,0l3.211-3.211A1,1,0,0,0,15.919,13.5l-2.926,2.927L13,1a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1l-.009,15.408L8.081,13.5a1,1,0,0,0-1.414,1.415Z"/><path d="M23,16h0a1,1,0,0,0-1,1v4a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V17a1,1,0,0,0-1-1H1a1,1,0,0,0-1,1v4a3,3,0,0,0,3,3H21a3,3,0,0,0,3-3V17A1,1,0,0,0,23,16Z"/></svg></button> 
+            <button className='mx-3 border-2 border-slate-600 p-1 rounded-md bg-slate-500 hover:bg-slate-600 text-slate-50 px-3 py-2' onClick={() => showModalInsert()}>+</button>
           </div>
       </div>
       <Container className='text-xl table-responsive'>
@@ -335,38 +336,64 @@ const Expenses = () => {
           </tbody>
         </Table>
       </Container>
+
+      {/* <Container className='text-xl table-responsive'>
+        <Table className='w-full mb-4 text-center table-fixed'>
+          <thead className='w-full border-b-2 border-slate-500'>
+            <tr className='h-16 w-full'>
+              <th>▼</th>
+              <th>item</th>
+              <th>catalgo</th>
+            </tr>
+            </thead>
+          <tbody>
+            {datac.map( (datoc) => ( 
+              <tr key={datoc.itemc}>
+                <th><button class="bg-slate-500 hover:bg-slate-600 transition-all w-3/5 border-2 font-semibold py-1 border-slate-600 text-slate-100 rounded-md">Details</button></th>
+               
+                <td>{datoc.id}</td>
+                <td>{datoc.catalogName}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </Container> */}
       <Container className='text-xl table-responsive'>
       <div className='border-3 border-slate-500 rounded-xl mx-5 my-4 shadow-md shadow-slate-60'>
-      <Table className='w-full mb-4 text-center table-fixed'>
+        <Table className='w-full mb-4 text-center table-fixed'>
           <tbody>
               <tr >
                 <th>Total for month</th>
                 <td>
-                  <select value={mesSeleccionado} onChange={handleChangeM}
+                  <select value={month} onChange={handleSelectChange}
                   class="select outline-blue-500 w-50 max-w-xs border-2 p-1 border-slate-400 rounded-md">
-                    <option key={calculateTotal} select>Select month</option>
-                    <option value="01">January</option>
-                    <option value="02">February</option>
-                    <option value="03">March</option>
-                    <option value="04">April</option>
-                    <option value="05">May</option>
-                    <option value="06">June</option>
-                    <option value="07">July</option>
-                    <option value="08">August</option>
-                    <option value="09">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
+                    <option selected value="">All month</option>
+                    <option value="2023-01">January</option>
+                    <option value="2023-02">February</option>
+                    <option value="2023-03">March</option>
+                    <option value="2023-04">April</option>
+                    <option value="2023-05">May</option>
+                    <option value="2023-06">June</option>
+                    <option value="2023-07">July</option>
+                    <option value="2023-08">August</option>
+                    <option value="2023-09">September</option>
+                    <option value="2023-10">October</option>
+                    <option value="2023-11">November</option>
+                    <option value="2023-12">December</option>
                   </select>
                 </td>
-                <td>{filteredData.reduce((total, dato) => total + parseFloat(dato.value), 0)}</td>
+                <td>{total}</td>
               </tr>
           </tbody>
         </Table>
-
-        
       </div>
+      {successMessage && (
+        <div style={{ position: 'fixed', bottom: '20px', right: '20px', backgroundColor: 'limegreen', color: 'white', padding: '10px', borderRadius: '5px' }}>
+          {successMessage}
+        </div>
+      )}
       </Container>
+
       <Modal isOpen={modalUpdate}>
           <ModalHeader className='text-center bg-slate-700'>
             <h3 className='font-bold text-center text-2xl py-2 text-slate-200'>Edit Register</h3>
@@ -379,15 +406,21 @@ const Expenses = () => {
             </FormGroup>
             <FormGroup>
               <label className='font-bold mr-4'> Brand: </label>
-              <input  className='w-full border-2 p-1 border-slate-400 rounded-md outline-none'  name="brand" type="text" onChange={handleChange} value={form.brand} />
-            </FormGroup>
+{/*               <input  className='w-full border-2 p-1 border-slate-400 rounded-md outline-none'  name="brand" type="text" onChange={handleChange} value={form.brand} />
+ */}            
+ <select class="select outline-blue-500 w-full border-2 p-1 border-slate-400 rounded-md" name="brand" onChange={handleChange} value={form.brand}>
+                {datac.map( (datoc) => ( 
+                  <option key={datoc.id} value={datoc.catalogName}>{datoc.catalogName}</option>
+                ))}
+              </select>
+ </FormGroup>
             <FormGroup>
               <label className='font-bold mr-4'>Acquisition date: </label>
               <input  className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' name="acquisition_date" type="date" onChange={handleChange} value={form.acquisition_date}/>
             </FormGroup>
             <FormGroup>
               <label className='font-bold mr-4'>Value: </label>
-              <input  className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' name="value" type="text" onChange={handleChange} value={form.value}/>
+              <input  onKeyPress={handleKeyPress} className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' name="value" type="text" onChange={handleChange} value={form.value}/>
             </FormGroup>
             <FormGroup>
               <label className='font-bold mr-4'>Supplier: </label>
@@ -411,6 +444,10 @@ const Expenses = () => {
             <FormGroup>
               <label className='font-bold mr-4'>Observation: </label>
               <textarea  className='w-full border-2 p-1 border-slate-400 rounded-md outline-none resize-none' name="observation" type="text" onChange={handleChange} value={form.observation}/>
+            </FormGroup>
+            <FormGroup>
+              <label className='font-bold mr-4'>Description: </label>
+              <textarea  className='w-full border-2 p-1 border-slate-400 rounded-md outline-none resize-none' name="description" type="text" onChange={handleChange} value={form.description}/>
             </FormGroup>          
           </ModalBody>
           </div>
@@ -431,7 +468,12 @@ const Expenses = () => {
             </FormGroup>
             <FormGroup>
               <label className='font-bold mr-4'>Brand: </label>
-              <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' name="brand" type="text" onChange={handleChange}/>
+              <select class="select outline-blue-500 w-full file:border-2 p-1 border-slate-400 rounded-md" name="brand" onChange={handleChange}>
+              <option disabled selected>Select brand</option>
+                {datac.map( (datoc) => ( 
+                  <option key={datoc.id} value={datoc.catalogName}>{datoc.catalogName}</option>
+                ))}
+              </select>
             </FormGroup>
             <FormGroup>
               <label className='font-bold mr-4'>Acquisition date: </label>
@@ -439,7 +481,7 @@ const Expenses = () => {
             </FormGroup>
             <FormGroup>
               <label className='font-bold mr-4'>Value: </label>
-              <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' name="value" type="numbe" onChange={handleChange} />
+              <input onKeyPress={handleKeyPress} className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' name="value" type="numbe" onChange={handleChange} />
             </FormGroup>
             <FormGroup>
               <label className='font-bold mr-4'>Supplier: </label>
@@ -466,10 +508,14 @@ const Expenses = () => {
               <label className='font-bold mr-4'>Observation: </label>
               <textarea  className='w-full border-2 p-1 border-slate-400 rounded-md outline-none resize-none' name="observation" type="text" onChange={handleChange}/>
             </FormGroup>
+            <FormGroup>
+              <label className='font-bold mr-4'>Description: </label>
+              <textarea  className='w-full border-2 p-1 border-slate-400 rounded-md outline-none resize-none' name="description" type="text" onChange={handleChange}/>
+            </FormGroup>
           </ModalBody>
           </div>
           <div className='flex justify-evenly'>
-            <button className='text-2xl font-bold text-slate-300 w-1/2 py-1 bg-slate-500 hover:bg-slate-800' onClick={() => insert()} > Insert </button>
+            <button className='text-2xl font-bold text-slate-300 w-1/2 py-1 bg-slate-500 hover:bg-slate-800' onClick={() => insert()}> Insert </button>
             <button className='text-2xl font-bold text-slate-300 w-1/2 py-1 bg-slate-600 hover:bg-slate-800' color="danger" onClick={() => closeModalInsert()} > Cancel </button>
           </div>
       </Modal>

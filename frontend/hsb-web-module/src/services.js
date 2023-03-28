@@ -53,20 +53,6 @@ async function getUsers() {
   }
 }
 
-const fun3 = async () => { 
-  async function getUser () {   
-        const res = await axios.get('http://localhost/rest-api/api/get_user.php')
-          if(typeof(res.data) == "string" ) {
-              return console.log("Sin usuarios registrados");
-          } else {
-              let user = res.data
-              return await user
-          }
-  }    
-  return getUser();
-}
-
-
 //UPDATE USER
 async function apiUpdateUser(props) {
   const updatedUser = props
@@ -97,7 +83,6 @@ async function createItem(props) {
 }
 
 // GET ITEMS
-
 async function getItems() {
   const res = await axios.get('http://localhost/rest-api/api/get_item.php')
   if (typeof res.data == 'string') {
@@ -127,6 +112,27 @@ async function updateItem(props) {
   })
 }
 
+//catolog
+const apiGetCatalog = async () => { 
+  async function getUser () {   
+        const res = await axios.get('http://localhost/rest-api/api/get_catalog.php')
+          if(typeof(res.data) == "string" ) {
+              return console.log("Sin usuarios registrados");
+          } else {
+              let user = res.data
+              return await user
+          }
+  }    
+  return getUser();
+}
+function apiCreateCatalog(props) {
+  const item = { "id": props["id"], "catalogName": props["catalogName"]}
+  axios.post('http://localhost/rest-api/api/create_catalog.php', item)
+      .then((res) => console.log(res.data))
+      .catch(function (error) { console.log(error); })
+}
+
+
 // -----------------------------------------------------------------
 // Liquidacion de compra
 function apiLiquidacionCompra(props) {
@@ -154,6 +160,7 @@ function apiUpdate(props) {
       montly_de: props["montly_de"],
       value_books:props["value_books"],
       responsible: props["responsible"], 
+      description: props["description"], 
       observation: props["observation"], 
       insured: props["insured"],
       itemType: props["itemType"]
@@ -174,7 +181,8 @@ function apiCreate(props) {
       re_value: props["re_value"],
       annual_de: props["annual_de"], 
       montly_de: props["montly_de"],
-      value_books:props["value_books"], 
+      value_books:props["value_books"],
+      description: props["description"], 
       observation: props["observation"], 
       responsible: props["responsible"], 
       insured: props["insured"],
@@ -186,7 +194,7 @@ function apiCreate(props) {
       .catch(function (error) { console.log(error); })
 }
 
-const fun2 = async () => { 
+const apiGetItem = async () => { 
   async function getItems () {   
         const res = await axios.get('http://localhost/rest-api/api/get_item.php')
           if(typeof(res.data) == "string" ) {
@@ -198,9 +206,20 @@ const fun2 = async () => {
   }    
   return getItems();
 }
+
+const apiGetUser = async () => { 
+  async function getUser () {   
+        const res = await axios.get('http://localhost/rest-api/api/get_user.php')
+          if(typeof(res.data) == "string" ) {
+              return console.log("Sin usuarios registrados");
+          } else {
+              let user = res.data
+              return await user
+          }
+  }    
+  return getUser();
+}
 // -----------------------------------------------------------------
-
-
 const api = {
   apiTokenAcces,
   apiTokenAccesId,
@@ -212,10 +231,11 @@ const api = {
   getUsers,
   apiUpdateUser,
   apiLiquidacionCompra,
-  fun3,
-  fun2,
+  apiGetUser,
+  apiGetItem,
   apiUpdate,
-  apiCreate
-
+  apiCreate,
+  apiCreateCatalog,
+  apiGetCatalog
 }
 export default api
