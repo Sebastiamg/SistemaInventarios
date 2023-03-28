@@ -65,7 +65,7 @@ const Employees = () => {
         res.data.map(user => {
           // change &quot; to "
           const userDetail = user.details.replace(/&quot;/g, '"');
-
+          console.log(user);
           // new fixedUser
           const fixedUser = { ...user, details: JSON.parse(userDetail) };
 

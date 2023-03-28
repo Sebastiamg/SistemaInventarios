@@ -57,6 +57,7 @@ const Container1Data = () => {
     api
       .getItems()
       .then((res) => {
+    
         let activeItems = []
         let activeDepreItems = []
 
@@ -91,6 +92,7 @@ const Container1Data = () => {
 
 
             const itemType = allInfoItem.itemType.toLowerCase()
+        
 
             if (itemType === "electronicequipment") {
               electronicItems.push(allInfoItem)
@@ -103,7 +105,7 @@ const Container1Data = () => {
 
             // console.log(fixedItem)
             setItemsLenght(res.items.length || 0)
-            return item.assetActive === '1'
+            return item.assetActive === '1'|| item.assetActive === 1
               ? checkDepreItem.nexToDepre === true
                 ? (activeDepreItems.push(fixedItem),
                   allInfoDepreItems.push(checkDepreItem))
@@ -113,7 +115,6 @@ const Container1Data = () => {
           })
 
           getActiveUsers()
-
           return fillTable(
             activeDepreItems.concat(activeItems),
             allInfoDepreItems.concat(allInfoItems),

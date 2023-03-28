@@ -42,7 +42,7 @@ function SiginUp(props) {
       firstName: /^[a-zA-ZÀ-ÿ\s]{3,10}$/,
       lastName: /^[a-zA-ZÀ-ÿ\s]{3,10}$/,
       phoneNumber: /^\d{10}$/,
-      idNumber: /^\d{7}$/,
+      idNumber: /^\d{10}$/,
       email: /^[-\w.%+]{3,25}@(?:[A-Z0-9-]{3,20}\.)[A-Z]{2,10}$/i,
       password: /^.{5,15}$/,
     };
@@ -149,7 +149,7 @@ function SiginUp(props) {
       setTimeout(() => {
 
         submitValue();
-        window.location.href = "/"
+        window.location.href = "/build"
 
       }, 500);
 

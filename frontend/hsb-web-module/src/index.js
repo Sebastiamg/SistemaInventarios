@@ -33,8 +33,8 @@ function IntoTokenVerify() {
           <Route exact path="/activities/humanResources/" component={Employees} />
           <Route exact path="/activities/expenses/" component={Expenses} />
           <Route exact path="/activities/fixedAssets/" component={Menu} />
-            <Route exact path="/activities/fixedAssets/electronicEquipment/" component={Container1Data} />
-            <Route exact path="/activities/fixedAssets/furnitures/" component={Container2Data} />
+          <Route exact path="/activities/fixedAssets/electronicEquipment/" component={Container1Data} />
+          <Route exact path="/activities/fixedAssets/furnitures/" component={Container2Data} />
           {/* form */}
           <Route exact path="/activities/form/" component={Form} />
         </BrowserRouter>

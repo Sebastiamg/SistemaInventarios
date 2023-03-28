@@ -37,7 +37,7 @@ function NavBar() {
           </button>
           {/* exit button */}
           <div  className='font-bold text-lg text-slate-200'>
-            <button translate="yes" onClick={()=>{sessionStorage.removeItem("tokenHsb");window.location.href="/"}} >Log Out</button>
+            <button translate="yes" onClick={()=>{sessionStorage.removeItem("tokenHsb");window.location.href="/build"}} >Log Out</button>
           </div>
         </div>
 
