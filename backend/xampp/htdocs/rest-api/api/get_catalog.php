@@ -20,14 +20,15 @@ $database = new Database(); //variable de la clase Database
 $db = $database->getConnection(); //variable con acceso a su función conexion
 
 //select all rows
-$sql = "SELECT id, catalogName FROM hsbcatalog ORDER BY id";
+$sql = "SELECT id, idCatalog, catalogDetailName FROM hsbcatalogoptions ORDER BY id";
 $query = $db -> prepare($sql);
 $query->execute();
 
 while( $row = $query->fetch()){
     $array[] = array(
         "id" => $row["id"],
-        "catalogName" => $row["catalogName"]
+        "idCatalog" => $row["idCatalog"],
+        "catalogDetailName" => $row["catalogDetailName"]
     );
 }
 

@@ -114,7 +114,7 @@ async function updateItem(props) {
 
 //catolog
 const apiGetCatalog = async () => { 
-  async function getUser () {   
+  async function getCatalog () {   
         const res = await axios.get('http://localhost/rest-api/api/get_catalog.php')
           if(typeof(res.data) == "string" ) {
               return console.log("Sin usuarios registrados");
@@ -123,13 +123,7 @@ const apiGetCatalog = async () => {
               return await user
           }
   }    
-  return getUser();
-}
-function apiCreateCatalog(props) {
-  const item = { "id": props["id"], "catalogName": props["catalogName"]}
-  axios.post('http://localhost/rest-api/api/create_catalog.php', item)
-      .then((res) => console.log(res.data))
-      .catch(function (error) { console.log(error); })
+  return getCatalog();
 }
 
 
@@ -188,8 +182,21 @@ function apiCreate(props) {
       insured: props["insured"],
       itemType: props["itemType"]
   })
-  const item = { "item": props["item"], "name": props["name"], "acquisition_date": props["acquisition_date"], "statusD": props["statusD"], "details": `${details}` }
+  const item = { 
+    "item": props["item"], 
+    "name": props["name"], 
+    "acquisition_date": props["acquisition_date"], 
+    "statusD": props["statusD"], 
+    "details": `${details}` 
+  }
   axios.post('http://localhost/rest-api/api/create_item.php', item)
+      .then((res) => console.log(res.data))
+      .catch(function (error) { console.log(error); })
+}
+
+function apiCreateCatalog(props) {
+  const item = { "id": props["id"], "idCatalog": props["idCatalog"], "catalogDetailName": props["catalogDetailName"]}
+  axios.post('http://localhost/rest-api/api/create_catalog_op.php', item)
       .then((res) => console.log(res.data))
       .catch(function (error) { console.log(error); })
 }

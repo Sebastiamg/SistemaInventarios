@@ -27,20 +27,23 @@ $catalog = new Catalog($db);  //variable con la calse usuario y el acceso a la c
 $data = json_decode(file_get_contents("php://input"));  ///??
 // echo $data;
 // set product property values
-$catalog->id = $data->id;
-$catalog->catalogName = $data->name;
+$catalog->id = $data->item;
+$catalog->idCatalog = $data->idCatalog;   //---------------
+$catalog->catalogDetailName = $data->catalogDetailName;
 
 // create the user
 if(
     !empty($catalog->id) &&
-    !empty($catalog->catalogName) &&
+    !empty($catalog->idCatalog) &&
+    !empty($catalog->catalogDetailName) &&
     $catalog->create()
 ){
+ 
     // set response code
     http_response_code(200);
  
     // display message: user was created
-    echo json_encode(array("message" => "Catalog was created."));
+    echo json_encode(array("message" => "catalog was created."));
 }
  
 // message if unable to create user

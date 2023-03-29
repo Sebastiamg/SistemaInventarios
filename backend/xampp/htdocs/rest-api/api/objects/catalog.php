@@ -4,11 +4,12 @@ class Catalog {
 
     // database connection and table name
     private $conn;
-    private $table_name = "hsbcatalog";     //------Table name-------
+    private $table_name = "hsbcatalogoptions";     //------Table name-------
 
     // object properties
     public $id;
-    public $catalogName;
+    public $idCatalog;
+    public $catalogDetailName;
 
     // constructor
     public function __construct($db)
@@ -23,18 +24,21 @@ class Catalog {
         $query = "INSERT INTO " . $this->table_name . "
             SET
                 id = :id,
-                catalogName = :catalogName";
+                idCatalog = :idCatalog,
+                catalogDetailName = :catalogDetailName";
 
         // prepare the query
         $stmt = $this->conn->prepare($query); //la prepara para ponerlo en la bd
 
         // sanitize --------- quita las etiquetas html y tranforma caracteres a codigo html
         $this->id = htmlspecialchars(strip_tags($this->id));
-        $this->catalogName = htmlspecialchars(strip_tags($this->catalogName));
+        $this->idCatalog = htmlspecialchars(strip_tags($this->idCatalog));
+        $this->catalogDetailName = htmlspecialchars(strip_tags($this->catalogDetailName));
 
         // bind the values ----- reemplaza o vincula los parametros(:id) por las variables de la clase  
         $stmt->bindParam(':id', $this->id);
-        $stmt->bindParam(':catalogName', $this->catalogName);
+        $stmt->bindParam(':idCatalog', $this->idCatalog);
+        $stmt->bindParam(':catalogDetailName', $this->catalogDetailName);
 
         // // hash the password before saving to database ------------Encripta? la contraseña
         // $password_hash = password_hash($this->password, PASSWORD_BCRYPT);
@@ -100,22 +104,24 @@ class Catalog {
         // if no posted password, do not update the password
         $query = "UPDATE " . $this->table_name . "
             SET
-            catalogName = :catalogName
+            idCatalog = :idCatalog,
+            catalogDetailName = :catalogDetailName
             WHERE id = :id";
 
         // prepare the query
         $stmt = $this->conn->prepare($query);
 
-
         // sanitize
-        $this->catalogName = htmlspecialchars(strip_tags($this->catalogName));
+        $this->idCatalog = htmlspecialchars(strip_tags($this->idCatalog));
+        $this->catalogDetailName = htmlspecialchars(strip_tags($this->catalogDetailName));
 
         // bind the values from the form
-        $stmt->bindParam(':catalogName', $this->catalogName);
+        $stmt->bindParam(':idCatalog', $this->idCatalog);
+        $stmt->bindParam(':catalogDetailName', $this->catalogDetailName);
 
         // unique ID of record to be edited
         $stmt->bindParam(':id', $this->id);
-
+        $stmt->bindParam(':catalogDetailName', $this->catalogDetailName);
         // execute the query
         if ($stmt->execute()) {
             return true;

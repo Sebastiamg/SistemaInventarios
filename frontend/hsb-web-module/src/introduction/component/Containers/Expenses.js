@@ -17,13 +17,60 @@ const Expenses = () => {
   const [modalUpdate, setModalUpdate] = useState(false);
   const [modalInsert, setModalInsert] = useState(false);
   const [form, setForm] = useState({item: "" ,name: "" ,brand: "" ,acquisition_date: "" ,statusD: "" ,value: "" ,supplier: "" , responsible: "", observation: ""})
-  const [formData, setFormData] = useState({catalogName: '', id: '' });
+  const [formData, setFormData] = useState({idCatalog: '', id: '', catalogDetailName: ''});
   const [search, setSearch] = useState("");
   const [order, setOrder] = useState("ASC");
   const [total, setTotal] = useState(0);
   const [month, setMonth] = useState('');
   const [successMessage, setSuccessMessage] = useState([dataExpenses]);
-  
+  /* const [catalogDetailName, setCatalogDetailName] = useState("");
+  const [id, setId] = useState(Math.floor(Math.random() * 1000));
+  const [options, setOptions] = useState([]);
+  const idCatalog = 3;
+
+  const handleSubmitBrand = async (e) => {
+    e.preventDefault();
+
+    // make a POST request to create new catalog
+    try {
+      const response = await axios.post(
+        "http://localhost/rest-api/api/create_catalog_op.php",
+        {
+          item: id,
+          idCatalog: idCatalog,
+          catalogDetailName: catalogDetailName,
+        }
+      );
+      console.log(response.data);
+      // display success message to user
+      alert("Catalog created successfully!");
+    } catch (error) {
+      console.error(error);
+      // display error message to user
+      alert("Error creating catalog.");
+    }
+  };
+
+  // function to handle change event for Autocomplete component
+  const handleAutocompleteChange = (event, value) => {
+    setCatalogDetailName(value);
+  };
+
+  // function to fetch options for Autocomplete component
+  const fetchOptions = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost/rest-api/api/get_catalog.php"
+      );
+      console.log(response.data);
+      setOptions(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+ */
+
+
   const getCatalog = async () => {
     const itemsc = await Api.apiGetCatalog();
     if(typeof(itemsc) == "undefined"){
@@ -34,7 +81,8 @@ const Expenses = () => {
       itemsc.map( elm => {
           const itemc =  {
                   id: elm.id,
-                  catalogName: elm.catalogName,
+                  idCatalog: elm.idCatalog,
+                  catalogDetailName: elm.catalogDetailName,
               }
               return dataCatalog.push(itemc)
         })
@@ -243,11 +291,10 @@ const Expenses = () => {
   const showModalInsert = () => setModalInsert(true);
   const closeModalInsert = () => setModalInsert(false);
   const edit = (dato) => {
+    var counter = 0;
+    var array = data;
   
-  var counter = 0;
-  var array = data;
-  
-  array.map( items => {
+    array.map( items => {
     if (dato.item === items.item) {
       array[counter].brand = dato.brand;
       array[counter].name = dato.name;
@@ -263,10 +310,27 @@ const Expenses = () => {
     }
     counter++;
     return null
-  });
-  setData(array);
-  setModalUpdate(false)
+    });
+    setData(array);
+    setModalUpdate(false)
   };
+
+  const editCatalog = (datoc) => {
+    var counter = 0;
+    var array = datac;
+  
+    array.map( itemsc => {
+    if (datoc.itemc === itemsc.itemc) {
+      array[counter].idCatalog = datoc.idCatalog;
+      array[counter].catalogDetailName = datoc.catalogDetailName;
+    Api.apiCreate(array[counter]);
+    }
+    counter++;
+    return null
+    });
+    setDatac(array);
+  };
+
   const url = window.location.href.toString();
   const insert = () => {
   let newValue = form
@@ -286,6 +350,27 @@ const Expenses = () => {
     }, 3000);
         
   };
+
+  const insertBrand = () => {
+    let newValue = formData
+          newValue.item = parseInt(newValue.id + newValue.idCatalog.length + newValue.catalogDetailName.length + Math.floor(Math.random()*1000));
+          
+          /* url.includes("/expenses/") ? 
+          newValue["itemType"] = "expenses" : console.log("...") */
+  
+          console.log(newValue);
+  
+          Api.apiCreateCatalog(newValue);
+          setDatac([...dataCatalog, newValue]);
+          setSuccessMessage('Successfully created');
+      setTimeout(() => {
+        setSuccessMessage('');
+      }, 3000);
+    };
+
+    const handleChangeBrand = (e) => {
+      setFormData({...formData, [e.target.name]: e.target.value})
+    };
   
   const handleChange = (e) => {
     setForm({...form, [e.target.name]: e.target.value})
@@ -313,7 +398,7 @@ const Expenses = () => {
               <th>Name</th>
               <th>Brand</th>
               <th>Adquisition Date</th>
-              <th>Value</th>
+              <th>Amount</th>
               <th>Supplier</th>
               <th>Responsible</th>
               <th onClick={()=>sorting("statusD")}>State ↕</th>
@@ -337,12 +422,13 @@ const Expenses = () => {
         </Table>
       </Container>
 
-      {/* <Container className='text-xl table-responsive'>
+     {/*  <Container className='text-xl table-responsive'>
         <Table className='w-full mb-4 text-center table-fixed'>
           <thead className='w-full border-b-2 border-slate-500'>
             <tr className='h-16 w-full'>
               <th>▼</th>
               <th>item</th>
+              <th>id</th>
               <th>catalgo</th>
             </tr>
             </thead>
@@ -352,12 +438,14 @@ const Expenses = () => {
                 <th><button class="bg-slate-500 hover:bg-slate-600 transition-all w-3/5 border-2 font-semibold py-1 border-slate-600 text-slate-100 rounded-md">Details</button></th>
                
                 <td>{datoc.id}</td>
-                <td>{datoc.catalogName}</td>
+                <td>{datoc.idCatalog}</td>
+                <td>{datoc.catalogDetailName}</td>
               </tr>
             ))}
           </tbody>
         </Table>
-      </Container> */}
+      </Container>  */}
+
       <Container className='text-xl table-responsive'>
       <div className='border-3 border-slate-500 rounded-xl mx-5 my-4 shadow-md shadow-slate-60'>
         <Table className='w-full mb-4 text-center table-fixed'>
@@ -406,20 +494,20 @@ const Expenses = () => {
             </FormGroup>
             <FormGroup>
               <label className='font-bold mr-4'> Brand: </label>
-{/*               <input  className='w-full border-2 p-1 border-slate-400 rounded-md outline-none'  name="brand" type="text" onChange={handleChange} value={form.brand} />
- */}            
- <select class="select outline-blue-500 w-full border-2 p-1 border-slate-400 rounded-md" name="brand" onChange={handleChange} value={form.brand}>
+              <input  className='w-full border-2 p-1 border-slate-400 rounded-md outline-none'  name="brand" type="text" onChange={handleChange} value={form.brand} />
+            
+ {/* <select class="select outline-blue-500 w-full border-2 p-1 border-slate-400 rounded-md" name="brand" onChange={handleChange} value={form.brand}>
                 {datac.map( (datoc) => ( 
                   <option key={datoc.id} value={datoc.catalogName}>{datoc.catalogName}</option>
                 ))}
-              </select>
+              </select> */}
  </FormGroup>
             <FormGroup>
               <label className='font-bold mr-4'>Acquisition date: </label>
               <input  className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' name="acquisition_date" type="date" onChange={handleChange} value={form.acquisition_date}/>
             </FormGroup>
             <FormGroup>
-              <label className='font-bold mr-4'>Value: </label>
+              <label className='font-bold mr-4'>Amount: </label>
               <input  onKeyPress={handleKeyPress} className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' name="value" type="text" onChange={handleChange} value={form.value}/>
             </FormGroup>
             <FormGroup>
@@ -466,21 +554,41 @@ const Expenses = () => {
               <label className='font-bold mr-4'>Name: </label>
               <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' name="name" type="text" onChange={handleChange}/>
             </FormGroup>
+
+
+
             <FormGroup>
               <label className='font-bold mr-4'>Brand: </label>
-              <select class="select outline-blue-500 w-full file:border-2 p-1 border-slate-400 rounded-md" name="brand" onChange={handleChange}>
+              <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' name="brand" type="text" onChange={handleChange}/>
+              {/* <select class="select outline-blue-500 w-full file:border-2 p-1 border-slate-400 rounded-md" name="brand" onChange={handleChange}>
               <option disabled selected>Select brand</option>
                 {datac.map( (datoc) => ( 
                   <option key={datoc.id} value={datoc.catalogName}>{datoc.catalogName}</option>
                 ))}
-              </select>
+              </select> */}
+              {/* <form onSubmit={handleSubmitBrand}>
+      <div>
+        <Autocomplete
+          options={options}
+          getOptionLabel={(option) => option.catalogDetailName}
+          onChange={handleAutocompleteChange}
+          onOpen={fetchOptions}
+          renderInput={(params) => (
+            <TextField {...params} label="Catalog Detail Name" />
+          )}
+        />
+      </div>
+    </form> */}
             </FormGroup>
+
+
+
             <FormGroup>
               <label className='font-bold mr-4'>Acquisition date: </label>
               <input className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' name="acquisition_date" type="date" onChange={handleChange} />
             </FormGroup>
             <FormGroup>
-              <label className='font-bold mr-4'>Value: </label>
+              <label className='font-bold mr-4'>Amount: </label>
               <input onKeyPress={handleKeyPress} className='w-full border-2 p-1 border-slate-400 rounded-md outline-none' name="value" type="numbe" onChange={handleChange} />
             </FormGroup>
             <FormGroup>
