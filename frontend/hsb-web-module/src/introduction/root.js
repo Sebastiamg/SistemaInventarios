@@ -18,7 +18,7 @@ function SiginUp(props) {
     admissionDate: "",
     remainingDays: 0,
     lastname: lastname,
-    phone: phoneNumber,
+    phone: phoneNumber
   };
 
 
@@ -126,7 +126,6 @@ function SiginUp(props) {
       const user = {
         'id': id,
         'name': username,
-        'lastname': lastname,
         'phone': phoneNumber,
         'email': email,
         'password': password,

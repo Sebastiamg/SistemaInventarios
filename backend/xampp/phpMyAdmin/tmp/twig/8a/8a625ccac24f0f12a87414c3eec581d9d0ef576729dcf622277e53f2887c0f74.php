@@ -50,6 +50,6 @@ class __TwigTemplate_1fe5d3f861fd02dc6cfd56233a57aeede4f1cf309c13102bfb77ac22a07
 
     public function getSourceContext()
     {
-        return new Source("", "config/form_display/tabs_bottom.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\repositorio\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\config\\form_display\\tabs_bottom.twig");
+        return new Source("", "config/form_display/tabs_bottom.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\nuevoxd\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\config\\form_display\\tabs_bottom.twig");
     }
 }

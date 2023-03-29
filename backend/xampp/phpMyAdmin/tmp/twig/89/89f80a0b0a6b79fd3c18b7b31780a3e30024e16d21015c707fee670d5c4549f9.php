@@ -92,6 +92,6 @@ class __TwigTemplate_96189785b32684ae7cdebfd0326d61dd35b9f498c542b99e3250313e817
 
     public function getSourceContext()
     {
-        return new Source("", "login/header.twig", "C:\\hsb\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\login\\header.twig");
+        return new Source("", "login/header.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\nuevoxd\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\login\\header.twig");
     }
 }

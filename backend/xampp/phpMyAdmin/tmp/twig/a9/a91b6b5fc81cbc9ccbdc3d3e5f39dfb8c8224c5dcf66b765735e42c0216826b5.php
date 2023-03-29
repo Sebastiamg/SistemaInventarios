@@ -190,6 +190,6 @@ class __TwigTemplate_f0ea7b1a77fd0af7bb3834a3cad44554527679f990c109815654775ca8e
 
     public function getSourceContext()
     {
-        return new Source("", "database/structure/check_all_tables.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\repositorio\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\database\\structure\\check_all_tables.twig");
+        return new Source("", "database/structure/check_all_tables.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\nuevoxd\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\database\\structure\\check_all_tables.twig");
     }
 }

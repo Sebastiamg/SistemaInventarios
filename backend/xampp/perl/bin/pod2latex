@@ -1,5 +1,5 @@
 #!perl
-    eval 'exec \Users\steve\OneDrive\Escritorio\repositorio\SistemaInventarios\backend\xampp\perl\bin\perl.exe -S $0 ${1+"$@"}'
+    eval 'exec \Users\steve\OneDrive\Escritorio\nuevoxd\SistemaInventarios\backend\xampp\perl\bin\perl.exe -S $0 ${1+"$@"}'
 	if $running_under_some_shell;
 
 # pod2latex conversion program

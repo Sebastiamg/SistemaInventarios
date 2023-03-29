@@ -61,7 +61,7 @@ const Employees = () => {
       .then(res => {
         let activeUsers = [];
         let inactiveUsers = [];
-
+        console.log(res)
         res.data.map(user => {
           // change &quot; to "
           const userDetail = user.details.replace(/&quot;/g, '"');

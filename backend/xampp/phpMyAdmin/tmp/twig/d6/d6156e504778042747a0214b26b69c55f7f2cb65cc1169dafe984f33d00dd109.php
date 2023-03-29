@@ -119,6 +119,6 @@ class __TwigTemplate_261ac9e6b43bf5d8f7535c66a5a38e81a1257b50df63f796455f60afa64
 
     public function getSourceContext()
     {
-        return new Source("", "table/delete/confirm.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\repositorio\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\table\\delete\\confirm.twig");
+        return new Source("", "table/delete/confirm.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\nuevoxd\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\table\\delete\\confirm.twig");
     }
 }

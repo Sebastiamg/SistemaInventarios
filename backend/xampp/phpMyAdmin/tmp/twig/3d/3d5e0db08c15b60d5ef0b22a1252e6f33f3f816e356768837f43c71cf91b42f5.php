@@ -104,6 +104,6 @@ class __TwigTemplate_ef8caa809596f54809563afa77e2e850bbbacd6680cd8eba6534ae0fb76
 
     public function getSourceContext()
     {
-        return new Source("", "footer.twig", "C:\\hsb\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\footer.twig");
+        return new Source("", "footer.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\nuevoxd\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\footer.twig");
     }
 }

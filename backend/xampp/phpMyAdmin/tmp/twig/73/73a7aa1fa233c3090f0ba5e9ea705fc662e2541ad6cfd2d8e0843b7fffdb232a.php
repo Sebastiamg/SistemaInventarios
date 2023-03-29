@@ -93,6 +93,6 @@ class __TwigTemplate_91ea8e71e33641dc42108bcb552c6e8f59a1de5e9d209a94fa095baa9f6
 
     public function getSourceContext()
     {
-        return new Source("", "sql/no_results_returned.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\repositorio\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\sql\\no_results_returned.twig");
+        return new Source("", "sql/no_results_returned.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\nuevoxd\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\sql\\no_results_returned.twig");
     }
 }

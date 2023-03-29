@@ -2,11 +2,13 @@ import axios from 'axios'
 //USERS
 //registro
 async function apiSigiUp(props) {
+  console.log(props)
   const req = await axios.post(
     'http://localhost/rest-api/api/create_user.php',
-    props,
+    props
   )
   return new Promise((res, rej) => {
+    console.log(req)
     if (req.status === 200) {
       return res(req.data.message)
     } else {

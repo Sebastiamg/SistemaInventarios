@@ -282,6 +282,6 @@ class __TwigTemplate_cea6c353eeda769fa9eb15ed9abad27728c2dac601ff49ee21f764287c3
 
     public function getSourceContext()
     {
-        return new Source("", "display/results/checkbox_and_links.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\repositorio\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\display\\results\\checkbox_and_links.twig");
+        return new Source("", "display/results/checkbox_and_links.twig", "C:\\Users\\steve\\OneDrive\\Escritorio\\nuevoxd\\SistemaInventarios\\backend\\xampp\\phpMyAdmin\\templates\\display\\results\\checkbox_and_links.twig");
     }
 }
